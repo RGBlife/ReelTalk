@@ -25,6 +25,9 @@ model Movie {
     poster_url String
     runtime Int
     trailer_url String
+    to_watch MoviesToWatch[]
+    reviews Review[]
+    recommended Reccomendation[]
 }
 
 model User {
@@ -38,11 +41,16 @@ model User {
     avatar String
     role String
     preferences Preference?
+    to_watch MoviesToWatch[]
+    messages Message[]
+    reviews Review[]
+    chatrooms ChatRoom[]
+    recommended Reccomendation[]
 }
 
 model Preference {
     id Int @id @default(autoincrement())
-    user User @relation(fields:[user_id], references: [user_id])
+    user User @relation(fields:[user_id], references: [id])
     user_id Int @unique
     preference_genre String
     genre_weighting Int
@@ -55,13 +63,16 @@ model Preference {
 model Genre {
     id Int @id @unique
     genre String
+    movies MoviesOnGenres[]
 }
 
 model MoviesOnGenres {
     genre Genre @relation(fields:[genre_id], references: [id])
-    genre_id Int 
+    genre_id Int
     movie Movie @relation(fields:[movie_id], references: [id])
-    movie_id Int 
+    movie_id Int
+
+    @@unique([genre_id, movie_id])
 }
 
 model MoviesToWatch {
@@ -70,6 +81,8 @@ model MoviesToWatch {
     user User @relation(fields: [user_id], references: [id])
     user_id Int
     has_watched Boolean
+
+    @@unique([movie_id, user_id])
 }
 
 model Message {
@@ -112,6 +125,7 @@ model ChatRoom {
     room_name String
     owner String
     members String[]
+    message Message[]
 }
 
 model Reccomendation {
@@ -120,50 +134,52 @@ model Reccomendation {
     movie Movie @relation(fields: [movie_id], references: [id])
     movie_id Int
     score Int
+
+    @@unique([user_id, movie_id])
 }
 
 // Necessary for Next auth
-model Account {
-    id                String  @id @default(cuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? // @db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+// model Account {
+//     id                String  @id @default(cuid())
+//     userId            String
+//     type              String
+//     provider          String
+//     providerAccountId String
+//     refresh_token     String? // @db.Text
+//     access_token      String? // @db.Text
+//     expires_at        Int?
+//     token_type        String?
+//     scope             String?
+//     id_token          String? // @db.Text
+//     session_state     String?
+//     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([provider, providerAccountId])
-}
+//     @@unique([provider, providerAccountId])
+// }
 
-model Session {
-    id           String   @id @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
+// model Session {
+//     id           String   @id @default(cuid())
+//     sessionToken String   @unique
+//     userId       String
+//     expires      DateTime
+//     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+// }
 
-model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
-}
+// model User {
+//     id            String    @id @default(cuid())
+//     name          String?
+//     email         String?   @unique
+//     emailVerified DateTime?
+//     image         String?
+//     accounts      Account[]
+//     sessions      Session[]
+//     posts         Post[]
+// }
 
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
+// model VerificationToken {
+//     identifier String
+//     token      String   @unique
+//     expires    DateTime
 
-    @@unique([identifier, token])
-}
+//     @@unique([identifier, token])
+// }
