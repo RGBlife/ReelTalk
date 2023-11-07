@@ -15,84 +15,84 @@ datasource db {
 }
 
 model Movie {
-    id Int @id @unique
-    title String
-    genres MoviesOnGenres[]
-    overview String
+    id           Int              @id @unique
+    title        String
+    genres       MoviesOnGenres[]
+    overview     String
     release_date String
-    imdb_rating Float
-    vote_count Int
-    poster_url String
-    runtime Int
-    trailer_url String
-    to_watch MoviesToWatch[]
-    reviews Review[]
-    recommended Reccomendation[]
+    imdb_rating  Float
+    vote_count   Int
+    poster_url   String
+    runtime      Int
+    trailer_url  String
+    to_watch     MoviesToWatch[]
+    reviews      Review[]
+    recommended  Recommendation[]
 }
 
 model User {
-    id Int @id @default(autoincrement())
-    to_watch_list_public Boolean
-    watched_list_public Boolean
-    favourite_movie String
-    email String
-    password String
-    username String
-    avatar String
-    role String
-    preferences Preference?
-    to_watch MoviesToWatch[]
-    messages Message[]
-    reviews Review[]
-    chatrooms ChatRoom[]
-    recommended Reccomendation[]
+    id                     Int              @id @default(autoincrement())
+    username               String           @unique
+    email                  String           @unique
+    password               String
+    avatar_url             String?
+    role                   String
+    favourite_movie        String
+    is_watch_list_public   Boolean
+    is_watched_list_public Boolean
+    preferences            Preference?
+    to_watch               MoviesToWatch[]
+    messages               Message[]
+    reviews                Review[]
+    chatrooms              ChatRoom[]
+    recommended            Recommendation[]
 }
 
 model Preference {
-    id Int @id @default(autoincrement())
-    user User @relation(fields:[user_id], references: [id])
-    user_id Int @unique
-    preference_genre String
-    genre_weighting Int
+    id                      Int    @id @default(autoincrement())
+    user                    User   @relation(fields: [user_id], references: [id])
+    user_id                 Int    @unique
+    preference_genre        String
+    genre_weighting         Int
     preference_release_date String
-    release_date_weighting Int
-    preference_imdb_rating Float
-    imdb_rating_weighting Int
+    release_date_weighting  Int
+    preference_imdb_rating  Float
+    imdb_rating_weighting   Int
 }
 
 model Genre {
-    id Int @id @unique
-    genre String
+    id     Int              @id @unique
+    genre  String
     movies MoviesOnGenres[]
 }
 
 model MoviesOnGenres {
-    genre Genre @relation(fields:[genre_id], references: [id])
+    genre    Genre @relation(fields: [genre_id], references: [id])
     genre_id Int
-    movie Movie @relation(fields:[movie_id], references: [id])
+    movie    Movie @relation(fields: [movie_id], references: [id])
     movie_id Int
 
     @@unique([genre_id, movie_id])
 }
 
 model MoviesToWatch {
-    movie Movie @relation(fields:[movie_id], references: [id])
-    movie_id Int
-    user User @relation(fields: [user_id], references: [id])
-    user_id Int
+    movie       Movie   @relation(fields: [movie_id], references: [id])
+    movie_id    Int
+    user        User    @relation(fields: [user_id], references: [id])
+    user_id     Int
     has_watched Boolean
 
     @@unique([movie_id, user_id])
 }
 
 model Message {
-    id Int @id @default(autoincrement())
-    user User @relation(fields: [user_id], references: [id])
-    user_id Int
-    room ChatRoom @relation(fields: [room_id], references: [id])
-    room_id Int
-    author String
-    body String
+    id        Int      @id @default(autoincrement())
+    user      User     @relation(fields: [user_id], references: [id])
+    user_id   Int
+    room      ChatRoom @relation(fields: [room_id], references: [id])
+    room_id   Int
+    author    String
+    body      String
     createdAt DateTime @default(now())
 }
 
@@ -107,33 +107,33 @@ model Message {
 // }
 
 model Review {
-    id Int @id @default(autoincrement())
-    user User @relation(fields: [user_id], references: [id])
-    user_id Int
-    author String
-    title String
-    body String
-    movie Movie @relation(fields: [movie_id], references: [id])
-    movie_id Int
+    id         Int    @id @default(autoincrement())
+    author_id  Int
+    movie_id   Int
+    title      String
+    body       String
     vote_count Int
+
+    author User  @relation(fields: [author_id], references: [id])
+    movie  Movie @relation(fields: [movie_id], references: [id])
 }
 
 model ChatRoom {
-    id Int @id @default(autoincrement())
-    user User @relation(fields: [owner_id], references: [id])
-    owner_id Int 
+    id        Int       @id @default(autoincrement())
+    user      User      @relation(fields: [owner_id], references: [id])
+    owner_id  Int
     room_name String
-    owner String
-    members String[]
-    message Message[]
+    owner     String
+    members   String[]
+    message   Message[]
 }
 
-model Reccomendation {
-    user User @relation(fields: [user_id], references: [id])
-    user_id Int
-    movie Movie @relation(fields: [movie_id], references: [id])
+model Recommendation {
+    user     User  @relation(fields: [user_id], references: [id])
+    user_id  Int
+    movie    Movie @relation(fields: [movie_id], references: [id])
     movie_id Int
-    score Int
+    score    Int
 
     @@unique([user_id, movie_id])
 }
