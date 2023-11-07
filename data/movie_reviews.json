@@ -1,7 +1,6 @@
 {
   "movie_reviews": [
     {
-      "id": 1,
       "user_id": 1,
       "title": "Great movie!",
       "body": "I loved this movie. The acting was great and the story was really engaging.",
@@ -9,7 +8,6 @@
       "vote_count": 10
     },
     {
-      "id": 2,
       "user_id": 2,
       "title": "Disappointing",
       "body": "I was really looking forward to this movie but it didn't live up to my expectations. The plot was weak and the acting was mediocre.",
@@ -17,7 +15,6 @@
       "vote_count": 2
     },
     {
-      "id": 3,
       "user_id": 2,
       "title": "Mixed feelings",
       "body": "I'm not sure how I feel about this movie. There were some good moments but overall it was just okay.",
@@ -25,7 +22,6 @@
       "vote_count": 5
     },
     {
-      "id": 4,
       "user_id": 3,
       "title": "A must-see movie",
       "body": "This movie is a masterpiece. The acting, the story, the cinematography, everything is perfect.",
@@ -33,7 +29,6 @@
       "vote_count": 20
     },
     {
-      "id": 5,
       "user_id": 3,
       "title": "Not worth the hype",
       "body": "I don't understand why everyone is raving about this movie. It was boring and predictable.",
@@ -41,7 +36,6 @@
       "vote_count": 3
     },
     {
-      "id": 6,
       "user_id": 4,
       "title": "A rollercoaster of emotions",
       "body": "This movie made me laugh, cry, and everything in between. It's a must-watch.",
@@ -49,7 +43,6 @@
       "vote_count": 15
     },
     {
-      "id": 7,
       "user_id": 4,
       "title": "Disgusting",
       "body": "I can't believe I wasted my time watching this movie. It was vulgar and offensive.",
@@ -57,7 +50,6 @@
       "vote_count": 1
     },
     {
-      "id": 8,
       "user_id": 4,
       "title": "A classic",
       "body": "This movie is a timeless classic. It's a must-watch for any movie lover.",
@@ -65,14 +57,13 @@
       "vote_count": 18
     },
     {
-      "id": 9,
       "user_id": 5,
       "title": "A pleasant surprise",
+      "body": "I watched this movie a few days ago and I can't even remember what it was about. It was that forgetable.",
       "movie_id": 609681,
       "vote_count": 18
     },
     {
-      "id": 1,
       "user_id": 5,
       "title": "A must-watch movie",
       "body": "This movie is a must-watch. It's a beautiful story about love and friendship.",
@@ -80,7 +71,6 @@
       "vote_count": 15
     },
     {
-      "id": 2,
       "user_id": 5,
       "title": "A forgettable movie",
       "body": "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
@@ -88,7 +78,6 @@
       "vote_count": 2
     },
     {
-      "id": 3,
       "user_id": 5,
       "title": "A visually stunning movie",
       "body": "This movie is a feast for the eyes. The visuals are breathtaking.",
@@ -96,7 +85,6 @@
       "vote_count": 17
     },
     {
-      "id": 4,
       "user_id": 6,
       "title": "A heart-pumping thriller",
       "body": "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
@@ -104,7 +92,6 @@
       "vote_count": 13
     },
     {
-      "id": 5,
       "user_id": 6,
       "title": "A forgettable sequel",
       "body": "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
@@ -112,7 +99,6 @@
       "vote_count": 6
     },
     {
-      "id": 6,
       "user_id": 6,
       "title": "A heart-wrenching story",
       "body": "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
@@ -120,7 +106,6 @@
       "vote_count": 11
     },
     {
-      "id": 7,
       "user_id": 7,
       "title": "A predictable movie",
       "body": "I knew exactly how this movie was going to end from the beginning. It was too predictable.",
@@ -128,7 +113,6 @@
       "vote_count": 4
     },
     {
-      "id": 8,
       "user_id": 8,
       "title": "A real tearjerker",
       "body": "This movie had me in tears. It's a beautiful story about love and loss.",
@@ -136,7 +120,6 @@
       "vote_count": 12
     },
     {
-      "id": 9,
       "user_id": 9,
       "title": "Pleasantly surprised",
       "body": "I didn't have high expectations for this movie but it turned out to be really good. I was pleasantly surprised.",
@@ -144,7 +127,6 @@
       "vote_count": 7
     },
     {
-      "id": 10,
       "user_id": 10,
       "title": "Overrated",
       "body": "This movie was hyped up so much but it didn't live up to my expectations. It was just okay.",
@@ -152,7 +134,6 @@
       "vote_count": 4
     },
     {
-      "id": 11,
       "user_id": 11,
       "title": "A real tearjerker",
       "body": "This movie had me in tears. It's a beautiful story about love and loss.",
@@ -160,7 +141,6 @@
       "vote_count": 12
     },
     {
-      "id": 12,
       "user_id": 11,
       "title": "A waste of time",
       "body": "I regret watching this movie. It was a complete waste of time.",
@@ -168,7 +148,6 @@
       "vote_count": 1
     },
     {
-      "id": 13,
       "user_id": 11,
       "title": "A thrilling ride",
       "body": "This movie had me on the edge of my seat the whole time. It's a must-watch for any action movie fan.",
@@ -176,7 +155,6 @@
       "vote_count": 16
     },
     {
-      "id": 14,
       "user_id": 11,
       "title": "A heartwarming story",
       "body": "This movie is a heartwarming story about family and friendship. It's a must-watch.",
@@ -184,7 +162,6 @@
       "vote_count": 22
     },
     {
-      "id": 15,
       "user_id": 11,
       "title": "A real gem",
       "body": "This movie is a hidden gem. It's not well-known but it's definitely worth watching.",
@@ -192,7 +169,6 @@
       "vote_count": 9
     },
     {
-      "id": 16,
       "user_id": 12,
       "title": "A disappointing sequel",
       "body": "I loved the first movie but this sequel was a letdown. The plot was weak and the acting was subpar.",
@@ -200,7 +176,6 @@
       "vote_count": 3
     },
     {
-      "id": 17,
       "user_id": 12,
       "title": "A thought-provoking movie",
       "body": "This movie really made me think. It's a deep and meaningful story about life and death.",
@@ -208,7 +183,6 @@
       "vote_count": 14
     },
     {
-      "id": 18,
       "user_id": 12,
       "title": "A hilarious comedy",
       "body": "This movie had me laughing from start to finish. It's a must-watch for any comedy fan.",
@@ -216,7 +190,6 @@
       "vote_count": 19
     },
     {
-      "id": 19,
       "user_id": 12,
       "title": "A forgettable movie",
       "body": "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
@@ -224,7 +197,6 @@
       "vote_count": 2
     },
     {
-      "id": 20,
       "user_id": 12,
       "title": "A visually stunning movie",
       "body": "This movie is a feast for the eyes. The visuals are breathtaking.",
@@ -232,7 +204,6 @@
       "vote_count": 17
     },
     {
-      "id": 21,
       "user_id": 13,
       "title": "A heart-pumping thriller",
       "body": "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
@@ -240,7 +211,6 @@
       "vote_count": 13
     },
     {
-      "id": 22,
       "user_id": 13,
       "title": "A forgettable sequel",
       "body": "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
@@ -248,7 +218,6 @@
       "vote_count": 6
     },
     {
-      "id": 23,
       "user_id": 13,
       "title": "A heart-wrenching story",
       "body": "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
@@ -256,7 +225,6 @@
       "vote_count": 11
     },
     {
-      "id": 24,
       "user_id": 13,
       "title": "A predictable movie",
       "body": "I knew exactly how this movie was going to end from the beginning. It was too predictable.",
@@ -264,7 +232,6 @@
       "vote_count": 4
     },
     {
-      "id": 25,
       "user_id": 13,
       "title": "A forgettable movie",
       "body": "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
@@ -272,7 +239,6 @@
       "vote_count": 2
     },
     {
-      "id": 26,
       "user_id": 14,
       "title": "A visually stunning movie",
       "body": "This movie is a feast for the eyes. The visuals are breathtaking.",
@@ -280,7 +246,6 @@
       "vote_count": 17
     },
     {
-      "id": 27,
       "user_id": 14,
       "title": "A heart-pumping thriller",
       "body": "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
@@ -288,7 +253,6 @@
       "vote_count": 13
     },
     {
-      "id": 28,
       "user_id": 14,
       "title": "A forgettable sequel",
       "body": "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
@@ -296,7 +260,6 @@
       "vote_count": 6
     },
     {
-      "id": 29,
       "user_id": 15,
       "title": "A heart-wrenching story",
       "body": "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
@@ -304,7 +267,6 @@
       "vote_count": 11
     },
     {
-      "id": 30,
       "user_id": 15,
       "title": "A predictable movie",
       "body": "I knew exactly how this movie was going to end from the beginning. It was too predictable.",
