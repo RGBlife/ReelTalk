@@ -2,7 +2,7 @@ import { PrismaClient, Prisma } from "@prisma/client";
 const prisma = new PrismaClient();
 async function main() {
   let genre: Prisma.UserCreateInput;
-  const deleteUsers = await prisma.genre.deleteMany({});
+  const deleteGenres = await prisma.genre.deleteMany({});
   const genres = await prisma.genre.createMany({
     data: [
       {
