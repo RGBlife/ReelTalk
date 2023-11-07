@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
@@ -14,16 +14,111 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
+model Movies {
+    id Int @id @default(autoincrement())
+    movie_title String
+    genre MoviesOnGenres[]
+    overview String
+    release_date String
+    idmb_rating Float
+    vote_count Int
+    poster_path String
+    runtime Int
+    trailer String
+}
+
+model Users {
+    id Int @id @default(autoincrement())
+    to_watch_list_public Boolean
+    watched_list_public Boolean
+    favourite_movie String
+    email String
+    password String
+    username String
+    avatar String
+    role String
+    preferences Preferences?
+}
+
+model Preferences {
+    id Int @id @default(autoincrement())
+    user Users @relation(fields:[user_id], references: [user_id])
+    user_id Int @unique
+    preference_genre String
+    genre_weighting Int
+    preference_release_date String
+    release_date_weighting Int
+    preference_imdv_rating Float
+    imdb_rating_weighting Int
+}
+
+model Genres {
+    id Int @id @default(autoincrement())
+    genre String
+}
+
+model MoviesOnGenres {
+    genre Genres @relation(fields:[genre_id], references: [id])
+    genre_id Int 
+    movie Movies @relation(fields:[movie_id], references: [id])
+    movie_id Int 
+}
+
+model MoviesToWatch {
+    movie Movies @relation(fields:[movie_id], references: [id])
+    movie_id Int
+    user Users @relation(fields: [user_id], references: [id])
+    user_id Int
+    has_watched Boolean
+}
+
+model Messages {
+    id Int @id @default(autoincrement())
+    user Users @relation(fields: [user_id], references: [id])
+    user_id Int
+    room ChatRoom @relation(fields: [room_id], references: [id])
+    room_id Int
+    author String
+    body String
     createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+}
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
+//Extended Component:
+// model UserCreatedMovieLists {
+//     id Int @id @default(autoincrement())
+//     user Users @relation(fields: [user_id], references: [id])
+//     user_id Int
+//     movie_id Int
+//     public Boolean
+//     list_name String
+// }
 
-    @@index([name])
+model Reviews {
+    id Int @id @default(autoincrement())
+    user Users @relation(fields: [user_id], references: [id])
+    user_id Int
+    author String
+    title String
+    body String
+    movie Movies @relation(fields: [movie_id], references: [id])
+    movie_id Int
+    vote_count Int
+}
+
+model ChatRoom {
+    id Int @id @default(autoincrement())
+    user Users @relation(fields: [owner_id], references: [id])
+    owner_id Int 
+    room_name String
+    owner String
+}
+
+model Reccomendations {
+    user Users @relation(fields: [user_id], references: [id])
+    user_id Int
+    movie Movies @relation(fields: [movie_id], references: [id])
+    movie_id Int
+    score Int
 }
 
 // Necessary for Next auth
