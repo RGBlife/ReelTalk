@@ -1,21 +1,13 @@
+import { AddToWatchListButton } from "./components/AddToWatchListButton";
+import { AddToFavouritesButton } from "./components/AddToFavouritesButton";
+
+import movies from "./data/movies.json";
+import reviews from "./data/reviews.json";
+
+const movie: any = movies[0];
+
 type ContextType = {
   params: { movieId: string };
-};
-
-const movie = {
-  id: 1,
-  title: "The Shawshank Redemption",
-  genres: ["Drama", "Crime"],
-  release_date: 1994,
-  overview:
-    "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-  imdb_rating: 9.3,
-  runtime: 142,
-  poster_url:
-    "https://www.vintagemovieposters.co.uk/wp-content/uploads/2015/07/shawshankquadlarge1.jpg",
-  trailer_url:
-    "https://www.youtube.com/watch?v=PLl99DlL6b4&ab_channel=WarnerBros.Entertainment",
-  vote_count: 10,
 };
 
 // const getMovieById = async (id: string) => {
@@ -25,16 +17,62 @@ const movie = {
 const SingleMoviePage = async (context: ContextType) => {
   // const movie = await getMovieById(context.params.movieId)
 
-  return <MovieDetail />;
+  return (
+    <>
+      <AddToWatchListButton />
+      <AddToFavouritesButton />
+      <MovieDetailSection />
+      <ReviewSection />
+    </>
+  );
 };
 
-const MovieDetail = () => {
+const MovieDetailSection = () => {
   return (
-    <div>
+    <section>
+      <img src={movie.poster_url} alt={`Poster of ${movie.title}`} />
       <h2>
         {movie.title} ({movie.release_date})
       </h2>
+    </section>
+  );
+};
+
+const ReviewSection = () => {
+  return (
+    <section>
+      <ReviewForm />
+      <ReviewList />
+    </section>
+  );
+};
+
+const ReviewForm = () => {
+  return (
+    <form className="">
+      <textarea placeholder="Have your say..." />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+const ReviewList = () => {
+  return (
+    <div>
+      {reviews.map((review: any) => (
+        <Review key={review.id} {...review} />
+      ))}
     </div>
+  );
+};
+
+const Review = (review: any) => {
+  return (
+    <article className="border border-blue-500 p-4">
+      <h3>"{review.title}"</h3>
+      <p>{review.body}</p>
+      <p>Upvotes: {review.vote_count}</p>
+    </article>
   );
 };
 
