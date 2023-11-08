@@ -1,8 +1,12 @@
 "use client";
 
-export const AddToWatchListButton = () => {
+type Props = {
+  movieId: number;
+};
+
+export const AddToWatchListButton = ({ movieId }: Props) => {
   const handleClick = () => {
-    alert("added to watch list");
+    alert(`added movie of id: ${movieId} to watch list`);
   };
 
   return <button onClick={handleClick}>Add to Watch List</button>;

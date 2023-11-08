@@ -1,4 +1,5 @@
 import { MovieDetailSection } from "./components/MovieDetailSection";
+import { db } from "~/server/db";
 
 type Context = {
   params: {
@@ -6,17 +7,18 @@ type Context = {
   };
 };
 
-// const getMovieById = async (id: string) => {
-//    return await prisma.movie.findUnique({ where: { id } })
-// };
+const getMovieById = async (id: number) => {
+  return await db.movie.findUnique({ where: { id } });
+};
 
 export default async function SingleMoviePage(context: Context) {
-  const { movieId } = context.params;
-  // const movie = await getMovieById(context.params.movieId)
+  const movie = await getMovieById(+context.params.movieId);
+
+  if (!movie) return <p>No movie found...</p>;
 
   return (
     <>
-      <MovieDetailSection />
+      <MovieDetailSection movie={movie} />
     </>
   );
 }

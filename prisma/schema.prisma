@@ -36,7 +36,7 @@ model User {
     email                  String           @unique
     password               String
     avatar_url             String?
-    role                   Role @default(User)
+    role                   Role             @default(User)
     favourite_movie        String
     is_watch_list_public   Boolean
     is_watched_list_public Boolean
@@ -102,7 +102,7 @@ model Message {
 }
 
 model Review {
-    id         Int    @id @default(autoincrement())
+    id         Int     @id @default(autoincrement())
     author_id  Int
     movie_id   Int
     title      String?

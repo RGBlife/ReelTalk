@@ -4,11 +4,13 @@ import { AddToWatchListButton } from "./AddToWatchListButton";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 
-import movies from "../data/movies.json";
+import { Movie } from "@prisma/client";
 
-export const MovieDetailSection = () => {
-  const movie = movies[0]!;
+type Props = {
+  movie: Movie;
+};
 
+export const MovieDetailSection = ({ movie }: Props) => {
   return (
     <section>
       <img src={movie.poster_url} alt={`Poster of ${movie.title}`} />
@@ -16,10 +18,10 @@ export const MovieDetailSection = () => {
         {movie.title} ({getYearFromDateStr(movie.release_date)})
       </h2>
       <div>
-        <AddToWatchListButton />
+        <AddToWatchListButton movieId={movie.id} />
       </div>
       <div>
-        <AddToWatchedListButton />
+        <AddToWatchedListButton movieId={movie.id} />
       </div>
       <div>
         <MovieTrailerButton />
