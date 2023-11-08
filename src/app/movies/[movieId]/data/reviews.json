@@ -1,0 +1,258 @@
+[
+  {
+    "id": 1,
+    "author": {
+      "id": 1,
+      "username": "MovieLover1",
+      "avatar_url": "https://images.unsplash.com/photo-1593642633897-19e086f10862"
+    },
+    "title": "Great movie!",
+    "body": "I loved this movie. The acting was great and the story was really engaging.",
+    "movie_id": 912908,
+    "vote_count": 10,
+    "has_spoilers": true
+  },
+  {
+    "id": 2,
+    "author": {
+      "id": 2,
+      "username": "MovieWatcher2",
+      "avatar_url": "https://images.unsplash.com/photo-1601930597306-5f6d75f32cfe"
+    },
+    "title": "Disappointing",
+    "body": "I was really looking forward to this movie but it didn't live up to my expectations. The plot was weak and the acting was mediocre.",
+    "movie_id": 912908,
+    "vote_count": 2,
+    "has_spoilers": false
+  },
+  {
+    "id": 3,
+    "author": {
+      "id": 2,
+      "username": "MovieWatcher2",
+      "avatar_url": "https://images.unsplash.com/photo-1604607863754-42f0149936e6"
+    },
+    "title": "Mixed feelings",
+    "body": "I'm not sure how I feel about this movie. There were some good moments but overall it was just okay.",
+    "movie_id": 1093485,
+    "vote_count": 5,
+    "has_spoilers": true
+  },
+  {
+    "id": 4,
+    "author": {
+      "id": 3,
+      "username": "Cinephile3",
+      "avatar_url": "https://images.unsplash.com/photo-1566578214-9ec9a02eaff8"
+    },
+    "title": "A must-see movie",
+    "body": "This movie is a masterpiece. The acting, the story, the cinematography, everything is perfect.",
+    "movie_id": 1093485,
+    "vote_count": 20,
+    "has_spoilers": false
+  },
+  {
+    "id": 5,
+    "author": {
+      "id": 3,
+      "username": "Cinephile3",
+      "avatar_url": "https://images.unsplash.com/photo-1599312483980-4a7e58b5e1ea"
+    },
+    "title": "Not worth the hype",
+    "body": "I don't understand why everyone is raving about this movie. It was boring and predictable."
+  },
+  {
+    "id": 1,
+    "author": {
+      "id": 1,
+      "username": "MovieLover1",
+      "avatar_url": "https://images.unsplash.com/photo-1593642633897-19e086f10862"
+    },
+    "title": "Great movie!",
+    "body": "I loved this movie. The acting was great and the story was really engaging.",
+    "movie_id": 912908,
+    "vote_count": 10,
+    "has_spoilers": true
+  },
+  {
+    "id": 2,
+    "author": {
+      "id": 2,
+      "username": "MovieWatcher2",
+      "avatar_url": "https://images.unsplash.com/photo-1601930597306-5f6d75f32cfe"
+    },
+    "title": "Disappointing",
+    "body": "I was really looking forward to this movie but it didn't live up to my expectations. The plot was weak and the acting was mediocre.",
+    "movie_id": 912908,
+    "vote_count": 2,
+    "has_spoilers": false
+  },
+  {
+    "id": 3,
+    "author": {
+      "id": 2,
+      "username": "MovieWatcher2",
+      "avatar_url": "https://images.unsplash.com/photo-1604607863754-42f0149936e6"
+    },
+    "title": "Mixed feelings",
+    "body": "I'm not sure how I feel about this movie. There were some good moments but overall it was just okay.",
+    "movie_id": 1093485,
+    "vote_count": 5,
+    "has_spoilers": true
+  },
+  {
+    "id": 4,
+    "author": {
+      "id": 3,
+      "username": "Cinephile3",
+      "avatar_url": "https://images.unsplash.com/photo-1566578214-9ec9a02eaff8"
+    },
+    "title": "A must-see movie",
+    "body": "This movie is a masterpiece. The acting, the story, the cinematography, everything is perfect.",
+    "movie_id": 1093485,
+    "vote_count": 20,
+    "has_spoilers": false
+  },
+  {
+    "id": 5,
+    "author": {
+      "id": 3,
+      "username": "Cinephile3",
+      "avatar_url": "https://images.unsplash.com/photo-1599312483980-4a7e58b5e1ea"
+    },
+    "title": "Not worth the hype",
+    "body": "I don't understand why everyone is raving about this movie. It was boring and predictable.",
+    "movie_id": 666277,
+    "vote_count": 3,
+    "has_spoilers": true
+  },
+  {
+    "id": 6,
+    "author": {
+      "id": 4,
+      "username": "FilmFanatic4",
+      "avatar_url": "https://images.unsplash.com/photo-1557953512-6573ad2eae1e"
+    },
+    "title": "A rollercoaster of emotions",
+    "body": "This movie made me laugh, cry, and everything in between. It's a must-watch.",
+    "movie_id": 666277,
+    "vote_count": 15,
+    "has_spoilers": false
+  },
+  {
+    "id": 7,
+    "author": {
+      "id": 4,
+      "username": "FilmFanatic4",
+      "avatar_url": "https://images.unsplash.com/photo-1569355703527-458d57963c70"
+    },
+    "title": "Disgusting",
+    "body": "I can't believe I wasted my time watching this movie. It was vulgar and offensive.",
+    "movie_id": 958006,
+    "vote_count": 1,
+    "has_spoilers": true
+  },
+  {
+    "id": 8,
+    "author": {
+      "id": 4,
+      "username": "FilmFanatic4",
+      "avatar_url": "https://images.unsplash.com/photo-1558246083-76016b16a2d0"
+    },
+    "title": "A classic",
+    "body": "This movie is a timeless classic. It's a must-watch for any movie lover.",
+    "movie_id": 609681,
+    "vote_count": 18,
+    "has_spoilers": false
+  },
+  {
+    "id": 9,
+    "author": {
+      "id": 5,
+      "username": "CinemaBuff5",
+      "avatar_url": "https://images.unsplash.com/photo-1567828450412-97df78cf0a8a"
+    },
+    "title": "A pleasant surprise",
+    "movie_id": 609681,
+    "vote_count": 18,
+    "has_spoilers": true
+  },
+  {
+    "id": 10,
+    "author": {
+      "id": 5,
+      "username": "CinemaBuff5",
+      "avatar_url": "https://images.unsplash.com/photo-1598011767549-48a11f5f547e"
+    },
+    "title": "A must-watch movie",
+    "body": "This movie is a must-watch. It's a beautiful story about love and friendship.",
+    "movie_id": 507089,
+    "vote_count": 15,
+    "has_spoilers": false
+  },
+  {
+    "id": 11,
+    "author": {
+      "id": 5,
+      "username": "CinemaBuff5",
+      "avatar_url": "https://images.unsplash.com/photo-1612784164771-8537945e9ce9"
+    },
+    "title": "A forgettable movie",
+    "body": "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
+    "movie_id": 678512,
+    "vote_count": 2,
+    "has_spoilers": true
+  },
+  {
+    "id": 12,
+    "author": {
+      "id": 5,
+      "username": "CinemaBuff5",
+      "avatar_url": "https://images.unsplash.com/photo-1553163141-bc9938f3e3f9"
+    },
+    "title": "A visually stunning movie",
+    "body": "This movie is a feast for the eyes. The visuals are breathtaking.",
+    "movie_id": 744857,
+    "vote_count": 17,
+    "has_spoilers": false
+  },
+  {
+    "id": 13,
+    "author": {
+      "id": 6,
+      "username": "MovieEnthusiast6",
+      "avatar_url": "https://images.unsplash.com/photo-1569479823-6062331d5f73"
+    },
+    "title": "A heart-pumping thriller",
+    "body": "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
+    "movie_id": 901362,
+    "vote_count": 13,
+    "has_spoilers": true
+  },
+  {
+    "id": 14,
+    "author": {
+      "id": 6,
+      "username": "MovieEnthusiast6",
+      "avatar_url": "https://images.unsplash.com/photo-1569838262208-211366654d6b"
+    },
+    "title": "A forgettable sequel",
+    "body": "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
+    "movie_id": 609681,
+    "vote_count": 6,
+    "has_spoilers": false
+  },
+  {
+    "id": 15,
+    "author": {
+      "id": 6,
+      "username": "MovieEnthusiast6",
+      "avatar_url": "https://images.unsplash.com/photo-1606194338508-961f6f4e6d15"
+    },
+    "title": "A heart-wrenching story",
+    "body": "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
+    "movie_id": 958006,
+    "vote_count": 11,
+    "has_spoilers": true
+  }
+]
