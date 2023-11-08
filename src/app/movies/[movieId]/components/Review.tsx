@@ -1,5 +1,6 @@
 import { Review as ReviewType } from "@prisma/client";
 import { HideableReviewBody } from "./HideableReviewBody";
+import { ReviewLikeButton } from "./ReviewLikeButton";
 
 type Props = {
   review: any; //specifying review type causes tsc errors
@@ -21,6 +22,7 @@ export const Review = ({ review }: Props) => {
         <p>{review.body}</p>
       )}
       <p>Upvotes: {review.vote_count}</p>
+      <ReviewLikeButton />
     </article>
   );
 };
