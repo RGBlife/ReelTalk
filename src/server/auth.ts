@@ -72,12 +72,16 @@ export const authOptions: NextAuthOptions = {
             return null;
           }
 
+          console.log("here");
+
           // Find user in the database
           const user = await db.user.findUnique({
             where: {
               email: credentials.email,
             },
           });
+
+          console.log(user);
 
           // If user cannot be found
           if (!user) {
@@ -89,6 +93,7 @@ export const authOptions: NextAuthOptions = {
 
           // If passwords do not match, do not pass go
           if (!isPwdValid) {
+            console.log("Password");
             return null;
           }
           // Return object with useful use information
@@ -98,7 +103,8 @@ export const authOptions: NextAuthOptions = {
             email: user.email,
           };
         } catch (error) {
-          throw new Error("Not found");
+          console.error(error);
+          // throw new Error("Not found");
         }
       },
     }),

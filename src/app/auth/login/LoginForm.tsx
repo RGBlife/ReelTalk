@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export function LoginForm() {
+  const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Will check where they tried to access and redirect there, otherwise to homepage
   const callbackUrl = searchParams.get("search") ?? "/";
 
   const [email, setEmail] = useState<string>("");
@@ -15,6 +17,7 @@ export function LoginForm() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
     try {
       // Login user
       const res = await signIn("credentials", {
@@ -24,30 +27,16 @@ export function LoginForm() {
         callbackUrl,
       });
 
-
-      if (!res?.ok) {
-        console.log("Uh oh!");
-        console.log(res);
+      if (!res?.error) {
+        setEmail("");
+        setPassword("");
+        router.push(callbackUrl);
       } else {
-        console.error("Invalid details?");
+        setError("Invalid Credentials");
       }
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      setError(error.message);
     }
-
-    //   .then((res) => {
-    //     if (res?.ok) {
-    //       // Redirect user?
-    //       console.log("Everything a ok!");
-    //     } else {
-    //       console.error("Uh oh");
-    //       console.error(res?.error);
-    //       setError("Problem!!!");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
   };
   return (
     <form
@@ -75,7 +64,7 @@ export function LoginForm() {
         onChange={(e) => setPassword(e.target.value)}
         className="rounded-md border border-black p-2"
       />
-      {error && <p className="bg-red-500 p-4">An error has occurred!</p>}
+      {error && <p className="bg-red-500 p-4">{error}</p>}
       <button
         type="submit"
         className="rounded-md border border-black p-4 hover:bg-black hover:text-white"
