@@ -1,4 +1,5 @@
 import { PrismaClient, Prisma } from "@prisma/client";
+import { hash } from "bcrypt";
 const prisma = new PrismaClient();
 async function main() {
   let moviesArray = [
@@ -647,12 +648,15 @@ async function main() {
   });
 
   let User: Prisma.UserCreateInput;
+  const adminPassword = await hash("admin123", 12);
+  const userPassword = await hash("user123", 12);
   const users = await prisma.user.createMany({
     data: [
       {
         username: "oceanic",
         email: "oceanic@gmail.com",
-        password: "DeepBlueSea123",
+        password:
+          "$2b$12$Tux5AC8Sns/V/SHY8I.Tfe6y4vJX55JOX.LMKV9Q/cn.hTAUV6vXW",
         role: "Admin",
         favourite_movie: "The Abyss",
         is_watch_list_public: true,
@@ -661,7 +665,8 @@ async function main() {
       {
         username: "coralreef",
         email: "coralreef@gmail.com",
-        password: "CoralBloom45",
+        password:
+          "$2b$12$B31pkyvMQMOgH40eBIxKvuJNQ8Rsiq7q6LVRPBiK7n8SvfHEQ4Cqm",
         role: "User",
         favourite_movie: "Coraline",
         is_watch_list_public: true,
@@ -670,7 +675,8 @@ async function main() {
       {
         username: "starfish",
         email: "starfish@gmail.com",
-        password: "StarryNight55",
+        password:
+          "$2b$12$X3cB.NSTLkju3UVZDjbLjephwXtac2bWO6TEwW7riaC6/OL6DeR22",
         role: "User",
         favourite_movie: "A Star is Born",
         is_watch_list_public: true,
@@ -679,7 +685,8 @@ async function main() {
       {
         username: "marlinblue",
         email: "marlinblue@gmail.com",
-        password: "BlueWaters78",
+        password:
+          "$2b$12$ZWBIYkK/P6lz9LxQjfBxPuhO4ST/Pkpbrw21jo7HtBaNa/NyomKDG",
         role: "User",
         favourite_movie: "Big Fish",
         is_watch_list_public: true,
@@ -688,7 +695,8 @@ async function main() {
       {
         username: "seaurchin",
         email: "seaurchin@gmail.com",
-        password: "SpikeyOcean99",
+        password:
+          "$2b$12$OFhN8YCyprYU8MnOq0piZeS8UtTuDSDbvMkvd2.K/VbjVST11gode",
         role: "User",
         favourite_movie: "Ocean's Eleven",
         is_watch_list_public: true,
@@ -697,7 +705,8 @@ async function main() {
       {
         username: "dolphinwave",
         email: "dolphinwave@gmail.com",
-        password: "SmartMammal88",
+        password:
+          "$2b$12$xlaq2/maGdDlR.H3Rfl/G.Oo9si1m7Iqpij7UL.N.ux5/Tqt9Fmqm",
         role: "User",
         favourite_movie: "Flipper",
         is_watch_list_public: true,
@@ -706,7 +715,8 @@ async function main() {
       {
         username: "sharkfin",
         email: "sharkfin@gmail.com",
-        password: "JawsOfLife22",
+        password:
+          "$2b$12$FWYopWWcoAPYDnwTkmhntOTWFdK8.q9bJUNR4m.o/pTIT7NEREdzW",
         role: "User",
         favourite_movie: "Jaws",
         is_watch_list_public: true,
@@ -715,7 +725,8 @@ async function main() {
       {
         username: "seahorse",
         email: "seahorse@gmail.com",
-        password: "TinyDancer34",
+        password:
+          "$2b$12$KtClvniJJPF.mL/T2DMPQuMaAYKSAspT9sBuJQKI5nEVBWpCsFm2W",
         role: "User",
         favourite_movie: "Seabiscuit",
         is_watch_list_public: true,
@@ -724,7 +735,8 @@ async function main() {
       {
         username: "clownfish",
         email: "clownfish@gmail.com",
-        password: "AnemoneHome56",
+        password:
+          "$2b$12$3gZ/8oFus8548m3ZYdmkTusJf.SYAAPH5rwYPqv9V/kwVVjQlALXu'",
         role: "User",
         favourite_movie: "Finding Nemo",
         is_watch_list_public: true,
@@ -733,7 +745,8 @@ async function main() {
       {
         username: "manta_ray",
         email: "mantaray@gmail.com",
-        password: "DeepSeaDiver82",
+        password:
+          "$2b$12$9wvS.JJmNj3ZjXt5n5Ft3OWe1NnWsr5tI/qGA9QIfBJwL8Hdr2XJq",
         role: "User",
         favourite_movie: "The Deep",
         is_watch_list_public: true,
@@ -742,7 +755,8 @@ async function main() {
       {
         username: "squidink",
         email: "squidink@gmail.com",
-        password: "BlackWater64",
+        password:
+          "$2b$12$fMrLPeZ.WhJwzNm3101JWez7JlreRhSu/UGPXq/jAQ8yOJs700D9C",
         role: "User",
         favourite_movie: "20,000 Leagues Under the Sea",
         is_watch_list_public: true,
@@ -751,7 +765,8 @@ async function main() {
       {
         username: "anemone",
         email: "anemone@gmail.com",
-        password: "SwimAgainst77",
+        password:
+          "$2b$12$HzvFebdo1J/ngmsT1Cng2e5JrMizW9vlMtu8Y5/Y02zz25pqjigOa'",
         role: "User",
         favourite_movie: "Aquaman",
         is_watch_list_public: true,
@@ -760,7 +775,8 @@ async function main() {
       {
         username: "pelicanpoint",
         email: "pelicanpoint@gmail.com",
-        password: "SoarAbove66",
+        password:
+          "$2b$12$PxVeayUbRxNZQmErwUzOe.ygVUk9OQ0QGDclYe7tcoNo2XUTNx8Qm",
         role: "User",
         favourite_movie: "The Birds",
         is_watch_list_public: true,
@@ -769,7 +785,8 @@ async function main() {
       {
         username: "turtlebay",
         email: "turtlebay@gmail.com",
-        password: "SlowAndSteady11",
+        password:
+          "$2b$12$ynkbOOt/0t19vkoNpFJtHeRBKCs3VbRKoudf.uoUP2xBPvbtyVOLC",
         role: "User",
         favourite_movie: "Tortoise and the Hare",
         is_watch_list_public: true,
@@ -778,9 +795,28 @@ async function main() {
       {
         username: "jellyfish",
         email: "jellyfish@gmail.com",
-        password: "ILoveJellyfish37",
+        password:
+          "$2b$12$i8Xq1Gu7ct3oa9locMqq1.OjO2hxUOYmKZWg763U0Rba3fcMmRtX2",
         role: "User",
         favourite_movie: "Finding Nemo",
+        is_watch_list_public: true,
+        is_watched_list_public: true,
+      },
+      {
+        username: "testAdmin",
+        email: "admin@email.com",
+        password: adminPassword,
+        role: "Admin",
+        favourite_movie: "Terminator 2",
+        is_watch_list_public: true,
+        is_watched_list_public: true,
+      },
+      {
+        username: "testUser",
+        email: "user@email.com",
+        password: userPassword,
+        role: "User",
+        favourite_movie: "Shrek",
         is_watch_list_public: true,
         is_watched_list_public: true,
       },
