@@ -1,7 +1,8 @@
+import { Review as ReviewType } from "@prisma/client";
 import { Review } from "./Review";
 
 type Props = {
-  reviews: any[];
+  reviews: ReviewType[];
 };
 
 export const ReviewList = ({ reviews }: Props) => {

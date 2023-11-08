@@ -36,7 +36,7 @@ model User {
     email                  String           @unique
     password               String
     avatar_url             String?
-    role                   String
+    role                   Role             @default(User)
     favourite_movie        String
     is_watch_list_public   Boolean
     is_watched_list_public Boolean
@@ -48,12 +48,19 @@ model User {
     recommended            Recommendation[]
 }
 
+enum Role {
+    User
+    Admin
+}
+
 model Preference {
-    id                      Int    @id @default(autoincrement())
-    user                    User   @relation(fields: [user_id], references: [id])
-    user_id                 Int    @unique
-    preference_genre        String
-    genre_weighting         Int
+    id                      Int     @id @default(autoincrement())
+    user                    User    @relation(fields: [user_id], references: [id])
+    user_id                 Int     @unique
+    preference_genre_a      String
+    genre_a_weighting       Int
+    preference_genre_b      String?
+    genre_b_weighting       Int?
     preference_release_date String
     release_date_weighting  Int
     preference_imdb_rating  Float
@@ -96,24 +103,13 @@ model Message {
     createdAt DateTime @default(now())
 }
 
-//Extended Component:
-// model UserCreatedMovieLists {
-//     id Int @id @default(autoincrement())
-//     user Users @relation(fields: [user_id], references: [id])
-//     user_id Int
-//     movie_id Int
-//     public Boolean
-//     list_name String
-// }
-
 model Review {
     id         Int      @id @default(autoincrement())
     author_id  Int
     movie_id   Int
-    title      String
-    body       String
+    title      String?
+    body       String?
     vote_count Int
-    rating     Float // need to restrict between 1-5, multiples of 0.5
     created_at DateTime @default(now())
 
     author User  @relation(fields: [author_id], references: [id])
