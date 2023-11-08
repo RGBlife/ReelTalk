@@ -57,8 +57,10 @@ model Preference {
     id                      Int    @id @default(autoincrement())
     user                    User   @relation(fields: [user_id], references: [id])
     user_id                 Int    @unique
-    preference_genre        String
-    genre_weighting         Int
+    preference_genre_a      String
+    genre_a_weighting       Int
+    preference_genre_b      String?
+    genre_b_weighting       Int?
     preference_release_date String
     release_date_weighting  Int
     preference_imdb_rating  Float
