@@ -107,12 +107,14 @@ model Message {
 // }
 
 model Review {
-    id         Int    @id @default(autoincrement())
+    id         Int      @id @default(autoincrement())
     author_id  Int
     movie_id   Int
     title      String
     body       String
     vote_count Int
+    rating     Float // need to restrict between 1-5, multiples of 0.5
+    created_at DateTime @default(now())
 
     author User  @relation(fields: [author_id], references: [id])
     movie  Movie @relation(fields: [movie_id], references: [id])
