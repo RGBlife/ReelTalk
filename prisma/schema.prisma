@@ -36,7 +36,7 @@ model User {
     email                  String           @unique
     password               String
     avatar_url             String?
-    role                   String
+    role                   Role @default(User)
     favourite_movie        String
     is_watch_list_public   Boolean
     is_watched_list_public Boolean
@@ -46,6 +46,11 @@ model User {
     reviews                Review[]
     chatrooms              ChatRoom[]
     recommended            Recommendation[]
+}
+
+enum Role {
+    User
+    Admin
 }
 
 model Preference {
@@ -96,22 +101,12 @@ model Message {
     createdAt DateTime @default(now())
 }
 
-//Extended Component:
-// model UserCreatedMovieLists {
-//     id Int @id @default(autoincrement())
-//     user Users @relation(fields: [user_id], references: [id])
-//     user_id Int
-//     movie_id Int
-//     public Boolean
-//     list_name String
-// }
-
 model Review {
     id         Int    @id @default(autoincrement())
     author_id  Int
     movie_id   Int
-    title      String
-    body       String
+    title      String?
+    body       String?
     vote_count Int
 
     author User  @relation(fields: [author_id], references: [id])
