@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
-import { db } from "~/server/db";
-import { Genre, Preference, Movie } from "@prisma/client";
+import { db } from "../src/server/db";
+import { Genre, Preference } from "@prisma/client";
 type scoreArray = {
   user_id: number;
   movie_id: number;
@@ -13,6 +13,19 @@ type moviegenre = {
 type genres = {
   genre_id: number;
   movie_id: number;
+};
+type Movie = {
+  id: number;
+  title: string;
+  overview: string;
+  release_date: Date;
+  release_year: number;
+  imdb_rating: number;
+  vote_count: number;
+  poster_url: string;
+  runtime: number;
+  trailer_url: string;
+  genres: Array<genres>;
 };
 
 async function recommendation() {
@@ -65,14 +78,14 @@ async function recommendation() {
         });
         if (
           new Date(movie.release_date) >=
-          new Date(userPreference.preference_release_date)
+          new Date(userPreference.preference_release_year)
         ) {
           scoreArray.forEach((movieScore) => {
             if (
               movieScore.movie_id === movie.id &&
               movieScore.user_id === userPreference.user_id
             ) {
-              movieScore.score += userPreference.release_date_weighting;
+              movieScore.score += userPreference.release_year_weighting;
             }
           });
         }
