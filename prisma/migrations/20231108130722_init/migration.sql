@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Role" AS ENUM ('User', 'Admin');
+
 -- CreateTable
 CREATE TABLE "Movie" (
     "id" INTEGER NOT NULL,
@@ -16,14 +19,14 @@ CREATE TABLE "Movie" (
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
-    "to_watch_list_public" BOOLEAN NOT NULL,
-    "watched_list_public" BOOLEAN NOT NULL,
-    "favourite_movie" TEXT NOT NULL,
+    "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "username" TEXT NOT NULL,
-    "avatar" TEXT NOT NULL,
-    "role" TEXT NOT NULL,
+    "avatar_url" TEXT,
+    "role" "Role" NOT NULL DEFAULT 'User',
+    "favourite_movie" TEXT NOT NULL,
+    "is_watch_list_public" BOOLEAN NOT NULL,
+    "is_watched_list_public" BOOLEAN NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -78,11 +81,10 @@ CREATE TABLE "Message" (
 -- CreateTable
 CREATE TABLE "Review" (
     "id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "author" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "body" TEXT NOT NULL,
+    "author_id" INTEGER NOT NULL,
     "movie_id" INTEGER NOT NULL,
+    "title" TEXT,
+    "body" TEXT,
     "vote_count" INTEGER NOT NULL,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
@@ -100,7 +102,7 @@ CREATE TABLE "ChatRoom" (
 );
 
 -- CreateTable
-CREATE TABLE "Reccomendation" (
+CREATE TABLE "Recommendation" (
     "user_id" INTEGER NOT NULL,
     "movie_id" INTEGER NOT NULL,
     "score" INTEGER NOT NULL
@@ -108,6 +110,12 @@ CREATE TABLE "Reccomendation" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Movie_id_key" ON "Movie"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Preference_user_id_key" ON "Preference"("user_id");
@@ -122,7 +130,7 @@ CREATE UNIQUE INDEX "MoviesOnGenres_genre_id_movie_id_key" ON "MoviesOnGenres"("
 CREATE UNIQUE INDEX "MoviesToWatch_movie_id_user_id_key" ON "MoviesToWatch"("movie_id", "user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Reccomendation_user_id_movie_id_key" ON "Reccomendation"("user_id", "movie_id");
+CREATE UNIQUE INDEX "Recommendation_user_id_movie_id_key" ON "Recommendation"("user_id", "movie_id");
 
 -- AddForeignKey
 ALTER TABLE "Preference" ADD CONSTRAINT "Preference_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -146,7 +154,7 @@ ALTER TABLE "Message" ADD CONSTRAINT "Message_user_id_fkey" FOREIGN KEY ("user_i
 ALTER TABLE "Message" ADD CONSTRAINT "Message_room_id_fkey" FOREIGN KEY ("room_id") REFERENCES "ChatRoom"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Review" ADD CONSTRAINT "Review_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Review" ADD CONSTRAINT "Review_author_id_fkey" FOREIGN KEY ("author_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -155,7 +163,7 @@ ALTER TABLE "Review" ADD CONSTRAINT "Review_movie_id_fkey" FOREIGN KEY ("movie_i
 ALTER TABLE "ChatRoom" ADD CONSTRAINT "ChatRoom_owner_id_fkey" FOREIGN KEY ("owner_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reccomendation" ADD CONSTRAINT "Reccomendation_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Recommendation" ADD CONSTRAINT "Recommendation_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Reccomendation" ADD CONSTRAINT "Reccomendation_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Recommendation" ADD CONSTRAINT "Recommendation_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
