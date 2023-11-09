@@ -664,6 +664,8 @@ async function main() {
         email: "oceanic@gmail.com",
         password:
           "$2b$12$Tux5AC8Sns/V/SHY8I.Tfe6y4vJX55JOX.LMKV9Q/cn.hTAUV6vXW",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "Admin",
         favourite_movie: "The Abyss",
         is_watch_list_public: true,
@@ -674,6 +676,8 @@ async function main() {
         email: "coralreef@gmail.com",
         password:
           "$2b$12$B31pkyvMQMOgH40eBIxKvuJNQ8Rsiq7q6LVRPBiK7n8SvfHEQ4Cqm",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Coraline",
         is_watch_list_public: true,
@@ -684,6 +688,8 @@ async function main() {
         email: "starfish@gmail.com",
         password:
           "$2b$12$X3cB.NSTLkju3UVZDjbLjephwXtac2bWO6TEwW7riaC6/OL6DeR22",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "A Star is Born",
         is_watch_list_public: true,
@@ -694,6 +700,8 @@ async function main() {
         email: "marlinblue@gmail.com",
         password:
           "$2b$12$ZWBIYkK/P6lz9LxQjfBxPuhO4ST/Pkpbrw21jo7HtBaNa/NyomKDG",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Big Fish",
         is_watch_list_public: true,
@@ -704,6 +712,8 @@ async function main() {
         email: "seaurchin@gmail.com",
         password:
           "$2b$12$OFhN8YCyprYU8MnOq0piZeS8UtTuDSDbvMkvd2.K/VbjVST11gode",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Ocean's Eleven",
         is_watch_list_public: true,
@@ -714,6 +724,8 @@ async function main() {
         email: "dolphinwave@gmail.com",
         password:
           "$2b$12$xlaq2/maGdDlR.H3Rfl/G.Oo9si1m7Iqpij7UL.N.ux5/Tqt9Fmqm",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Flipper",
         is_watch_list_public: true,
@@ -724,6 +736,8 @@ async function main() {
         email: "sharkfin@gmail.com",
         password:
           "$2b$12$FWYopWWcoAPYDnwTkmhntOTWFdK8.q9bJUNR4m.o/pTIT7NEREdzW",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Jaws",
         is_watch_list_public: true,
@@ -734,6 +748,8 @@ async function main() {
         email: "seahorse@gmail.com",
         password:
           "$2b$12$KtClvniJJPF.mL/T2DMPQuMaAYKSAspT9sBuJQKI5nEVBWpCsFm2W",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Seabiscuit",
         is_watch_list_public: true,
@@ -744,6 +760,8 @@ async function main() {
         email: "clownfish@gmail.com",
         password:
           "$2b$12$3gZ/8oFus8548m3ZYdmkTusJf.SYAAPH5rwYPqv9V/kwVVjQlALXu'",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Finding Nemo",
         is_watch_list_public: true,
@@ -754,6 +772,8 @@ async function main() {
         email: "mantaray@gmail.com",
         password:
           "$2b$12$9wvS.JJmNj3ZjXt5n5Ft3OWe1NnWsr5tI/qGA9QIfBJwL8Hdr2XJq",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "The Deep",
         is_watch_list_public: true,
@@ -764,6 +784,8 @@ async function main() {
         email: "squidink@gmail.com",
         password:
           "$2b$12$fMrLPeZ.WhJwzNm3101JWez7JlreRhSu/UGPXq/jAQ8yOJs700D9C",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "20,000 Leagues Under the Sea",
         is_watch_list_public: true,
@@ -774,6 +796,8 @@ async function main() {
         email: "anemone@gmail.com",
         password:
           "$2b$12$HzvFebdo1J/ngmsT1Cng2e5JrMizW9vlMtu8Y5/Y02zz25pqjigOa'",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Aquaman",
         is_watch_list_public: true,
@@ -784,6 +808,8 @@ async function main() {
         email: "pelicanpoint@gmail.com",
         password:
           "$2b$12$PxVeayUbRxNZQmErwUzOe.ygVUk9OQ0QGDclYe7tcoNo2XUTNx8Qm",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "The Birds",
         is_watch_list_public: true,
@@ -794,6 +820,8 @@ async function main() {
         email: "turtlebay@gmail.com",
         password:
           "$2b$12$ynkbOOt/0t19vkoNpFJtHeRBKCs3VbRKoudf.uoUP2xBPvbtyVOLC",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Tortoise and the Hare",
         is_watch_list_public: true,
@@ -804,6 +832,8 @@ async function main() {
         email: "jellyfish@gmail.com",
         password:
           "$2b$12$i8Xq1Gu7ct3oa9locMqq1.OjO2hxUOYmKZWg763U0Rba3fcMmRtX2",
+        avatar_url:
+          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Finding Nemo",
         is_watch_list_public: true,
@@ -839,6 +869,8 @@ async function main() {
         body: "I loved this movie. The acting was great and the story was really engaging.",
         movie_id: 980489,
         vote_count: 10,
+        rating: 5,
+        has_spoilers: true,
       },
       {
         author_id: 2,
@@ -846,6 +878,8 @@ async function main() {
         body: "I was really looking forward to this movie but it didn't live up to my expectations. The plot was weak and the acting was mediocre.",
         movie_id: 565770,
         vote_count: 2,
+        rating: 5,
+        has_spoilers: true,
       },
       {
         author_id: 2,
@@ -853,6 +887,8 @@ async function main() {
         body: "I'm not sure how I feel about this movie. There were some good moments but overall it was just okay.",
         movie_id: 872585,
         vote_count: 5,
+        rating: 3,
+        has_spoilers: false,
       },
       {
         author_id: 3,
@@ -860,6 +896,8 @@ async function main() {
         body: "This movie is a masterpiece. The acting, the story, the cinematography, everything is perfect.",
         movie_id: 507089,
         vote_count: 20,
+        rating: 2,
+        has_spoilers: false,
       },
       {
         author_id: 3,
@@ -867,6 +905,8 @@ async function main() {
         body: "I don't understand why everyone is raving about this movie. It was boring and predictable.",
         movie_id: 939335,
         vote_count: 3,
+        rating: 2,
+        has_spoilers: false,
       },
       {
         author_id: 4,
@@ -874,6 +914,8 @@ async function main() {
         body: "This movie made me laugh, cry, and everything in between. It's a must-watch.",
         movie_id: 968051,
         vote_count: 15,
+        rating: 5,
+        has_spoilers: false,
       },
       {
         author_id: 4,
@@ -881,6 +923,8 @@ async function main() {
         body: "I can't believe I wasted my time watching this movie. It was vulgar and offensive.",
         movie_id: 762430,
         vote_count: 1,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 4,
@@ -888,6 +932,8 @@ async function main() {
         body: "This movie is a timeless classic. It's a must-watch for any movie lover.",
         movie_id: 980489,
         vote_count: 18,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 5,
@@ -895,6 +941,8 @@ async function main() {
         body: "I watched this movie a few days ago and I can't even remember what it was about. It was that forgetable.",
         movie_id: 1190012,
         vote_count: 18,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 5,
@@ -902,6 +950,8 @@ async function main() {
         body: "This movie is a must-watch. It's a beautiful story about love and friendship.",
         movie_id: 968051,
         vote_count: 15,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 5,
@@ -909,6 +959,8 @@ async function main() {
         body: "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
         movie_id: 447365,
         vote_count: 2,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 5,
@@ -916,6 +968,8 @@ async function main() {
         body: "This movie is a feast for the eyes. The visuals are breathtaking.",
         movie_id: 615656,
         vote_count: 17,
+        rating: 4,
+        has_spoilers: true,
       },
       {
         author_id: 6,
@@ -923,6 +977,8 @@ async function main() {
         body: "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
         movie_id: 820525,
         vote_count: 13,
+        rating: 1,
+        has_spoilers: false,
       },
       {
         author_id: 6,
@@ -930,6 +986,8 @@ async function main() {
         body: "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
         movie_id: 507089,
         vote_count: 6,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 6,
@@ -937,6 +995,8 @@ async function main() {
         body: "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
         movie_id: 459003,
         vote_count: 11,
+        rating: 2,
+        has_spoilers: false,
       },
       {
         author_id: 7,
@@ -944,6 +1004,8 @@ async function main() {
         body: "I knew exactly how this movie was going to end from the beginning. It was too predictable.",
         movie_id: 614479,
         vote_count: 4,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 8,
@@ -951,6 +1013,8 @@ async function main() {
         body: "This movie had me in tears. It's a beautiful story about love and loss.",
         movie_id: 975902,
         vote_count: 12,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 9,
@@ -958,6 +1022,8 @@ async function main() {
         body: "I didn't have high expectations for this movie but it turned out to be really good. I was pleasantly surprised.",
         movie_id: 615656,
         vote_count: 7,
+        rating: 3,
+        has_spoilers: true,
       },
       {
         author_id: 10,
@@ -965,6 +1031,8 @@ async function main() {
         body: "This movie was hyped up so much but it didn't live up to my expectations. It was just okay.",
         movie_id: 980489,
         vote_count: 4,
+        rating: 3,
+        has_spoilers: true,
       },
       {
         author_id: 11,
@@ -972,6 +1040,8 @@ async function main() {
         body: "This movie had me in tears. It's a beautiful story about love and loss.",
         movie_id: 968051,
         vote_count: 12,
+        rating: 2,
+        has_spoilers: true,
       },
       {
         author_id: 11,
@@ -979,6 +1049,8 @@ async function main() {
         body: "I regret watching this movie. It was a complete waste of time.",
         movie_id: 459003,
         vote_count: 1,
+        rating: 5,
+        has_spoilers: true,
       },
       {
         author_id: 11,
@@ -986,6 +1058,8 @@ async function main() {
         body: "This movie had me on the edge of my seat the whole time. It's a must-watch for any action movie fan.",
         movie_id: 762430,
         vote_count: 16,
+        rating: 4,
+        has_spoilers: true,
       },
       {
         author_id: 11,
@@ -993,6 +1067,8 @@ async function main() {
         body: "This movie is a heartwarming story about family and friendship. It's a must-watch.",
         movie_id: 820525,
         vote_count: 22,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 11,
@@ -1000,6 +1076,8 @@ async function main() {
         body: "This movie is a hidden gem. It's not well-known but it's definitely worth watching.",
         movie_id: 502356,
         vote_count: 9,
+        rating: 5,
+        has_spoilers: false,
       },
       {
         author_id: 12,
@@ -1007,6 +1085,8 @@ async function main() {
         body: "I loved the first movie but this sequel was a letdown. The plot was weak and the acting was subpar.",
         movie_id: 354912,
         vote_count: 3,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 12,
@@ -1014,6 +1094,8 @@ async function main() {
         body: "This movie really made me think. It's a deep and meaningful story about life and death.",
         movie_id: 447365,
         vote_count: 14,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 12,
@@ -1021,6 +1103,8 @@ async function main() {
         body: "This movie had me laughing from start to finish. It's a must-watch for any comedy fan.",
         movie_id: 762430,
         vote_count: 19,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 12,
@@ -1028,6 +1112,8 @@ async function main() {
         body: "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
         movie_id: 7451,
         vote_count: 2,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 12,
@@ -1035,6 +1121,8 @@ async function main() {
         body: "This movie is a feast for the eyes. The visuals are breathtaking.",
         movie_id: 502356,
         vote_count: 17,
+        rating: 0.5,
+        has_spoilers: false,
       },
       {
         author_id: 13,
@@ -1042,6 +1130,8 @@ async function main() {
         body: "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
         movie_id: 614479,
         vote_count: 13,
+        rating: 0,
+        has_spoilers: false,
       },
       {
         author_id: 13,
@@ -1049,6 +1139,8 @@ async function main() {
         body: "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
         movie_id: 565770,
         vote_count: 6,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 13,
@@ -1056,6 +1148,8 @@ async function main() {
         body: "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
         movie_id: 447365,
         vote_count: 11,
+        rating: 1.5,
+        has_spoilers: false,
       },
       {
         author_id: 13,
@@ -1063,6 +1157,8 @@ async function main() {
         body: "I knew exactly how this movie was going to end from the beginning. It was too predictable.",
         movie_id: 820525,
         vote_count: 4,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 13,
@@ -1070,6 +1166,8 @@ async function main() {
         body: "I watched this movie a few days ago and I can't even remember what it was about. It was that forgettable.",
         movie_id: 820525,
         vote_count: 2,
+        rating: 2.5,
+        has_spoilers: false,
       },
       {
         author_id: 14,
@@ -1077,6 +1175,8 @@ async function main() {
         body: "This movie is a feast for the eyes. The visuals are breathtaking.",
         movie_id: 872585,
         vote_count: 17,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 14,
@@ -1084,6 +1184,8 @@ async function main() {
         body: "This movie had me on the edge of my seat the whole time. It's a must-watch for any thriller fan.",
         movie_id: 820525,
         vote_count: 13,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 14,
@@ -1091,6 +1193,8 @@ async function main() {
         body: "I loved the first movie but this sequel was forgettable. It didn't live up to my expectations.",
         movie_id: 762430,
         vote_count: 6,
+        rating: 4,
+        has_spoilers: false,
       },
       {
         author_id: 15,
@@ -1098,6 +1202,8 @@ async function main() {
         body: "This movie is a heart-wrenching story about love and loss. It's a must-watch.",
         movie_id: 459003,
         vote_count: 11,
+        rating: 3.5,
+        has_spoilers: false,
       },
       {
         author_id: 15,
@@ -1105,6 +1211,8 @@ async function main() {
         body: "I knew exactly how this movie was going to end from the beginning. It was too predictable.",
         movie_id: 459003,
         vote_count: 4,
+        rating: 4.5,
+        has_spoilers: false,
       },
     ],
   });
