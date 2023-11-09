@@ -1,12 +1,10 @@
 "use client";
 
 export const ReviewForm = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    alert("review submitted");
-
-    // check/use Next 14 server actions
+    // use Next 14 server actions?
   };
 
   return (
@@ -17,6 +15,9 @@ export const ReviewForm = () => {
       <div>
         <textarea name="body" placeholder="Write your review here..." />
       </div>
+
+      {/* rating component here, looking into Daisy UI components */}
+
       <div>
         <p>Does this review contain spoilers?</p>
         <label>

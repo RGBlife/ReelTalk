@@ -9,5 +9,13 @@ export const ReviewLikeButton = () => {
     setIsLiked((prev) => !prev);
   };
 
-  return <button onClick={handleClick}>{isLiked ? "Liked" : "Like"}</button>;
+  return (
+    <button
+      onClick={handleClick}
+      className="rounded-full bg-blue-500 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+    >
+      {/* line 18 is temporary :D */}
+      {isLiked ? "Liked 👍" : "Like? 🤔"}
+    </button>
+  );
 };
