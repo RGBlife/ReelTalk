@@ -85,4 +85,5 @@ async function recommendation() {
     const reccomendations = await db.recommendation.create({ data: rec });
   });
 }
+
 export default recommendation;

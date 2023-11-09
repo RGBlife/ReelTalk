@@ -19,7 +19,8 @@ model Movie {
     title        String
     genres       MoviesOnGenres[]
     overview     String
-    release_date String
+    release_date DateTime
+    release_year Int
     imdb_rating  Float
     vote_count   Int
     poster_url   String
@@ -61,8 +62,8 @@ model Preference {
     genre_a_weighting       Int
     preference_genre_b      String?
     genre_b_weighting       Int?
-    preference_release_date String
-    release_date_weighting  Int
+    preference_release_year String
+    release_year_weighting  Int
     preference_imdb_rating  Float
     imdb_rating_weighting   Int
 }
