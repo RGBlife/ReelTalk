@@ -1,15 +1,26 @@
+import { MovieDetailSection } from "./components/MovieDetailSection";
 import { ReviewSection } from "./components/ReviewSection";
+import { db } from "~/server/db";
 
-type Context = {
-  params: { movieId: string };
+const getMovieById = (id: number) => {
+  return db.movie.findUniqueOrThrow({ where: { id } });
 };
 
-export default function SingleMoviePage(context: Context) {
-  const movieId = Number(context.params.movieId);
+type Context = {
+  params: {
+    movieId: string;
+  };
+};
+
+export default async function SingleMoviePage({ params }: Context) {
+  const movieId = Number(params.movieId);
+  const movie = await getMovieById(movieId);
 
   return (
     <>
+      <MovieDetailSection movie={movie} />
       <ReviewSection movieId={movieId} />
     </>
   );
 }
+
