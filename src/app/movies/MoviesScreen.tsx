@@ -12,7 +12,7 @@ export function MoviesScreen({ movies: initialMovies }: Props) {
   const [movies, setMovies] = useState(initialMovies);
 
   const handleClick = async () => {
-    const result = await fetchMovies({ limit: 5, page: 1, genre: 12, runtime: 200, release_from: 2010, release_to: 2020 });
+    const result = await fetchMovies({ limit: 50, page: 1, release_from: 2000, release_to: 2024 });
     console.log(result);
     setMovies(result);
   };

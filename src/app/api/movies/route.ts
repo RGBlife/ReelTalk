@@ -10,7 +10,7 @@ export const GET = async (request: NextRequest) => {
 
   const { page, limit, genre, runtime, release_from, release_to } = movieFilterSchema.parse({
     page: searchParams.get("page"),
-    limit: searchParams.get("limit"),
+    limit: searchParams.get("limit") ?? 10,
     genre: searchParams.get("genre") ?? undefined,
     runtime: searchParams.get("runtime") ?? undefined,
     release_from: searchParams.get("release_from") ?? undefined,
