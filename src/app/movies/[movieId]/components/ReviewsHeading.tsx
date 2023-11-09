@@ -9,7 +9,7 @@ const getReviewCountByMovieId = (id: number) => {
 };
 
 export const ReviewsHeading = async ({ movieId }: Props) => {
-  const reviewCount = getReviewCountByMovieId(movieId);
+  const reviewCount = await getReviewCountByMovieId(movieId);
 
   return <h2>Reviews ({reviewCount}):</h2>;
 };

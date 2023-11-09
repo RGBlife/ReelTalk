@@ -13,7 +13,7 @@ export const Review = ({ review }: Props) => {
       <p>{review.rating}/5 ⭐</p>
       <p>Posted on {review.created_at.toString()}</p>
       <div className="flex">
-        <img src={review.author.avatar_url} />
+        <img src={review.author.avatar_url} width="20px" />
         <h4>By {review.author.username}</h4>
         <h3>"{review.title}"</h3>
       </div>
