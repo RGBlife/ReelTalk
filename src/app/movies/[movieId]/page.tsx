@@ -1,8 +1,8 @@
 import { MovieDetailSection } from "./components/MovieDetailSection";
 import { db } from "~/server/db";
 
-const getMovieById = async (id: number) => {
-  return await db.movie.findUniqueOrThrow({ where: { id } });
+const getMovieById = (id: number) => {
+  return db.movie.findUniqueOrThrow({ where: { id } });
 };
 
 type Context = {
