@@ -7,6 +7,5 @@ export const fetchMovies = async ({ limit, page, genre, runtime, release_from, r
   );
   
   const movies: Movie[] = await response.json();
-  console.log(movies);
   return movies;
 };

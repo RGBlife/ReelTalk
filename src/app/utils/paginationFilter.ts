@@ -5,10 +5,10 @@ export type PaginationSchema = z.infer<typeof movieFilterSchema>;
 export const movieFilterSchema = z.object({
   page: z.coerce.number(),
   limit: z.coerce.number(),
-  genre: z.coerce.number(),
-  runtime: z.coerce.number(),
-  release_from: z.coerce.number(),
-  release_to: z.coerce.number(),
+  genre: z.coerce.number().optional(),
+  runtime: z.coerce.number().optional(),
+  release_from: z.string().optional(),
+  release_to: z.string().optional(),
 });
 
 export const paginationFilter = ({
@@ -31,18 +31,10 @@ export const paginationFilter = ({
       runtime: {
         lte: runtime,
       },
-      AND: [
-        {
-          release_date: {
-            gte: release_from,
-          },
-        },
-        {
-          release_date: {
-            lte: release_to,
-          },
-        },
-      ],
+      release_date: {
+        gte: release_from ? new Date(release_from) : undefined,
+        lte: release_to ? new Date(release_to) : undefined,
+      },
     },
   };
 };
