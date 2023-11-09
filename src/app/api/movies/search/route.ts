@@ -1,17 +1,17 @@
 import { NextRequest } from "next/server";
 import { db } from "~/server/db";
 import { searchFilter } from "~/app/utils/searchTermFilter";
-import { searchFilterSchema } from "~/app/utils/searchTermFilter";
+import { searchTermSchema } from "~/app/utils/searchTermFilter";
 
 export const GET = async (request: NextRequest) => {
   const searchParams = request.nextUrl.searchParams;
 
-  const { term } = searchFilterSchema.parse({
+  const term = searchTermSchema.parse({
     term: searchParams.get("term"),
   });
 
   try {
-    const movies = await db.movie.findMany(searchFilter({ term }));
+    const movies = await db.movie.findMany(searchFilter( term ));
 
     return Response.json(movies);
   } catch (error) {

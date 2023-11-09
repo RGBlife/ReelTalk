@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma, Movie } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { hash } from "bcrypt";
 import { movies } from "../data/movies.json";
 
@@ -8,7 +8,6 @@ const formattedMovies = movies.map((movie) => {
 
 const prisma = new PrismaClient();
 async function main() {
-
   let moviesArray = [
     {
       id: 507089,
@@ -312,7 +311,8 @@ async function main() {
         imdb_rating: 8.208,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/A4j8S6moJS2zNtRR8oWF08gRnL5.jpg",
-        release_date: parseInt("2023"),
+        release_date: new Date("2023-10-25"),
+        release_year: 2023,
         vote_count: 5,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 150,
@@ -325,7 +325,8 @@ async function main() {
         imdb_rating: 6.359,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qXChf7MFL36BgoLkiB3BzXiwW82.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-09-29"),
+        release_year: 2023,
         vote_count: 3,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 130,
@@ -338,7 +339,8 @@ async function main() {
         imdb_rating: 6.98,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ljl70pjLIX1hx3bPyCCbxGj6WPr.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-08-23"),
+        release_year: 2023,
         vote_count: 0,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 90,
@@ -351,7 +353,8 @@ async function main() {
         imdb_rating: 6.937,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-09-06"),
+        release_year: 2023,
         vote_count: 20,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 130,
@@ -364,7 +367,8 @@ async function main() {
         imdb_rating: 8.012,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/51tqzRtKMMZEYUpSYkrUE7v9ehm.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-08-09"),
+        release_year: 2023,
         vote_count: 132,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 180,
@@ -377,7 +381,8 @@ async function main() {
         imdb_rating: 8.217,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",
-        release_date: 2017,
+        release_date: new Date("2017-10-27"),
+        release_year: 2017,
         vote_count: 15,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 180,
@@ -390,7 +395,8 @@ async function main() {
         imdb_rating: 6.972,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aTvePCU7exLepwg5hWySjwxojQK.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-09-21"),
+        release_year: 2023,
         vote_count: 40,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 60,
@@ -403,7 +409,8 @@ async function main() {
         imdb_rating: 6.772,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-08-02"),
+        release_year: 2023,
         vote_count: 10,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 120,
@@ -416,7 +423,8 @@ async function main() {
         imdb_rating: 7.28,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-03-02"),
+        release_year: 2023,
         vote_count: 20,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 90,
@@ -429,7 +437,8 @@ async function main() {
         imdb_rating: 6.964,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ssEFC5wfFjj7lJpUgwJDOK1Xu1J.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-10-26"),
+        release_year: 2023,
         vote_count: 13,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 130,
@@ -442,7 +451,8 @@ async function main() {
         imdb_rating: 7.002,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-08-16"),
+        release_year: 2023,
         vote_count: 50,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 160,
@@ -455,7 +465,8 @@ async function main() {
         imdb_rating: 8.245,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-07-19"),
+        release_year: 2023,
         vote_count: 50,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 170,
@@ -468,7 +479,8 @@ async function main() {
         imdb_rating: 6.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-05-18"),
+        release_year: 2023,
         vote_count: 12,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 90,
@@ -481,7 +493,8 @@ async function main() {
         imdb_rating: 7.757,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-04-05"),
+        release_year: 2023,
         vote_count: 50,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 100,
@@ -494,7 +507,8 @@ async function main() {
         imdb_rating: 8.243,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/18IsRVfs5MkkTcqTGlUAnka6sCh.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-10-27"),
+        release_year: 2023,
         vote_count: 66,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 180,
@@ -507,7 +521,8 @@ async function main() {
         imdb_rating: 7.215,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-07-19"),
+        release_year: 2023,
         vote_count: 60,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 120,
@@ -520,7 +535,8 @@ async function main() {
         imdb_rating: 7.017,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uQxjZGU6rxSPSMeAJPJQlmfV3ys.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-09-13"),
+        release_year: 2023,
         vote_count: 30,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 120,
@@ -533,7 +549,8 @@ async function main() {
         imdb_rating: 8.008,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-05-03"),
+        release_year: 2023,
         vote_count: 100,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 180,
@@ -546,7 +563,8 @@ async function main() {
         imdb_rating: 5.921,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xeEw3eLeSFmJgXZzmF2Efww0q3s.jpg",
-        release_date: 2002,
+        release_date: new Date("2002-08-09"),
+        release_year: 2002,
         vote_count: 95,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 150,
@@ -559,7 +577,8 @@ async function main() {
         imdb_rating: 6.772,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/d07phJqCx6z5wILDYqkyraorDPi.jpg",
-        release_date: 2023,
+        release_date: new Date("2023-07-05"),
+        release_year: 2023,
         vote_count: 25,
         trailer_url: "https://www.youtube.com/watch?v=eEzD-Y97ges",
         runtime: 170,

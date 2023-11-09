@@ -19,7 +19,8 @@ model Movie {
     title        String
     genres       MoviesOnGenres[]
     overview     String
-    release_date Int
+    release_date DateTime @db.Date
+    release_year Int
     imdb_rating  Float
     vote_count   Int
     poster_url   String

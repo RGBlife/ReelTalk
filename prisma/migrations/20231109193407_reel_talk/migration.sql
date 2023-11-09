@@ -6,7 +6,8 @@ CREATE TABLE "Movie" (
     "id" INTEGER NOT NULL,
     "title" TEXT NOT NULL,
     "overview" TEXT NOT NULL,
-    "release_date" TEXT NOT NULL,
+    "release_date" TIMESTAMP(3) NOT NULL,
+    "release_year" INTEGER NOT NULL,
     "imdb_rating" DOUBLE PRECISION NOT NULL,
     "vote_count" INTEGER NOT NULL,
     "poster_url" TEXT NOT NULL,
@@ -35,8 +36,10 @@ CREATE TABLE "User" (
 CREATE TABLE "Preference" (
     "id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
-    "preference_genre" TEXT NOT NULL,
-    "genre_weighting" INTEGER NOT NULL,
+    "preference_genre_a" TEXT NOT NULL,
+    "genre_a_weighting" INTEGER NOT NULL,
+    "preference_genre_b" TEXT,
+    "genre_b_weighting" INTEGER,
     "preference_release_date" TEXT NOT NULL,
     "release_date_weighting" INTEGER NOT NULL,
     "preference_imdb_rating" DOUBLE PRECISION NOT NULL,
@@ -86,6 +89,8 @@ CREATE TABLE "Review" (
     "title" TEXT,
     "body" TEXT,
     "vote_count" INTEGER NOT NULL,
+    "rating" DOUBLE PRECISION NOT NULL,
+    "has_spoilers" BOOLEAN NOT NULL,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
 );

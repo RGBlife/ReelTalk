@@ -1,12 +1,10 @@
 import { z } from "zod";
 
-export type SearchSchema = z.infer<typeof searchFilterSchema>;
+export type SearchSchema = z.infer<typeof searchTermSchema>;
 
-export const searchFilterSchema = z.object({
-  term: z.string(),
-});
+export const searchTermSchema = z.string();
 
-export const searchFilter = ({ term }: SearchSchema) => {
+export const searchFilter = ( term : SearchSchema) => {
   return {
     where: {
       title: {

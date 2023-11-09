@@ -9,30 +9,24 @@ type Props = {
   movies: Movie[];
 };
 
-type Term = {
-  searchTerm: string;
-};
-
 export function MoviesScreen({ movies: initialMovies }: Props) {
-  const [movies, setMovies] = useState(initialMovies);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [movies, setMovies] = useState<Movie[]>(initialMovies);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const handleClick = async () => {
     const result = await fetchMovies({
       limit: 50,
       page: 1,
-      release_from: 2000,
-      release_to: 2024,
+      release_from: "2000-01-01",
+      release_to: "2015-01-01",
     });
     console.log(result);
     setMovies(result);
   };
 
-  const handleSearchTerm = async () => {
-    const result = await fetchSearchMovie(searchTerm as string);
-    console.log(searchTerm, "searchTerm");
+  const handleSearchTerm = async (searchTerm: string) => {
+    const result = await fetchSearchMovie(searchTerm);
 
-    console.log(result, "result");
     setMovies(result);
   };
 
@@ -56,7 +50,13 @@ export function MoviesScreen({ movies: initialMovies }: Props) {
           setSearchTerm(e.target.value);
         }}
       />
-      <button onClick={handleSearchTerm}>Search</button>
+      <button
+        onClick={() => {
+          handleSearchTerm(searchTerm);
+        }}
+      >
+        Search
+      </button>
     </div>
   );
 }

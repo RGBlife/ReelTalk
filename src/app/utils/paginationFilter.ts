@@ -7,8 +7,8 @@ export const movieFilterSchema = z.object({
   limit: z.coerce.number(),
   genre: z.coerce.number().optional(),
   runtime: z.coerce.number().optional(),
-  release_from: z.coerce.number().optional(),
-  release_to: z.coerce.number().optional(),
+  release_from: z.string().optional(),
+  release_to: z.string().optional(),
 });
 
 export const paginationFilter = ({
@@ -32,8 +32,8 @@ export const paginationFilter = ({
         lte: runtime ? runtime : undefined,
       },
       release_date: {
-        lte: release_to ? release_to : undefined,
-        gte: release_from ? release_from : undefined,
+        lte: release_to ? new Date(release_to) : undefined,
+        gte: release_from ? new Date(release_from) : undefined,
       },
     },
   };
