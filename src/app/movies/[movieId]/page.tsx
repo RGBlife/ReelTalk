@@ -18,9 +18,8 @@ export default async function SingleMoviePage({ params }: Context) {
 
   return (
     <>
-      <MovieDetailSection movie={movie} />
+      {/* <MovieDetailSection movie={movie} /> */}
       <ReviewSection movieId={movieId} />
     </>
   );
 }
-
