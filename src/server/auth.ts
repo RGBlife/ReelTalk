@@ -1,5 +1,4 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-import { Prisma } from "@prisma/client";
 import { compare } from "bcrypt";
 import {
   getServerSession,
@@ -8,7 +7,7 @@ import {
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { env } from "~/env.mjs";
+// import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 
 /**
@@ -40,7 +39,6 @@ declare module "next-auth" {
 export const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/auth/login",
-    error: "/auth/error",
   },
   session: {
     strategy: "jwt",
@@ -58,21 +56,11 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      credentials: {
-        email: {
-          label: "E-mail Address:",
-          type: "email",
-          placeholder: "e.g. abc@email.com",
-        },
-        password: { label: "Password:", type: "password" },
-      },
       async authorize(credentials) {
         try {
           if (!credentials?.email || !credentials.password) {
             return null;
           }
-
-          console.log("here");
 
           // Find user in the database
           const user = await db.user.findUnique({
@@ -80,8 +68,6 @@ export const authOptions: NextAuthOptions = {
               email: credentials.email,
             },
           });
-
-          console.log(user);
 
           // If user cannot be found
           if (!user) {
@@ -93,7 +79,6 @@ export const authOptions: NextAuthOptions = {
 
           // If passwords do not match, do not pass go
           if (!isPwdValid) {
-            console.log("Password");
             return null;
           }
           // Return object with useful use information
@@ -103,6 +88,7 @@ export const authOptions: NextAuthOptions = {
             email: user.email,
           };
         } catch (error) {
+          // Todo - Confirm what to do with these possible errors
           console.error(error);
           // throw new Error("Not found");
         }

@@ -2,21 +2,31 @@
 
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { type SubmitHandler, useForm } from "react-hook-form";
+
+type LoginInputs = {
+  email: string;
+  password: string;
+};
 
 export function LoginForm() {
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // Will check where they tried to access and redirect there, otherwise to homepage
-  const callbackUrl = searchParams.get("search") ?? "/";
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<LoginInputs>();
 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Todo - Figure out a working method to redirect user back to previously accessed page or redirect to homepage (as is presently)
+  const callbackUrl = "/";
+
+  const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+    const { email, password } = data;
     setError(null);
     try {
       // Login user
@@ -28,49 +38,66 @@ export function LoginForm() {
       });
 
       if (!res?.error) {
-        setEmail("");
-        setPassword("");
+        reset();
         router.push(callbackUrl);
       } else {
         setError("Invalid Credentials");
       }
-    } catch (error: any) {
-      setError(error.message);
+    } catch (err: any) {
+      setError(err.message);
     }
   };
   return (
-    <form
-      className="m-3 flex flex-col items-center gap-4 border border-black p-5"
-      onSubmit={onSubmit}
-    >
-      <label htmlFor="email" className="">
-        E-mail Address:
-      </label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="e.g. abc123@email.com"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        className="rounded-md border border-black p-2"
-      />
-      <label htmlFor="password">Password:</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        className="rounded-md border border-black p-2"
-      />
-      {error && <p className="bg-red-500 p-4">{error}</p>}
-      <button
-        type="submit"
-        className="rounded-md border border-black p-4 hover:bg-black hover:text-white"
+    <>
+      {error && (
+        <p className="border border-black bg-red-500 text-center text-2xl">
+          {error}
+        </p>
+      )}
+      <form
+        className="m-3 flex flex-col items-center gap-4 border border-black p-5"
+        onSubmit={handleSubmit(onSubmit)}
       >
-        Login
-      </button>
-    </form>
+        <label htmlFor="email" className="">
+          E-mail Address:
+        </label>
+        <input
+          type="email"
+          id="email"
+          placeholder="e.g. abc123@email.com"
+          {...register("email", {
+            required: "E-mail is required",
+          })}
+          aria-invalid={errors.email ? "true" : "false"}
+          className="rounded-md border border-black p-2"
+        />
+        {errors.email?.type === "required" && (
+          <p className="bg-red-500 p-5" role="alert">
+            {errors.email.message}
+          </p>
+        )}
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          {...register("password", {
+            required: "Password is required",
+          })}
+          aria-invalid={errors.password ? "true" : "false"}
+          className="rounded-md border border-black p-2"
+        />
+        {errors.password?.type === "required" && (
+          <p className="bg-red-500 p-5" role="alert">
+            {errors.password.message}
+          </p>
+        )}
+        <button
+          type="submit"
+          className="rounded-md border border-black p-4 hover:bg-black hover:text-white"
+        >
+          Login
+        </button>
+      </form>
+    </>
   );
 }
