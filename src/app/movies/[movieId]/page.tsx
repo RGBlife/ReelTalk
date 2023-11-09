@@ -1,20 +1,19 @@
 import { MovieDetailSection } from "./components/MovieDetailSection";
 import { db } from "~/server/db";
 
+const getMovieById = async (id: number) => {
+  return await db.movie.findUniqueOrThrow({ where: { id } });
+};
+
 type Context = {
   params: {
     movieId: string;
   };
 };
 
-const getMovieById = async (id: number) => {
-  return await db.movie.findUnique({ where: { id } });
-};
-
-export default async function SingleMoviePage(context: Context) {
-  const movie = await getMovieById(+context.params.movieId);
-
-  if (!movie) return <p>No movie found...</p>;
+export default async function SingleMoviePage({ params }: Context) {
+  const movieId = Number(params.movieId);
+  const movie = await getMovieById(movieId);
 
   return (
     <>
