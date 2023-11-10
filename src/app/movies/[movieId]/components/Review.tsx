@@ -2,7 +2,7 @@ import { Review as ReviewType } from "@prisma/client";
 import { HideableReviewBody } from "./HideableReviewBody";
 import { ReviewLikeButton } from "./ReviewLikeButton";
 import { ReviewDeleteButton } from "./ReviewDeleteButton";
-import format from "date-fns/format";
+import { genRelativeDateStr } from "~/utils/date-formatters";
 
 type Props = {
   review: any; //specifying review type causes tsc errors atm
@@ -14,7 +14,7 @@ export const Review = ({ review }: Props) => {
   return (
     <article className="border border-blue-500 p-4">
       <p>{review.rating}/5 ⭐</p>
-      <p>Posted on {format(new Date(review.created_at), "MM/dd/yyyy")}</p>
+      <p>{genRelativeDateStr(review.created_at)}</p>
       <div className="flex">
         <img src={review.author.avatar_url} width="20px" />
         <h4>By {review.author.username}</h4>
