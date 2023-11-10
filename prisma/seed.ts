@@ -1,5 +1,6 @@
 import { PrismaClient, Prisma } from "@prisma/client";
 import { hash } from "bcrypt";
+
 import { movies } from "../data/movies.json";
 
 const formattedMovies = movies.map((movie) => {
@@ -1365,8 +1366,8 @@ async function main() {
         genre_a_weighting: 8,
         preference_genre_b: "Thriller",
         genre_b_weighting: 6,
-        preference_release_date: "2000-01-01",
-        release_date_weighting: 5,
+        preference_release_year: "2000-01-01",
+        release_year_weighting: 5,
         preference_imdb_rating: 7,
         imdb_rating_weighting: 9,
       },
@@ -1376,8 +1377,8 @@ async function main() {
         genre_a_weighting: 6,
         preference_genre_b: "Comedy",
         genre_b_weighting: 5,
-        preference_release_date: "2005-01-01",
-        release_date_weighting: 8,
+        preference_release_year: "2005-01-01",
+        release_year_weighting: 8,
         preference_imdb_rating: 7,
         imdb_rating_weighting: 10,
       },

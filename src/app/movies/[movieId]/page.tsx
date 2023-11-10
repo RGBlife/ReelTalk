@@ -1,4 +1,5 @@
 import { MovieDetailSection } from "./components/MovieDetailSection";
+import { ReviewSection } from "./components/ReviewSection";
 import { db } from "~/server/db";
 
 const getMovieById = (id: number) => {
@@ -18,6 +19,8 @@ export default async function SingleMoviePage({ params }: Context) {
   return (
     <>
       <MovieDetailSection movie={movie} />
+      <ReviewSection movieId={movieId} />
     </>
   );
 }
+
