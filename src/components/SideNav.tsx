@@ -1,5 +1,3 @@
-"use server";
-
 import React from "react";
 import Link from "next/link";
 
@@ -20,9 +18,9 @@ export default async function SideNav() {
           <Link href={`/movies/recommendations`}>Recommendations</Link>
         </li>
       </ul>
-      <span className="rounded-md border-2 border-solid border-black">
+      <button className="rounded-md border-2 border-solid border-black">
         Log In/Out
-      </span>
+      </button>
     </nav>
   );
 }

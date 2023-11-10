@@ -2,8 +2,8 @@
 
 import { Movie } from "@prisma/client";
 import { useState } from "react";
-import { fetchMovies } from "../utils/api/fetchMovies";
-import { fetchSearchMovie } from "../utils/api/searchTerm";
+import { fetchMovies } from "../../utils/api/fetchMovies";
+import { fetchSearchMovie } from "../../utils/api/searchTerm";
 
 type Props = {
   movies: Movie[];

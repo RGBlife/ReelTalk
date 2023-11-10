@@ -4,17 +4,13 @@ import PopularReview from "~/components/PopularReview";
 import SideNav from "~/components/SideNav";
 
 export default function HomePage() {
-  recommendation();
   return (
-    <>
-      <main className="">Reel Talk</main>
-      <div className="container flex items-start">
-        <SideNav />
-        <div className="min-h-screen flex-grow border-x">
-          <TrendingSection />
-          <PopularReview />
-        </div>
+    <main>
+      <h1>Reel Talk</h1>
+      <div className="min-h-screen flex-grow border-x">
+        <TrendingSection />
+        <PopularReview />
       </div>
-    </>
+    </main>
   );
 }
