@@ -2,6 +2,7 @@ import { Review } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import React, { Fragment } from "react";
 import { db } from "~/server/db";
+import { SubmitButton } from "../ReviewFormSubmitButton";
 
 type Props = {
   movieId: number;
@@ -55,6 +56,7 @@ export const ReviewForm = ({ movieId }: Props) => {
             type="radio"
             name="rating"
             value="0"
+            defaultChecked
             className="rating-hidden"
           />
           <input
@@ -135,7 +137,8 @@ export const ReviewForm = ({ movieId }: Props) => {
           <input type="radio" name="has_spoilers" value="yes" /> Yes
         </label>
       </div>
-      <button type="submit">Submit</button>
+      <SubmitButton />
+      {/* <button type="submit">Submit</button> */}
     </form>
   );
 };

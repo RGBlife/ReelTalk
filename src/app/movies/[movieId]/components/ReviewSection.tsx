@@ -11,6 +11,9 @@ type Props = {
 
 const getReviewsByMovieId = (id: number) => {
   return db.review.findMany({
+    orderBy: {
+      created_at: "desc",
+    },
     where: {
       movie_id: id,
     },
