@@ -12,7 +12,6 @@ type Props = {
 };
 
 export const MovieDetailSection = ({ movie }: Props) => {
-  console.log("release_date", movie.release_date);
   return (
     <section>
       <img src={movie.poster_url} alt={`Poster of ${movie.title}`} />
