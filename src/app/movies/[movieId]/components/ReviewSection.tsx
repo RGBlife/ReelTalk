@@ -31,6 +31,7 @@ const getReviewsByMovieId = (id: number) => {
 
 export const ReviewSection = async ({ movieId }: Props) => {
   const reviews = await getReviewsByMovieId(movieId);
+  console.log("reviews ",reviews);
 
   const user = Math.random() < 0.5; // 50% chance of the user being logged in
 

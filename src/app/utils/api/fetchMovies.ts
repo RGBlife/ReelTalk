@@ -1,14 +1,12 @@
 import { Movie } from "@prisma/client";
 import { PaginationSchema } from "../paginationFilter";
+import queryString from "query-string";
 
-export const fetchMovies = async ({ limit = 10, page = 1, genre, runtime = 1000, release_from = 0, release_to = 10000 }: PaginationSchema) => {
-  const baseString = `/api/movies?limit=${limit}&page=${page}&runtime=${runtime}&release_from=${release_from}&release_to=${release_to}`
-  const genreString = genre ? `&genre=${genre}` : ""
+export const fetchMovies = async ({ limit = 10, page = 1, genre, runtime, release_from, release_to }: PaginationSchema) => {
+  const queryParams = queryString.stringify({ limit, page, genre, runtime, release_from, release_to })
+  const url = `/api/movies?${queryParams}`
 
-  const response = await fetch(
-    baseString + genreString,
-  );
+  const response = await fetch(url);
   
-  const movies: Movie[] = await response.json();
-  return movies;
+  return await response.json() as Movie[];
 };
