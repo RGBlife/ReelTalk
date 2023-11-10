@@ -1,5 +1,7 @@
 "use client";
 
+import format from "date-fns/format";
+
 import { convertMinsToHoursStr } from "~/utils/date-formatters";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 
@@ -14,7 +16,7 @@ export const MovieDetailSection = ({ movie }: Props) => {
     <section>
       <img src={movie.poster_url} alt={`Poster of ${movie.title}`} />
       <h2>
-        {movie.title} ({movie.release_year})
+        {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>
       <p>{movie.imdb_rating} ⭐</p>
       {/* <div>
