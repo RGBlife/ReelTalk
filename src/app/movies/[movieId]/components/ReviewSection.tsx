@@ -34,7 +34,11 @@ export const ReviewSection = async ({ movieId }: Props) => {
   return (
     <section>
       <ReviewsHeading movieId={movieId} />
-      {user ? <ReviewForm /> : <LoginPrompt actionText="post a review" />}
+      {user ? (
+        <ReviewForm movieId={movieId} />
+      ) : (
+        <LoginPrompt actionText="post a review" />
+      )}
       <ReviewList reviews={reviews} />
     </section>
   );

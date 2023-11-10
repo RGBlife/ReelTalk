@@ -1,13 +1,21 @@
-"use client";
+import { revalidatePath } from "next/cache";
+import { db } from "~/server/db";
 
 type Props = {
   id: number;
 };
 
 export const ReviewDeleteButton = ({ id }: Props) => {
-  const handleClick = () => {
-    alert("review with id of " + id + " deleted");
+  const deleteReview = async () => {
+    "use server";
+
+    await db.review.delete({ where: { id } });
+    revalidatePath("/");
   };
 
-  return <button onClick={handleClick}>Delete 🗑️</button>;
+  return (
+    <form action={deleteReview}>
+      <button type="submit">Delete 🗑️</button>
+    </form>
+  );
 };
