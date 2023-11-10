@@ -303,7 +303,7 @@ async function main() {
         title: "Five Nights at Freddy's",
         overview:
           "Recently fired and desperate for work, a troubled young man named Mike agrees to take a position as a night security guard at an abandoned theme restaurant: Freddy Fazbear's Pizzeria. But he soon discovers that nothing at Freddy's is what it seems.",
-        imdb_rating: 8.208,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/A4j8S6moJS2zNtRR8oWF08gRnL5.jpg",
         release_date: new Date("2023-10-25"),
@@ -317,7 +317,7 @@ async function main() {
         title: "Muzzle",
         overview:
           "LAPD K-9 officer Jake Rosser has just witnessed the shocking murder of his dedicated partner by a mysterious assailant. As he investigates the shooter’s identity, he uncovers a vast conspiracy that has a chokehold on the city in this thrilling journey through the tangled streets of Los Angeles and the corrupt bureaucracy of the LAPD.",
-        imdb_rating: 6.359,
+        imdb_rating: 3,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qXChf7MFL36BgoLkiB3BzXiwW82.jpg",
         release_date: new Date("2023-09-29"),
@@ -331,7 +331,7 @@ async function main() {
         title: "Retribution",
         overview:
           "When a mysterious caller puts a bomb under his car seat, Matt Turner begins a high-speed chase across the city to complete a specific series of tasks- all with his kids trapped in the back seat.",
-        imdb_rating: 6.98,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ljl70pjLIX1hx3bPyCCbxGj6WPr.jpg",
         release_date: new Date("2023-08-23"),
@@ -345,7 +345,7 @@ async function main() {
         title: "The Nun II",
         overview:
           "In 1956 France, a priest is violently murdered, and Sister Irene begins to investigate. She once again comes face-to-face with a powerful evil.",
-        imdb_rating: 6.937,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
         release_date: new Date("2023-09-06"),
@@ -359,7 +359,7 @@ async function main() {
         title: "Gran Turismo",
         overview:
           "The ultimate wish-fulfillment tale of a teenage Gran Turismo player whose gaming skills won him a series of Nissan competitions to become an actual professional racecar driver.",
-        imdb_rating: 8.012,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/51tqzRtKMMZEYUpSYkrUE7v9ehm.jpg",
         release_date: new Date("2023-08-09"),
@@ -373,7 +373,7 @@ async function main() {
         title: "Coco",
         overview:
           "Despite his family’s baffling generations-old ban on music, Miguel dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz. Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector, and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history.",
-        imdb_rating: 8.217,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/gGEsBPAijhVUFoiNpgZXqRVWJt2.jpg",
         release_date: new Date("2017-10-27"),
@@ -387,7 +387,7 @@ async function main() {
         title: "PAW Patrol: The Mighty Movie",
         overview:
           "A magical meteor crash lands in Adventure City and gives the PAW Patrol pups superpowers, transforming them into The Mighty Pups.",
-        imdb_rating: 6.972,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/aTvePCU7exLepwg5hWySjwxojQK.jpg",
         release_date: new Date("2023-09-21"),
@@ -401,7 +401,7 @@ async function main() {
         title: "Meg 2: The Trench",
         overview:
           "An exploratory dive into the deepest depths of the ocean of a daring research team spirals into chaos when a malevolent mining operation threatens their mission and forces them into a high-stakes battle for survival.",
-        imdb_rating: 6.772,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/4m1Au3YkjqsxF8iwQy0fPYSxE0h.jpg",
         release_date: new Date("2023-08-02"),
@@ -415,7 +415,7 @@ async function main() {
         title: "Mavka: The Forest Song",
         overview:
           "Forest soul Mavka faces an impossible choice between her heart and her duty as guardian to the Heart of the Forest, when she falls in love with the talented young human musician Lukas.",
-        imdb_rating: 7.28,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/eeJjd9JU2Mdj9d7nWRFLWlrcExi.jpg",
         release_date: new Date("2023-03-02"),
@@ -429,7 +429,7 @@ async function main() {
         title: "Boudica",
         overview:
           "Inspired by events in A.D. 60, Boudica follows the eponymous Celtic warrior who rules the Iceni people alongside her husband Prasutagus. When he dies at the hands of Roman soldiers, Boudica’s kingdom is left without a male heir and the Romans seize her land and property.  Driven to the edge of madness and determined to avenge her husband’s death, Boudica rallies the various tribes from the region and wages an epic war against the mighty Roman empire.",
-        imdb_rating: 6.964,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ssEFC5wfFjj7lJpUgwJDOK1Xu1J.jpg",
         release_date: new Date("2023-10-26"),
@@ -443,7 +443,7 @@ async function main() {
         title: "Blue Beetle",
         overview:
           "Recent college grad Jaime Reyes returns home full of aspirations for his future, only to find that home is not quite as he left it. As he searches to find his purpose in the world, fate intervenes when Jaime unexpectedly finds himself in possession of an ancient relic of alien biotechnology: the Scarab.",
-        imdb_rating: 7.002,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/mXLOHHc1Zeuwsl4xYKjKh2280oL.jpg",
         release_date: new Date("2023-08-16"),
@@ -457,7 +457,7 @@ async function main() {
         title: "Oppenheimer",
         overview:
           "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.",
-        imdb_rating: 8.245,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
         release_date: new Date("2023-07-19"),
@@ -471,7 +471,7 @@ async function main() {
         title: "The Little Mermaid",
         overview:
           "The youngest of King Triton’s daughters, and the most defiant, Ariel longs to find out more about the world beyond the sea, and while visiting the surface, falls for the dashing Prince Eric. With mermaids forbidden to interact with humans, Ariel makes a deal with the evil sea witch, Ursula, which gives her a chance to experience life on land, but ultimately places her life – and her father’s crown – in jeopardy.",
-        imdb_rating: 6.5,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/ym1dxyOk4jFcSl4Q2zmRrA5BEEN.jpg",
         release_date: new Date("2023-05-18"),
@@ -485,7 +485,7 @@ async function main() {
         title: "The Super Mario Bros. Movie",
         overview:
           "While working underground to fix a water main, Brooklyn plumbers—and brothers—Mario and Luigi are transported down a mysterious pipe and wander into a magical new world. But when the brothers are separated, Mario embarks on an epic quest to find Luigi.",
-        imdb_rating: 7.757,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/qNBAXBIQlnOThrVvA6mA2B5ggV6.jpg",
         release_date: new Date("2023-04-05"),
@@ -499,7 +499,7 @@ async function main() {
         title: "South Park: Joining the Panderverse",
         overview:
           "Cartman's deeply disturbing dreams portend the end of the life he knows and loves. Meanwhile, the adults in South Park are wrestling with their own life decisions, as the advent of AI is turning their wold upside down.",
-        imdb_rating: 8.243,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/18IsRVfs5MkkTcqTGlUAnka6sCh.jpg",
         release_date: new Date("2023-10-27"),
@@ -513,7 +513,7 @@ async function main() {
         title: "Barbie",
         overview:
           "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land. However, when they get a chance to go to the real world, they soon discover the joys and perils of living among humans.",
-        imdb_rating: 7.215,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg",
         release_date: new Date("2023-07-19"),
@@ -527,7 +527,7 @@ async function main() {
         title: "After Everything",
         overview:
           "Besieged by writer’s block and the crushing breakup with Tessa, Hardin travels to Portugal in search of a woman he wronged in the past – and to find himself. Hoping to win back Tessa, he realizes he needs to change his ways before he can make the ultimate commitment.",
-        imdb_rating: 7.017,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/uQxjZGU6rxSPSMeAJPJQlmfV3ys.jpg",
         release_date: new Date("2023-09-13"),
@@ -541,7 +541,7 @@ async function main() {
         title: "Guardians of the Galaxy Vol. 3",
         overview:
           "Peter Quill, still reeling from the loss of Gamora, must rally his team around him to defend the universe along with protecting one of their own. A mission that, if not completed successfully, could quite possibly lead to the end of the Guardians as we know them.",
-        imdb_rating: 8.008,
+        imdb_rating: 4,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
         release_date: new Date("2023-05-03"),
@@ -555,7 +555,7 @@ async function main() {
         title: "xXx",
         overview:
           'Xander Cage is your standard adrenaline junkie with no fear and a lousy attitude. When the US Government "recruits" him to go on a mission, he\'s not exactly thrilled. His mission: to gather information on an organization that may just be planning the destruction of the world, led by the nihilistic Yorgi.',
-        imdb_rating: 5.921,
+        imdb_rating: 3,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xeEw3eLeSFmJgXZzmF2Efww0q3s.jpg",
         release_date: new Date("2002-08-09"),
@@ -569,7 +569,7 @@ async function main() {
         title: "Insidious: The Red Door",
         overview:
           "To put their demons to rest once and for all, Josh Lambert and a college-aged Dalton Lambert must go deeper into The Further than ever before, facing their family's dark past and a host of new and more horrifying terrors that lurk behind the red door.",
-        imdb_rating: 6.772,
+        imdb_rating: 3.5,
         poster_url:
           "https://www.themoviedb.org/t/p/w600_and_h900_bestv2/d07phJqCx6z5wILDYqkyraorDPi.jpg",
         release_date: new Date("2023-07-05"),
@@ -678,8 +678,6 @@ async function main() {
         email: "oceanic@gmail.com",
         password:
           "$2b$12$Tux5AC8Sns/V/SHY8I.Tfe6y4vJX55JOX.LMKV9Q/cn.hTAUV6vXW",
-        avatar_url:
-          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "Admin",
         favourite_movie: "The Abyss",
         is_watch_list_public: true,
@@ -690,8 +688,6 @@ async function main() {
         email: "coralreef@gmail.com",
         password:
           "$2b$12$B31pkyvMQMOgH40eBIxKvuJNQ8Rsiq7q6LVRPBiK7n8SvfHEQ4Cqm",
-        avatar_url:
-          "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360",
         role: "User",
         favourite_movie: "Coraline",
         is_watch_list_public: true,
