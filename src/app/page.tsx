@@ -3,7 +3,7 @@ import { LoginLink, LogoutButton } from "~/components/AuthButtons";
 import TrendingSection from "~/components/TrendingSection";
 
 export default function HomePage() {
-  // recommendation();
+  recommendation();
   return (
     <>
       <main className="">Reel Talk</main>
