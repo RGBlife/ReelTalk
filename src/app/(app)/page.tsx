@@ -1,4 +1,3 @@
-import recommendation from "backend/recommendation";
 import TrendingSection from "~/components/TrendingSection";
 import PopularReview from "~/components/PopularReview";
 import SideNav from "~/components/SideNav";

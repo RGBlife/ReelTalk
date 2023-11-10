@@ -103,3 +103,16 @@ export const authOptions: NextAuthOptions = {
  * @see https://next-auth.js.org/configuration/nextjs
  */
 export const getServerAuthSession = () => getServerSession(authOptions);
+
+/**
+ * Wrapper for `getServerSession` that throws an error if the user is not authenticated.
+ */
+export const getSessionOrThrow = async () => {
+  const currentUser = await getServerAuthSession();
+  
+  if (!currentUser?.user) {
+    throw new Error("Not authenticated");
+  }
+
+  return currentUser
+}
