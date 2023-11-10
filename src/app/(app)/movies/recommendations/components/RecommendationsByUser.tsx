@@ -1,12 +1,12 @@
-import { Recommendation } from "@prisma/client";
-import { Session } from "next-auth";
+import type { Recommendation } from "@prisma/client";
+import type { Session } from "next-auth";
 
 type Props = {
   recommendations: Recommendation[];
   user: Session['user']
 };
 
-export default async function RecommendationsByUser({
+export default function RecommendationsByUser({
   recommendations,
 }: Props) {
   return (

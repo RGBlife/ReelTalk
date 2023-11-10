@@ -1,11 +1,9 @@
-import { getYearFromDateStr } from "~/utils/date-formatters";
 import format from "date-fns/format";
-
 import { AddToWatchListButton } from "./AddToWatchListButton";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
-
-import { Movie } from "@prisma/client";
+import { type Movie } from "@prisma/client";
+import Image from "next/image";
 
 type Props = {
   movie: Movie;
@@ -14,7 +12,7 @@ type Props = {
 export const MovieDetailSection = ({ movie }: Props) => {
   return (
     <section>
-      <img src={movie.poster_url} alt={`Poster of ${movie.title}`} />
+      <Image src={movie.poster_url} alt={`Poster of ${movie.title}`} />
       <h2>
         {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>
