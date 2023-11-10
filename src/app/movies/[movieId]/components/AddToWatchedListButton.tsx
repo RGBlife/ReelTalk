@@ -9,5 +9,12 @@ export const AddToWatchedListButton = ({ movieId }: Props) => {
     alert(`added movie of id: ${movieId} to watched list`);
   };
 
-  return <button onClick={handleClick}>Add to Watched List</button>;
+  return (
+    <button
+      className="rounded bg-black px-4 py-2 text-white"
+      onClick={handleClick}
+    >
+      Add to Watched List
+    </button>
+  );
 };

@@ -1,18 +1,21 @@
 "use client";
 
-import { useTransition } from "react";
-import { addMovieToWatchList } from "../actions";
+import { ReactNode, useTransition } from "react";
 
 type Props = {
   movieId: number;
+  action: any; // ❌ just for now
+  children: ReactNode;
 };
 
-export const AddToWatchListButton = ({ movieId }: Props) => {
+const userId = 1;
+
+export const AddToMovieListButton = ({ movieId, action, children }: Props) => {
   const [pending, startTransition] = useTransition();
 
   const handleClick = () => {
     startTransition(async () => {
-      const record = await addMovieToWatchList(movieId, 2);
+      const record = await action(movieId, userId);
     });
   };
 
@@ -21,7 +24,7 @@ export const AddToWatchListButton = ({ movieId }: Props) => {
       onClick={handleClick}
       className="rounded bg-black px-4 py-2 text-white"
     >
-      Add to Watch List
+      {children}
     </button>
   );
 };
