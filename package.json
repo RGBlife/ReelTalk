@@ -16,10 +16,15 @@
     "@prisma/client": "^5.1.1",
     "@supabase/supabase-js": "^2.38.4",
     "@t3-oss/env-nextjs": "^0.7.0",
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "date-fns": "^2.30.0",
     "next": "^14.0.0",
     "next-auth": "^4.23.0",
+    "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.48.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {

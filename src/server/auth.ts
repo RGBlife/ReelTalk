@@ -1,12 +1,13 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { compare } from "bcrypt";
 import {
   getServerSession,
   type DefaultSession,
   type NextAuthOptions,
 } from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import CredentialsProvider from "next-auth/providers/credentials";
 
-import { env } from "~/env.mjs";
+// import { env } from "~/env.mjs";
 import { db } from "~/server/db";
 
 /**
@@ -36,6 +37,12 @@ declare module "next-auth" {
  * @see https://next-auth.js.org/configuration/options
  */
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "/auth/login",
+  },
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     session: ({ session, user }) => ({
       ...session,
@@ -47,19 +54,46 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(db),
   providers: [
-      DiscordProvider({
-        clientId: env.DISCORD_CLIENT_ID,
-        clientSecret: env.DISCORD_CLIENT_SECRET,
-      }),
-    /**
-     * ...add more providers here.
-     *
-     * Most other providers require a bit more work than the Discord provider. For example, the
-     * GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-     * model. Refer to the NextAuth.js docs for the provider you want to use. Example:
-     *
-     * @see https://next-auth.js.org/providers/github
-     */
+    CredentialsProvider({
+      name: "Credentials",
+      async authorize(credentials) {
+        try {
+          if (!credentials?.email || !credentials.password) {
+            return null;
+          }
+
+          // Find user in the database
+          const user = await db.user.findUnique({
+            where: {
+              email: credentials.email,
+            },
+          });
+
+          // If user cannot be found
+          if (!user) {
+            return null;
+          }
+
+          // Comparing the password stored in database versus passed via form - https://www.npmjs.com/package/bcrypt#to-check-a-password
+          const isPwdValid = await compare(credentials.password, user.password);
+
+          // If passwords do not match, do not pass go
+          if (!isPwdValid) {
+            return null;
+          }
+          // Return object with useful use information
+          return {
+            id: user.id.toString(),
+            username: user.username,
+            email: user.email,
+          };
+        } catch (error) {
+          // Todo - Confirm what to do with these possible errors
+          console.error(error);
+          // throw new Error("Not found");
+        }
+      },
+    }),
   ],
 };
 
@@ -69,3 +103,16 @@ export const authOptions: NextAuthOptions = {
  * @see https://next-auth.js.org/configuration/nextjs
  */
 export const getServerAuthSession = () => getServerSession(authOptions);
+
+/**
+ * Wrapper for `getServerSession` that throws an error if the user is not authenticated.
+ */
+export const getSessionOrThrow = async () => {
+  const currentUser = await getServerAuthSession();
+  
+  if (!currentUser?.user) {
+    throw new Error("Not authenticated");
+  }
+
+  return currentUser
+}
