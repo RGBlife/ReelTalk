@@ -1,4 +1,5 @@
 import { getYearFromDateStr } from "~/utils/date-formatters";
+import format from "date-fns/format";
 
 import { AddToWatchListButton } from "./AddToWatchListButton";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
@@ -15,7 +16,7 @@ export const MovieDetailSection = ({ movie }: Props) => {
     <section>
       <img src={movie.poster_url} alt={`Poster of ${movie.title}`} />
       <h2>
-        {movie.title} ({getYearFromDateStr(movie.release_date)})
+        {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>
       <div>
         <AddToWatchListButton movieId={movie.id} />

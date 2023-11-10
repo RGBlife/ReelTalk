@@ -25,11 +25,11 @@ export const paginationFilter = ({
     where: {
       genres: {
         some: {
-          genre_id: genre ? genre : undefined,
+          genre_id: genre,
         },
       },
       runtime: {
-        lte: runtime ? runtime : undefined,
+        lte: runtime,
       },
       release_date: {
         lte: release_to ? new Date(release_to) : undefined,
