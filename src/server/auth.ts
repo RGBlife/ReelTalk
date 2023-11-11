@@ -17,18 +17,21 @@ import { db } from "~/server/db";
  * @see https://next-auth.js.org/getting-started/typescript#module-augmentation
  */
 declare module "next-auth" {
+  interface User {
+    id: string;
+    email: string;
+    username: string;
+  }
+
   interface Session extends DefaultSession {
     user: {
       id: string;
+      email: string;
+      username: string;
       // ...other properties
       // role: UserRole;
-    } & DefaultSession["user"];
+    };
   }
-
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
 }
 
 /**
@@ -56,8 +59,13 @@ export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
+      credentials: {
+        email: { label: "Email", type: "text", placeholder: "Enter your email" },
+        password: { label: "Password", type: "password", placeholder: "Enter your email" },
+      },
+      // You need to customise the `DefaultUser` type from the next-auth lib
       async authorize(credentials) {
-        try {
+        try { 
           if (!credentials?.email || !credentials.password) {
             return null;
           }
@@ -90,6 +98,7 @@ export const authOptions: NextAuthOptions = {
         } catch (error) {
           // Todo - Confirm what to do with these possible errors
           console.error(error);
+          return null;
           // throw new Error("Not found");
         }
       },
@@ -109,10 +118,10 @@ export const getServerAuthSession = () => getServerSession(authOptions);
  */
 export const getSessionOrThrow = async () => {
   const currentUser = await getServerAuthSession();
-  
+
   if (!currentUser?.user) {
     throw new Error("Not authenticated");
   }
 
-  return currentUser
-}
+  return currentUser;
+};

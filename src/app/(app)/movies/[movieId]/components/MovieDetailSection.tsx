@@ -12,7 +12,7 @@ type Props = {
 export const MovieDetailSection = ({ movie }: Props) => {
   return (
     <section>
-      <Image src={movie.poster_url} alt={`Poster of ${movie.title}`} />
+      <Image src={movie.poster_url} width={20} height={60} alt={`Poster of ${movie.title}`} />
       <h2>
         {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>

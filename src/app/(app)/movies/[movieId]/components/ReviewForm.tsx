@@ -1,7 +1,7 @@
 "use client";
 
 export const ReviewForm = () => {
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     // use Next 14 server actions?

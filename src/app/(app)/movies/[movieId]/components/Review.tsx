@@ -17,7 +17,7 @@ export const Review = ({ review }: Props) => {
       <p>{review.rating}/5 ⭐</p>
       <p>Posted on {format(new Date(review.created_at), "MM/dd/yyyy")}</p>
       <div className="flex">
-        <Image src={review.author.avatar_url} width={20} alt={review.author.username} />
+        <Image src={review.author.avatar_url} width={20} height={60} alt={review.author.username} />
         <h4>By {review.author.username}</h4>
         <h3>{review.title}</h3>
       </div>

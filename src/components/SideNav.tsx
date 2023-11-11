@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-export default async function SideNav() {
+export default function SideNav() {
   return (
     <nav className="top-0 flex flex-col justify-between px-2 py-4">
       <ul className="flex h-[90vh] flex-col items-start gap-5 whitespace-nowrap">
