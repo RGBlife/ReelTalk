@@ -36,7 +36,7 @@ model User {
     username               String           @unique
     email                  String           @unique
     password               String
-    avatar_url             String?
+    avatar_url             String           @default("https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512")
     role                   Role             @default(User)
     favourite_movie        String
     is_watch_list_public   Boolean
@@ -105,13 +105,13 @@ model Message {
 }
 
 model Review {
-    id         Int     @id @default(autoincrement())
-    author_id  Int
-    movie_id   Int
-    title      String?
-    body       String?
-    vote_count Int
-    rating    Float
+    id           Int      @id @default(autoincrement())
+    author_id    Int
+    movie_id     Int
+    title        String
+    body         String
+    vote_count   Int
+    rating       Float
     has_spoilers Boolean
     created_at   DateTime @default(now())
 

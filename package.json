@@ -18,10 +18,13 @@
     "@t3-oss/env-nextjs": "^0.7.0",
     "@types/bcrypt": "^5.0.2",
     "bcrypt": "^5.1.1",
+    "date-fns": "^2.30.0",
     "next": "^14.0.0",
     "next-auth": "^4.23.0",
+    "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.48.2",
     "zod": "^3.22.4"
   },
   "devDependencies": {
@@ -32,7 +35,8 @@
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.47.0",
+    "daisyui": "^3.9.4",
+    "eslint": "^8.53.0",
     "eslint-config-next": "^14.0.0",
     "postcss": "^8.4.27",
     "prettier": "^3.0.0",
