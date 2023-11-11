@@ -30,8 +30,9 @@ export const ReviewForm = ({ movieId }: Props) => {
   };
 
   return (
-    <form action={createReview}>
-      <div className="rating rating-lg rating-half">
+    // Unique key to reset the form
+    <form action={createReview} key={Math.random()}>
+      <div className="rating rating-half rating-lg">
         {/* {{[1, 2, 3, 4, 5].map((num) => {
           return (
             <Fragment key={num}>
@@ -51,7 +52,7 @@ export const ReviewForm = ({ movieId }: Props) => {
           );
         })} }*/}
 
-        <div className="rating rating-md rating-half">
+        <div className="rating rating-half rating-md">
           <input
             type="radio"
             name="rating"
@@ -60,78 +61,87 @@ export const ReviewForm = ({ movieId }: Props) => {
             className="rating-hidden"
           />
           <input
+            required
             type="radio"
             name="rating"
             value="0.5"
-            className="mask mask-star-2 mask-half-1 bg-yellow-500"
+            className="mask mask-half-1 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="1"
-            className="mask mask-star-2 mask-half-2 bg-yellow-500"
+            className="mask mask-half-2 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="1.5"
-            className="mask mask-star-2 mask-half-1 bg-yellow-500"
+            className="mask mask-half-1 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="2"
-            className="mask mask-star-2 mask-half-2 bg-yellow-500"
+            className="mask mask-half-2 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="2.5"
-            className="mask mask-star-2 mask-half-1 bg-yellow-500"
+            className="mask mask-half-1 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="3"
-            className="mask mask-star-2 mask-half-2 bg-yellow-500"
+            className="mask mask-half-2 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="3.5"
-            className="mask mask-star-2 mask-half-1 bg-yellow-500"
+            className="mask mask-half-1 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="4"
-            className="mask mask-star-2 mask-half-2 bg-yellow-500"
+            className="mask mask-half-2 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="4.5"
-            className="mask mask-star-2 mask-half-1 bg-yellow-500"
+            className="mask mask-half-1 mask-star-2 bg-yellow-500"
           />
           <input
             type="radio"
             name="rating"
             value="5"
-            className="mask mask-star-2 mask-half-2 bg-yellow-500"
+            className="mask mask-half-2 mask-star-2 bg-yellow-500"
           />
         </div>
       </div>
       <div>
-        <textarea name="title" placeholder="Give your review a title..." />
+        <textarea
+          name="title"
+          required
+          placeholder="Give your review a title..."
+        />
       </div>
       <div>
-        <textarea name="body" placeholder="Write your review here..." />
+        <textarea
+          name="body"
+          required
+          placeholder="Write your review here..."
+        />
       </div>
 
       <div>
         <p>Does this review contain spoilers?</p>
         <label>
-          <input type="radio" name="has_spoilers" value="no" /> No
+          <input type="radio" name="has_spoilers" value="no" required /> No
         </label>
         <label>
           <input type="radio" name="has_spoilers" value="yes" /> Yes
