@@ -1,5 +1,5 @@
-import { Movie } from "@prisma/client";
-import { PaginationSchema } from "../paginationFilter";
+import { type Movie } from "@prisma/client";
+import { type PaginationSchema } from "../paginationFilter";
 import queryString from "query-string";
 
 export const fetchMovies = async ({ limit = 10, page = 1, genre, runtime, release_from, release_to }: PaginationSchema) => {

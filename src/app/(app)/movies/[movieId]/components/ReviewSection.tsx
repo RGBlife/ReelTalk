@@ -4,10 +4,15 @@ import { ReviewsHeading } from "./ReviewsHeading";
 import { ReviewForm } from "./ReviewForm";
 import { ReviewList } from "./ReviewList";
 import { db } from "~/server/db";
+import type { Review, User } from "@prisma/client";
 
 type Props = {
   movieId: number;
 };
+
+export type ReviewSectionReviews = Review & {
+  author: Pick<User, 'id' | 'username' | 'avatar_url'>
+}
 
 const getReviewsByMovieId = (id: number) => {
   return db.review.findMany({
@@ -23,13 +28,11 @@ const getReviewsByMovieId = (id: number) => {
         },
       },
     },
-  });
+  }) satisfies Promise<ReviewSectionReviews[]>;
 };
 
 export const ReviewSection = async ({ movieId }: Props) => {
   const reviews = await getReviewsByMovieId(movieId);
-  console.log("reviews ",reviews);
-
   const user = Math.random() < 0.5; // 50% chance of the user being logged in
 
   return (
