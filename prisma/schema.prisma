@@ -105,13 +105,13 @@ model Message {
 }
 
 model Review {
-    id         Int     @id @default(autoincrement())
-    author_id  Int
-    movie_id   Int
-    title      String?
-    body       String?
-    vote_count Int
-    rating    Float
+    id           Int      @id @default(autoincrement())
+    author_id    Int
+    movie_id     Int
+    title        String
+    body         String
+    vote_count   Int
+    rating       Float
     has_spoilers Boolean
     created_at   DateTime @default(now())
 

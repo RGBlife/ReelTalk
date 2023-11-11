@@ -1,28 +1,31 @@
 import { HideableReviewBody } from "./HideableReviewBody";
 import { ReviewLikeButton } from "./ReviewLikeButton";
 import { ReviewDeleteButton } from "./ReviewDeleteButton";
-import format from "date-fns/format";
+import { genRelativeDateStr } from "~/utils/date-formatters";
 import Image from "next/image";
 import type { ReviewSectionReviews } from "./ReviewSection";
 
 type Props = {
-  review: ReviewSectionReviews; //specifying review type causes tsc errors atm
+  review: ReviewSectionReviews; // specifying review type causes tsc errors atm
 };
 
 export const Review = ({ review }: Props) => {
-  console.log("created at", review.created_at);
-
   return (
     <article className="border border-blue-500 p-4">
       <p>{review.rating}/5 ⭐</p>
-      <p>Posted on {format(new Date(review.created_at), "MM/dd/yyyy")}</p>
+      <p>{genRelativeDateStr(review.created_at)}</p>
       <div className="flex">
-        <Image src={review.author.avatar_url} width={20} height={60} alt={review.author.username} />
+        <Image
+          src={review.author.avatar_url}
+          width={20}
+          height={60}
+          alt={review.author.username}
+        />
         <h4>By {review.author.username}</h4>
         <h3>{review.title}</h3>
       </div>
       {review.has_spoilers ? (
-        <HideableReviewBody body={review.body ?? ''} />
+        <HideableReviewBody body={review.body ?? ""} />
       ) : (
         <p>{review.body}</p>
       )}
