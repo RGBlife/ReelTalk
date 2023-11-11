@@ -1,6 +1,6 @@
-import { Prisma } from "@prisma/client";
+import { type Prisma } from "@prisma/client";
 import { db } from "../src/server/db";
-import { Genre, Preference } from "@prisma/client";
+import { type Genre, type Preference } from "@prisma/client";
 type scoreArray = {
   user_id: number;
   movie_id: number;

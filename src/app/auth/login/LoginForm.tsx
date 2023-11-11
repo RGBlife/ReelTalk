@@ -43,8 +43,10 @@ export function LoginForm() {
       } else {
         setError("Invalid Credentials");
       }
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      console.log(err);
+      
     }
   };
   return (

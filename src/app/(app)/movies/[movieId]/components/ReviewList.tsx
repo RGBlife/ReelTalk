@@ -1,14 +1,14 @@
-import { Review as ReviewType } from "@prisma/client";
 import { Review } from "./Review";
+import type { ReviewSectionReviews } from "./ReviewSection";
 
 type Props = {
-  reviews: ReviewType[];
+  reviews: ReviewSectionReviews[];
 };
 
 export const ReviewList = ({ reviews }: Props) => {
   return (
     <div>
-      {reviews.map((review: any) => (
+      {reviews.map((review) => (
         <Review key={review.id} review={review} />
       ))}
     </div>

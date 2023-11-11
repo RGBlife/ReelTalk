@@ -6,9 +6,7 @@ export const getYearFromDateStr = (dateStr: string) => {
   return date.getFullYear();
 };
 
-export const genRelativeDateStr = (dateStr: string) => {
-  const date = new Date(dateStr);
-
+export const genRelativeDateStr = (date: Date) => {
   const relativeDateStr = formatDistanceToNowStrict(date, { addSuffix: true });
 
   if (relativeDateStr === "0 seconds ago") return "Just now";
