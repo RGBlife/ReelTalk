@@ -1,62 +1,78 @@
 "use client";
 
-import { type Movie } from "@prisma/client";
+import type { Movie } from "@prisma/client";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import { fetchMovies } from "../../utils/api/fetchMovies";
-import { fetchSearchMovie } from "../../utils/api/searchTerm";
+import { fetchMovies } from "~/app/utils/api/fetchMovies";
 
 type Props = {
   movies: Movie[];
 };
 
-export function MoviesScreen({ movies: initialMovies }: Props) {
-  const [movies, setMovies] = useState<Movie[]>(initialMovies);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+export function MoviesScreen({
+  movies: initialMovies,
+  searchParams,
+}: {
+  searchParams: { id: string | undefined };
+  movies: Props;
+}) {
+  console.log(searchParams);
 
-  const handleClick = async () => {
-    const result = await fetchMovies({
-      limit: 50,
-      page: 1,
-      release_from: "2000-01-01",
-      release_to: "2015-01-01",
-    });
-    console.log(result);
+  const [movies, setMovies] = useState<Movie[]>(initialMovies.movies);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [endOfPage, setEndOfPage] = useState(false);
+
+  const handlePageChange = async (newPage: number) => {
+    const result = await fetchMovies({ limit: 8, page: newPage });
+    if (!result || result.length === 0) return setEndOfPage(true);
+    setEndOfPage(false);
     setMovies(result);
-  };
-
-  const handleSearchTerm = async (searchTerm: string) => {
-    const result = await fetchSearchMovie(searchTerm);
-
-    setMovies(result);
+    setCurrentPage(newPage);
   };
 
   return (
-    <div>
-      <h1>Movie Page</h1>
-      <button onClick={handleClick}>filter</button>
-      <ul>
+    <div className="container mx-auto px-4">
+      <h1 className="my-8 text-center text-3xl font-bold">Movies</h1>
+
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <li
+            key={movie.id}
+            className="max-w-sm overflow-hidden rounded p-4 shadow-lg bg-primary"
+          >
+            <Link href={`/movies/${movie.id}`}>
+              <Image
+                src={movie.poster_url}
+                alt={movie.title}
+                width={164}
+                height={246}
+                layout="responsive"
+              />
+            </Link>
+            <div className="px-6 py-4">
+              <div className="mb-2 text-xl font-bold text-neutral">{movie.title}</div>
+            </div>
+          </li>
         ))}
       </ul>
 
-      <label htmlFor="search" className="sr-only">
-        Search
-      </label>
-      <input
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
-        placeholder={"Enter a movie title"}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-      />
-      <button
-        onClick={() => {
-          void handleSearchTerm(searchTerm);
-        }}
-      >
-        Search
-      </button>
+      <div className="mt-8 flex justify-center">
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          className="mx-2 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
+          disabled={currentPage <= 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          className="mx-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+          disabled={endOfPage}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }
