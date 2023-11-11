@@ -109,7 +109,7 @@ model Review {
     author_id    Int
     movie_id     Int
     title        String
-    body         String?
+    body         String
     vote_count   Int
     rating       Float
     has_spoilers Boolean
