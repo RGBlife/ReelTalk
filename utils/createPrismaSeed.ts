@@ -242,7 +242,7 @@ const movies = [
     }
   ]
 
-let dataArray = []
+const dataArray = []
 
 for (const movie of movies){
   for (const genre of movie.genres){

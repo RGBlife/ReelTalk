@@ -1,4 +1,4 @@
-import { PrismaClient, Prisma } from "@prisma/client";
+import { PrismaClient, type Prisma } from "@prisma/client";
 import { hash } from "bcrypt";
 
 import { movies } from "../data/movies.json";
@@ -9,7 +9,7 @@ const formattedMovies = movies.map((movie) => {
 
 const prisma = new PrismaClient();
 async function main() {
-  let moviesArray = [
+  const moviesArray = [
     {
       id: 507089,
       genres: [27, 9648],
@@ -291,7 +291,7 @@ async function main() {
       runtime: 170,
     },
   ];
-  let dataArray = [];
+  const dataArray = [];
   for (const movieItem of formattedMovies) {
     for (const genre of movieItem.genres) {
       dataArray.push({

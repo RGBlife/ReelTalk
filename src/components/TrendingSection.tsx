@@ -1,10 +1,9 @@
 "use server";
 
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { db } from "~/server/db";
-
-type Props = {};
 
 export default async function TrendingSection() {
   const trendingMovies = await db.movie.findMany({
@@ -23,9 +22,9 @@ export default async function TrendingSection() {
           return (
             <>
               <Link href={`/movies/${movie.id}`}>
-                <img
+                <Image
                   src={movie.poster_url}
-                  className="w-[10vw]"
+                  width={20} height={60}
                   alt={movie.title}
                 />
               </Link>

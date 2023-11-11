@@ -1,9 +1,9 @@
 "use client";
 
-import { Movie } from "@prisma/client";
+import { type Movie } from "@prisma/client";
 import { useState } from "react";
-import { fetchMovies } from "../utils/api/fetchMovies";
-import { fetchSearchMovie } from "../utils/api/searchTerm";
+import { fetchMovies } from "../../utils/api/fetchMovies";
+import { fetchSearchMovie } from "../../utils/api/searchTerm";
 
 type Props = {
   movies: Movie[];
@@ -52,7 +52,7 @@ export function MoviesScreen({ movies: initialMovies }: Props) {
       />
       <button
         onClick={() => {
-          handleSearchTerm(searchTerm);
+          void handleSearchTerm(searchTerm);
         }}
       >
         Search
