@@ -8,7 +8,7 @@ const Layout = ({ children }: Props) => {
   return (
     <div className="container flex items-start">
       <SideNav />
-      <main>{children}</main>
+      <main className="flex-grow">{children}</main>
     </div>
   );
 };
