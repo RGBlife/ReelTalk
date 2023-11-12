@@ -16,7 +16,7 @@ export const Review = ({ review }: Props) => {
       <p>{genRelativeDateStr(review.created_at)}</p>
       <div className="flex">
         <Image
-          src={review.author.avatar_url}
+          src={review.author.avatar_url ?? "/images/default-avatar.png"}
           width={20}
           height={60}
           alt={review.author.username}
