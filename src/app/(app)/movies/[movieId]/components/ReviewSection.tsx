@@ -11,11 +11,14 @@ type Props = {
 };
 
 export type ReviewSectionReviews = Review & {
-  author: Pick<User, 'id' | 'username' | 'avatar_url'>
-}
+  author: Pick<User, "id" | "username" | "avatar_url">;
+};
 
 const getReviewsByMovieId = (id: number) => {
   return db.review.findMany({
+    orderBy: {
+      created_at: "desc",
+    },
     where: {
       movie_id: id,
     },
@@ -38,7 +41,11 @@ export const ReviewSection = async ({ movieId }: Props) => {
   return (
     <section>
       <ReviewsHeading movieId={movieId} />
-      {user ? <ReviewForm /> : <LoginPrompt actionText="post a review" />}
+      {user ? (
+        <ReviewForm movieId={movieId} />
+      ) : (
+        <LoginPrompt actionText="post a review" />
+      )}
       <ReviewList reviews={reviews} />
     </section>
   );
