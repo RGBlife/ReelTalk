@@ -26,10 +26,6 @@ export const ProfileUpdateModal = ({ user }: Props) => {
     setState((prev) => ({ ...prev, [name]: checked }));
   };
 
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
   const handleOpenButtonClick = () => {
     const modal = document.getElementById(
       "profile-update-modal",

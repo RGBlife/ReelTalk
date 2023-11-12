@@ -1,5 +1,6 @@
 import { db } from "~/server/db";
 import { ProfileUpdateModal } from "./components/ProfileUpdateModal";
+import { UserMovieList } from "./components/UserMovieList";
 
 type Props = {
   params: {
@@ -66,6 +67,8 @@ export default async function ProfilePage({ params }: Props) {
           <ProfileUpdateModal user={user} />
         </div>
       </div>
+
+      <UserMovieList userId={user.id} />
     </div>
   );
 }
