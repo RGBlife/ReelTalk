@@ -16,17 +16,17 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    base: false,
-    themes: [
-      {
-        daisyuiCustomTheme: {
-          primary: "#B996F7",
-          "primary-focus": "#9673e8",
-          "primary-content": "#ffffff",
-        },
-      },
-      "light",
-      "dark",
-    ],
+    // base: false,
+    // themes: [
+    //   {
+    //     daisyuiCustomTheme: {
+    //       primary: "#B996F7",
+    //       "primary-focus": "#9673e8",
+    //       "primary-content": "#ffffff",
+    //     },
+    //   },
+    //   "light",
+    //   "dark",
+    // ],
   },
 } satisfies Config;
