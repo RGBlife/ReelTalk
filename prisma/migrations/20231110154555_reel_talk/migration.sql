@@ -23,7 +23,7 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "avatar_url" TEXT,
+    "avatar_url" TEXT NOT NULL DEFAULT 'https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512',
     "role" "Role" NOT NULL DEFAULT 'User',
     "favourite_movie" TEXT NOT NULL,
     "is_watch_list_public" BOOLEAN NOT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE "Preference" (
     "genre_a_weighting" INTEGER NOT NULL,
     "preference_genre_b" TEXT,
     "genre_b_weighting" INTEGER,
-    "preference_release_date" TEXT NOT NULL,
-    "release_date_weighting" INTEGER NOT NULL,
+    "preference_release_year" TEXT NOT NULL,
+    "release_year_weighting" INTEGER NOT NULL,
     "preference_imdb_rating" DOUBLE PRECISION NOT NULL,
     "imdb_rating_weighting" INTEGER NOT NULL,
 
@@ -91,6 +91,7 @@ CREATE TABLE "Review" (
     "vote_count" INTEGER NOT NULL,
     "rating" DOUBLE PRECISION NOT NULL,
     "has_spoilers" BOOLEAN NOT NULL,
+    "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Review_pkey" PRIMARY KEY ("id")
 );
