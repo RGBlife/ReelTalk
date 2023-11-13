@@ -38,60 +38,42 @@ async function recommendation() {
   const scoreArray: scoreArray[] = [];
 
   preferences.forEach((userPreference) => {
-    const preferedGenreA: Genre[] | undefined = genres.filter((genre) => {
-      return userPreference.preference_genre_a === genre.genre;
-    });
-    const preferedGenreB: Genre[] | undefined = genres.filter((genre) => {
-      return userPreference.preference_genre_b === genre.genre;
-    });
-
     movies.forEach((movie) => {
       const genres: genres[] = movie.genres;
       genres.forEach((moviegenre: moviegenre) => {
-        if (moviegenre.genre_id === preferedGenreA[0]?.id) {
           scoreArray.push({
             user_id: userPreference.user_id,
             movie_id: movie.id,
-            score: userPreference.genre_a_weighting,
+            score: userPreference[genre],
           });
-        }
-        if (moviegenre.genre_id === preferedGenreB[0]?.id) {
-          scoreArray.forEach((movieScore) => {
-            if (
-              movieScore.movie_id === movie.id &&
-              userPreference.genre_b_weighting &&
-              movieScore.user_id === userPreference.user_id
-            ) {
-              movieScore.score += userPreference.genre_b_weighting;
-            }
-          });
-        }
       });
-      if (movie.imdb_rating >= userPreference.preference_imdb_rating) {
+      if (movie.imdb_rating >= userPreference.imdb_rating) {
         scoreArray.forEach((movieScore) => {
           if (
             movieScore.movie_id === movie.id &&
             movieScore.user_id === userPreference.user_id
           ) {
-            movieScore.score += userPreference.imdb_rating_weighting;
+            movieScore.score += 10;
+            //removed the weighting from this, it may as well just be 10 or some other value we decide
           }
         });
         if (
           new Date(movie.release_date) >=
-          new Date(userPreference.preference_release_year)
+          new Date(userPreference.release_year)
         ) {
           scoreArray.forEach((movieScore) => {
             if (
               movieScore.movie_id === movie.id &&
               movieScore.user_id === userPreference.user_id
             ) {
-              movieScore.score += userPreference.release_year_weighting;
+              movieScore.score += 10;
+              //removed the weighting from this, it may as well just be 10 or some other value we decide
             }
           });
         }
       }
     });
-    // console.log(scoreArray, "scoreArray");
+    console.log(scoreArray, "scoreArray");
   });
   scoreArray.map(async (rec) => {
     let recco: Prisma.UserCreateInput;
