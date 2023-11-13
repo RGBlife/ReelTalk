@@ -3,7 +3,7 @@ import { AddToWatchListButton } from "./AddToWatchListButton";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 import { type Movie } from "@prisma/client";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 type Props = {
   movie: Movie;
@@ -17,7 +17,10 @@ export const MovieDetailSection = ({ movie }: Props) => {
         width={20}
         height={60}
         alt={`Poster of ${movie.title}`}
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       <h2>
         {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>

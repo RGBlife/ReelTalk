@@ -1,7 +1,7 @@
 "use client";
 
 import type { Movie } from "@prisma/client";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";
@@ -69,8 +69,11 @@ export function MoviesScreen({
                 alt={movie.title}
                 width={164}
                 height={246}
-                layout="responsive"
-              />
+                sizes="100vw"
+                style={{
+                  width: "100%",
+                  height: "auto"
+                }} />
             </Link>
             <div className="px-6 py-4">
               <div className="text-neutral mb-2 text-xl font-bold">

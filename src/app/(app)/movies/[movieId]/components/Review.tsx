@@ -1,7 +1,7 @@
 import { HideableReviewBody } from "./HideableReviewBody";
 import { ReviewDeleteButton } from "./ReviewDeleteButton";
 import { genRelativeDateStr } from "~/utils/date-formatters";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import type { ReviewSectionReviews } from "./ReviewSection";
 import { ReviewLikeButtonOptimistic } from "./ReviewLikeButtonOptimistic";
 import Link from "next/link";
@@ -24,7 +24,10 @@ export const Review = ({ review }: Props) => {
             width={20}
             height={20}
             alt={review.author.username}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
           <h4>
             By{" "}
             <Link href={`/profiles/${review.author.username}`}>
