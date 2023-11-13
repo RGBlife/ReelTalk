@@ -23,11 +23,11 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "avatar_url" TEXT NOT NULL DEFAULT 'https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512',
+    "avatar_url" TEXT DEFAULT 'https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512',
     "role" "Role" NOT NULL DEFAULT 'User',
     "favourite_movie" TEXT NOT NULL,
-    "is_watch_list_public" BOOLEAN NOT NULL,
-    "is_watched_list_public" BOOLEAN NOT NULL,
+    "is_watch_list_public" BOOLEAN NOT NULL DEFAULT false,
+    "is_watched_list_public" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -54,12 +54,6 @@ CREATE TABLE "Genre" (
     "genre" TEXT NOT NULL,
 
     CONSTRAINT "Genre_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "MoviesOnGenres" (
-    "genre_id" INTEGER NOT NULL,
-    "movie_id" INTEGER NOT NULL
 );
 
 -- CreateTable
@@ -114,6 +108,12 @@ CREATE TABLE "Recommendation" (
     "score" INTEGER NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "_GenreToMovie" (
+    "A" INTEGER NOT NULL,
+    "B" INTEGER NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Movie_id_key" ON "Movie"("id");
 
@@ -130,22 +130,19 @@ CREATE UNIQUE INDEX "Preference_user_id_key" ON "Preference"("user_id");
 CREATE UNIQUE INDEX "Genre_id_key" ON "Genre"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "MoviesOnGenres_genre_id_movie_id_key" ON "MoviesOnGenres"("genre_id", "movie_id");
-
--- CreateIndex
 CREATE UNIQUE INDEX "MoviesToWatch_movie_id_user_id_key" ON "MoviesToWatch"("movie_id", "user_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Recommendation_user_id_movie_id_key" ON "Recommendation"("user_id", "movie_id");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "_GenreToMovie_AB_unique" ON "_GenreToMovie"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_GenreToMovie_B_index" ON "_GenreToMovie"("B");
+
 -- AddForeignKey
 ALTER TABLE "Preference" ADD CONSTRAINT "Preference_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "MoviesOnGenres" ADD CONSTRAINT "MoviesOnGenres_genre_id_fkey" FOREIGN KEY ("genre_id") REFERENCES "Genre"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "MoviesOnGenres" ADD CONSTRAINT "MoviesOnGenres_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "MoviesToWatch" ADD CONSTRAINT "MoviesToWatch_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -173,3 +170,9 @@ ALTER TABLE "Recommendation" ADD CONSTRAINT "Recommendation_user_id_fkey" FOREIG
 
 -- AddForeignKey
 ALTER TABLE "Recommendation" ADD CONSTRAINT "Recommendation_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_GenreToMovie" ADD CONSTRAINT "_GenreToMovie_A_fkey" FOREIGN KEY ("A") REFERENCES "Genre"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_GenreToMovie" ADD CONSTRAINT "_GenreToMovie_B_fkey" FOREIGN KEY ("B") REFERENCES "Movie"("id") ON DELETE CASCADE ON UPDATE CASCADE;

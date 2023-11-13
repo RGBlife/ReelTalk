@@ -17,7 +17,7 @@ datasource db {
 model Movie {
     id           Int              @id @unique
     title        String
-    genres       MoviesOnGenres[]
+    genres       Genre[]
     overview     String
     release_date DateTime
     release_year Int
@@ -36,11 +36,11 @@ model User {
     username               String           @unique
     email                  String           @unique
     password               String
-    avatar_url             String           @default("https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512")
+    avatar_url             String?           @default("https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512")
     role                   Role             @default(User)
     favourite_movie        String
-    is_watch_list_public   Boolean
-    is_watched_list_public Boolean
+    is_watch_list_public   Boolean @default(false)
+    is_watched_list_public Boolean@default(false)
     preferences            Preference?
     to_watch               MoviesToWatch[]
     messages               Message[]
@@ -98,16 +98,7 @@ model Preference {
 model Genre {
     id     Int              @id @unique
     genre  String
-    movies MoviesOnGenres[]
-}
-
-model MoviesOnGenres {
-    genre    Genre @relation(fields: [genre_id], references: [id])
-    genre_id Int
-    movie    Movie @relation(fields: [movie_id], references: [id])
-    movie_id Int
-
-    @@unique([genre_id, movie_id])
+    movies Movie[]
 }
 
 model MoviesToWatch {

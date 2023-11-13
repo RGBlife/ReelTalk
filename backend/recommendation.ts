@@ -1,37 +1,22 @@
 import { type Prisma } from "@prisma/client";
 import { db } from "../src/server/db";
 import { type Genre, type Preference } from "@prisma/client";
+import { type Movie } from "@prisma/client";
+
 type scoreArray = {
   user_id: number;
   movie_id: number;
   score: number;
 };
-type moviegenre = {
-  genre_id: number;
-  movie_id: number;
-};
-type genres = {
-  genre_id: number;
-  movie_id: number;
-};
-type Movie = {
-  id: number;
-  title: string;
-  overview: string;
-  release_date: Date;
-  release_year: number;
-  imdb_rating: number;
-  vote_count: number;
-  poster_url: string;
-  runtime: number;
-  trailer_url: string;
-  genres: Array<genres>;
+
+type MovieExtended = Movie & {
+  genres: Genre[];
 };
 
 async function recommendation() {
   const deleteRecommendations = await db.recommendation.deleteMany({});
   const preferences: Preference[] = await db.preference.findMany({});
-  const movies: Movie[] = await db.movie.findMany({
+  const movies: MovieExtended[] = await db.movie.findMany({
     include: { genres: true },
   });
   const genres = await db.genre.findMany({});
