@@ -21,7 +21,7 @@ export function MoviesScreen({
   const [movies, setMovies] = useState<Movie[]>(initialMovies.movies);
   const [currentPage, setCurrentPage] = useState(1);
   const [endOfPage, setEndOfPage] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   const handlePageChange = async (newPage: number) => {
     const result = await fetchMovies({ limit: 8, page: newPage });
@@ -32,13 +32,13 @@ export function MoviesScreen({
   };
 
   useEffect(() => {
-    const handleSearchTerm = async (searchTerm) => {
+    const handleSearchTerm = async (searchTerm: string) => {
       const result = await fetchMoviesAction(searchTerm);
       setMovies(result);
     };
 
     if (searchTerm) {
-      handleSearchTerm(searchTerm);
+      void handleSearchTerm(searchTerm);
     } else {
       setMovies(initialMovies.movies);
       setCurrentPage(1);
@@ -48,7 +48,9 @@ export function MoviesScreen({
 
   return (
     <div className="container mx-auto px-4">
-      <h1 className="my-2 text-gray-950 text-center text-3xl font-bold">Movies</h1>
+      <h1 className="my-2 text-center text-3xl font-bold text-gray-950">
+        Movies
+      </h1>
       <input
         className="peer mb-2 block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={"Enter a movie title"}
@@ -72,8 +74,9 @@ export function MoviesScreen({
                 sizes="100vw"
                 style={{
                   width: "100%",
-                  height: "auto"
-                }} />
+                  height: "auto",
+                }}
+              />
             </Link>
             <div className="px-6 py-4">
               <div className="text-neutral mb-2 text-xl font-bold">
@@ -87,7 +90,7 @@ export function MoviesScreen({
       <div className="mt-8 flex justify-center">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
-          className="mx-2 mb-2 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
+          className="mx-2 mb-2 rounded bg-gray-950 px-4 py-2 font-bold text-white hover:bg-gray-700"
           disabled={currentPage <= 1}
         >
           Previous

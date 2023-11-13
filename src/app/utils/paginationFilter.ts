@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { Prisma } from "@prisma/client";
 
 export type PaginationSchema = z.infer<typeof movieFilterSchema>;
 
@@ -23,9 +24,9 @@ export const paginationFilter = ({
     skip: (page - 1) * limit,
     take: limit,
     where: {
-      genre: {
+      genres: {
         some: {
-          id: { in: genre },
+          id: genre,
         },
       },
       runtime: {
@@ -36,5 +37,5 @@ export const paginationFilter = ({
         gte: release_from ? new Date(release_from) : undefined,
       },
     },
-  };
+  } satisfies Prisma.MovieFindManyArgs;
 };
