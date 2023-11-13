@@ -47,6 +47,16 @@ model User {
     reviews                Review[]
     chatrooms              ChatRoom[]
     recommended            Recommendation[]
+    likes                  ReviewLikes[]
+}
+
+model ReviewLikes {
+    user                   User              @relation(fields: [user_id], references: [id])
+    user_id                Int
+    review                 Review          @relation(fields: [review_id], references: [id])
+    review_id Int
+
+    @@unique([user_id, review_id])
 }
 
 enum Role {
@@ -105,6 +115,7 @@ model Review {
     rating       Float
     has_spoilers Boolean
     created_at   DateTime @default(now())
+    likes        ReviewLikes[]
 
     author User  @relation(fields: [author_id], references: [id])
     movie  Movie @relation(fields: [movie_id], references: [id])
