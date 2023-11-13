@@ -120,7 +120,7 @@ export const getSessionOrThrow = async () => {
   const currentUser = await getServerAuthSession();
 
   if (!currentUser?.user) {
-    throw new Error("Not authenticated");
+    // throw new Error("Not authenticated");
   }
 
   return currentUser;
