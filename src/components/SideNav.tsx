@@ -17,6 +17,9 @@ export default function SideNav() {
         <li className="rounded-md border-2 border-solid border-black">
           <Link href={`/movies/recommendations`}>Recommendations</Link>
         </li>
+        <li className="rounded-md border-2 border-solid border-black">
+          <Link href={`/chat-room`}>Chat Room</Link>
+        </li>
       </ul>
       <button className="rounded-md border-2 border-solid border-black">
         Log In/Out
