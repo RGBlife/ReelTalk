@@ -1,7 +1,11 @@
 import React from "react";
 import Link from "next/link";
+import { getServerAuthSession } from "~/server/auth";
+import { LogOutBtn, LoginBtn } from "./auth/AuthBtns";
 
-export default function SideNav() {
+export default async function SideNav() {
+  const session = await getServerAuthSession();
+
   return (
     <nav className="top-0 flex flex-col justify-between px-2 py-4">
       <ul className="flex h-[90vh] flex-col items-start gap-5 whitespace-nowrap">
@@ -21,9 +25,7 @@ export default function SideNav() {
           <Link href={`/chat-room`}>Chat Room</Link>
         </li>
       </ul>
-      <button className="rounded-md border-2 border-solid border-black">
-        Log In/Out
-      </button>
+      {session ? <LogOutBtn /> : <LoginBtn />}
     </nav>
   );
 }
