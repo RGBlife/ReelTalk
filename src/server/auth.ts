@@ -1,4 +1,4 @@
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { type User } from "@prisma/client";
 import { compare } from "bcrypt";
 import {
   getServerSession,
@@ -28,9 +28,10 @@ declare module "next-auth" {
       id: string;
       email: string;
       username: string;
+      avatarURL: string;
       // ...other properties
       // role: UserRole;
-    };
+    } & DefaultSession["user"];
   }
 }
 
@@ -46,26 +47,24 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id,
-      },
-    }),
-  },
-  adapter: PrismaAdapter(db),
   providers: [
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "Enter your email" },
-        password: { label: "Password", type: "password", placeholder: "Enter your email" },
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "Enter your email",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Enter your email",
+        },
       },
       // You need to customise the `DefaultUser` type from the next-auth lib
       async authorize(credentials) {
-        try { 
+        try {
           if (!credentials?.email || !credentials.password) {
             return null;
           }
@@ -94,6 +93,7 @@ export const authOptions: NextAuthOptions = {
             id: user.id.toString(),
             username: user.username,
             email: user.email,
+            image: user.avatar_url,
           };
         } catch (error) {
           // Todo - Confirm what to do with these possible errors
@@ -104,6 +104,31 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
+  callbacks: {
+    session: ({ session, token }) => {
+      console.log("Session Callback", { session, token });
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          username: token.username,
+        },
+      };
+    },
+    jwt: ({ token, user }) => {
+      console.log("JWT Callback", { token, user });
+      if (user) {
+        const u = user as unknown as User;
+        return {
+          ...token,
+          id: user.id,
+          username: user.username,
+        };
+      }
+      return token;
+    },
+  },
 };
 
 /**
@@ -116,6 +141,7 @@ export const getServerAuthSession = () => getServerSession(authOptions);
 /**
  * Wrapper for `getServerSession` that throws an error if the user is not authenticated.
  */
+// Most likely won't be needed when protected routes implemented
 export const getSessionOrThrow = async () => {
   const currentUser = await getServerAuthSession();
 
