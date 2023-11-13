@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";
+import { fetchMoviesAction } from "./component/fetchMoviesAction";
 
 type Props = {
   movies: Movie[];
@@ -22,6 +23,7 @@ export function MoviesScreen({
   const [movies, setMovies] = useState<Movie[]>(initialMovies.movies);
   const [currentPage, setCurrentPage] = useState(1);
   const [endOfPage, setEndOfPage] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handlePageChange = async (newPage: number) => {
     const result = await fetchMovies({ limit: 8, page: newPage });
@@ -31,15 +33,31 @@ export function MoviesScreen({
     setCurrentPage(newPage);
   };
 
+  async function handleSearchTerm(searchTerm) {
+    await fetchMoviesAction(searchTerm).then((result) => {
+      setMovies(result);
+      console.log(result);
+      
+    });
+  }
+
   return (
     <div className="container mx-auto px-4">
       <h1 className="my-8 text-center text-3xl font-bold">Movies</h1>
+      <input
+        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        placeholder={"Enter a movie title"}
+        onChange={(e) => {
+          setSearchTerm(e.target.value);
+          handleSearchTerm(searchTerm);
+        }}
+      />
 
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
         {movies.map((movie) => (
           <li
             key={movie.id}
-            className="max-w-sm overflow-hidden rounded p-4 shadow-lg bg-primary"
+            className="bg-primary max-w-sm overflow-hidden rounded p-4 shadow-lg"
           >
             <Link href={`/movies/${movie.id}`}>
               <Image
@@ -51,7 +69,9 @@ export function MoviesScreen({
               />
             </Link>
             <div className="px-6 py-4">
-              <div className="mb-2 text-xl font-bold text-neutral">{movie.title}</div>
+              <div className="text-neutral mb-2 text-xl font-bold">
+                {movie.title}
+              </div>
             </div>
           </li>
         ))}
