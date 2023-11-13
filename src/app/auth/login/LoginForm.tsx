@@ -74,7 +74,7 @@ export function LoginForm() {
           id="email"
           placeholder="e.g. abc123@email.com"
           {...register("email")}
-          className="rounded-md border border-black p-2"
+          className="form-input"
         />
         {errors.email && <FormError message={errors.email.message} />}
         <FormLabel htmlFor="password" name="Password" />
@@ -82,7 +82,7 @@ export function LoginForm() {
           type="password"
           id="password"
           {...register("password")}
-          className="rounded-md border border-black p-2"
+          className="form-input"
         />
         {errors.password && <FormError message={errors.password.message} />}
         <button
