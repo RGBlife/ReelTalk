@@ -39,13 +39,18 @@ async function recommendation() {
 
   preferences.forEach((userPreference) => {
     movies.forEach((movie) => {
+      scoreArray.push({
+        user_id: userPreference.user_id,
+        movie_id: movie.id,
+        score: 0,
+      })
       const genres: genres[] = movie.genres;
       genres.forEach((moviegenre: moviegenre) => {
-          scoreArray.push({
-            user_id: userPreference.user_id,
-            movie_id: movie.id,
-            score: userPreference[genre],
-          });
+          if (movie.genres.includes(moviegenre) && scoreArray[scoreArray.length -1]){
+          //  scoreArray[scoreArray.length - 1].score += userPreference[moviegenre] 
+          // The following line needs to be edited
+              scoreArray[scoreArray.length - 1].score += 5
+          }
       });
       if (movie.imdb_rating >= userPreference.imdb_rating) {
         scoreArray.forEach((movieScore) => {
