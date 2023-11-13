@@ -21,7 +21,9 @@ type Props = {
 export default function RootLayout(props: Props) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>{props.children}</body>
+      <body className={`font-sans ${inter.variable} bg-[#F8F9F9]`}>
+        {props.children}
+      </body>
     </html>
   );
 }

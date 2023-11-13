@@ -22,11 +22,9 @@ export default {
         daisyuiCustomTheme: {
           primary: "#B996F7",
           "primary-focus": "#9673e8",
-          "primary-content": "#ffffff",
+          "primary-content": "#F8F9F9",
         },
       },
-      "light",
-      "dark",
     ],
   },
 } satisfies Config;

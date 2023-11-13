@@ -1,12 +1,11 @@
 import TrendingSection from "~/components/TrendingSection";
 import PopularReview from "~/components/PopularReview";
-import SideNav from "~/components/SideNav";
 
 export default function HomePage() {
   return (
-    <main>
-      <h1>Reel Talk</h1>
+    <main className="flex">
       <div className="min-h-screen flex-grow border-x">
+        <h1>Reel Talk</h1>
         <TrendingSection />
         <PopularReview />
       </div>
