@@ -23,11 +23,11 @@ CREATE TABLE "User" (
     "username" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "avatar_url" TEXT NOT NULL DEFAULT 'https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512',
+    "avatar_url" TEXT DEFAULT 'https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512',
     "role" "Role" NOT NULL DEFAULT 'User',
     "favourite_movie" TEXT NOT NULL,
-    "is_watch_list_public" BOOLEAN NOT NULL,
-    "is_watched_list_public" BOOLEAN NOT NULL,
+    "is_watch_list_public" BOOLEAN NOT NULL DEFAULT false,
+    "is_watched_list_public" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );

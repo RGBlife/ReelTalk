@@ -9,9 +9,9 @@ type scoreArray = {
   score: number;
 };
 
-type MovieExtended = {
+type MovieExtended = Movie & {
   genres: Genre[];
-} & Movie;
+};
 
 async function recommendation() {
   const deleteRecommendations = await db.recommendation.deleteMany({});
