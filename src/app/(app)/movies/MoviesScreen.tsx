@@ -1,7 +1,7 @@
 "use client";
 
 import type { Movie } from "@prisma/client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";

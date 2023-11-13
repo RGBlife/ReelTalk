@@ -1,7 +1,7 @@
 import { HideableReviewBody } from "./HideableReviewBody";
 import { ReviewDeleteButton } from "./ReviewDeleteButton";
 import { genRelativeDateStr } from "~/utils/date-formatters";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import type { ReviewSectionReviews } from "./ReviewSection";
 import { ReviewLikeButtonOptimistic } from "./ReviewLikeButtonOptimistic";
 import Link from "next/link";

@@ -3,7 +3,7 @@ import { AddToWatchListButton } from "./AddToWatchListButton";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 import { type Movie } from "@prisma/client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 type Props = {
   movie: Movie;
