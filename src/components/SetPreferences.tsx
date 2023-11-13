@@ -82,16 +82,14 @@ const genres = [
     }
   ]
 
-for (const genre of genres){
-    console.log(`preference_genre_${genre.name}`)
-}
-
 
 const genrePreferencesStartingObject = {}
 
 genres.forEach((genre) => {
     genrePreferencesStartingObject[genre.name] = 5 
 })
+
+console.log(genrePreferencesStartingObject)
 
 const SetUserPreferences = () => {
 
