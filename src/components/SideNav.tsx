@@ -4,8 +4,12 @@ import { AiFillHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { MdLocalMovies } from "react-icons/md";
 import { AiFillBulb } from "react-icons/ai";
+import { getServerAuthSession } from "~/server/auth";
+import { LogOutBtn, LoginBtn } from "./auth/AuthBtns";
 
-export default function SideNav() {
+export default async function SideNav() {
+  const session = await getServerAuthSession();
+
   return (
     <nav className="sticky left-0 top-0 z-50 flex h-full flex-col justify-between border-r-2 border-solid border-black bg-gradient-to-b from-gray-900 to-gray-950 px-2 py-4 text-white">
       <ul className=" m-2 flex h-[95vh] flex-col items-start gap-5 whitespace-nowrap">
@@ -40,7 +44,7 @@ export default function SideNav() {
           </li>
         </Link>
 
-        <button className="mt-auto">Log In/Out</button>
+        {session ? <LogOutBtn /> : <LoginBtn />}
       </ul>
     </nav>
   );
