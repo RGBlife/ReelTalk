@@ -86,7 +86,7 @@ const genres = [
 const genrePreferencesStartingObject = {}
 
 genres.forEach((genre) => {
-    genrePreferencesStartingObject[genre.name] = 5
+    genrePreferencesStartingObject[genre.name] = 0
 })
 
 console.log(genrePreferencesStartingObject)
@@ -115,6 +115,63 @@ const adjustDateSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
 const submitPreferences = () => {
     //This function will post/patch the changes to the preferences database 
 }
+
+const createReview = async (formData: FormData) => {
+    "use server"; // ensures this function is only ever executed on the server
+
+    const { user_id  ,    
+        action          ,
+        adventure       ,
+        animation       ,
+        comedy          ,
+        crime           ,
+        documentary     ,
+        drama           ,
+        family          ,
+        fantasy         ,
+        history         ,
+        horror          ,
+        music           ,
+        mystery         ,
+        romance         ,
+        science_fiction ,
+        tv_movie        ,
+        thriller        ,
+        war             ,
+        western         ,
+        release_year    ,
+        imdb_rating } = Object.fromEntries(formData)
+
+    const createdReview: Review = await db.review.create({
+      data: {
+        user_id: 3,   //hardcoded   
+        action: genrePreferences[action],
+        adventure: genrePreferences[adventure],
+        animation: genrePreferences[animation]       ,
+        comedy: genrePreferences[comedy] ,
+        crime: genrePreferences[crime],
+        documentary: genrePreferences[documentary]     ,
+        drama: genrePreferences[drama],
+        family:genrePreferences[family] ,
+        fantasy: genrePreferences[fantasy],
+        history: genrePreferences[history],
+        horror: genrePreferences[horror] ,
+        music: genrePreferences[music],
+        mystery: genrePreferences[mystery],
+        romance: genrePreferences[romance],
+        science_fiction: genrePreferences[science_fiction] ,
+        tv_movie: genrePreferences[tv_movie]        ,
+        thriller: genrePreferences[thriller]        ,
+        war: genrePreferences[war]  ,
+        western: genrePreferences[western],
+        release_year: datePreference    ,
+        imdb_rating: ratingPreference
+      },
+    });
+
+    revalidatePath("/");
+  };
+
 
 return (
     <section className = 'flex flex-col'>
