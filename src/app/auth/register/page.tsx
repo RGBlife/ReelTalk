@@ -17,7 +17,7 @@ export default async function Register() {
       </h1>
       <RegisterForm />
       <p className="text-center font-semibold">
-        Already have an account?
+        Already have an account?{" "}
         <Link
           href="/auth/login"
           className="hover:text-primary hover:underline hover:underline-offset-4"

@@ -3,12 +3,16 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import type z from "zod";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-type LoginInputs = {
-  email: string;
-  password: string;
-};
+import FormLabel from "~/components/auth/FormLabel";
+import { LoginSchema } from "~/app/utils/auth/authSchema";
+import FormError from "~/components/auth/FormError";
+
+// Types
+type LoginForm = z.infer<typeof LoginSchema>;
 
 export function LoginForm() {
   const router = useRouter();
@@ -18,14 +22,18 @@ export function LoginForm() {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<LoginInputs>();
+  } = useForm<LoginForm>({
+    resolver: zodResolver(LoginSchema),
+  });
 
   const [error, setError] = useState<string | null>(null);
 
   // Todo - Figure out a working method to redirect user back to previously accessed page or redirect to homepage (as is presently)
   const callbackUrl = "/";
 
-  const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+  const onSubmit: SubmitHandler<LoginForm> = async (data) => {
+    setError(null);
+
     const { email, password } = data;
     setError(null);
     try {
@@ -44,58 +52,42 @@ export function LoginForm() {
         setError("Invalid Credentials");
       }
     } catch (err: unknown) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      console.log(err);
-      
+      console.error(error);
+      setError("Server error, please try again later");
     }
   };
   return (
     <>
-      {error && (
-        <p className="border border-black bg-red-500 text-center text-2xl">
-          {error}
-        </p>
-      )}
       <form
-        className="m-3 flex flex-col items-center gap-4 border border-black p-5"
+        className="m-4 flex flex-col gap-2 rounded-lg border border-primary p-10 shadow-[3px_1px_38px_-15px] shadow-primary"
+        action="POST"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <label htmlFor="email" className="">
-          E-mail Address:
-        </label>
+        {error && (
+          <p className="rounded-md  bg-red-500 p-3 text-center text-lg text-black shadow-sm shadow-black dark:bg-red-400">
+            {error}
+          </p>
+        )}
+        <FormLabel htmlFor="email" name="E-mail Address" />
         <input
           type="email"
           id="email"
           placeholder="e.g. abc123@email.com"
-          {...register("email", {
-            required: "E-mail is required",
-          })}
-          aria-invalid={errors.email ? "true" : "false"}
+          {...register("email")}
           className="rounded-md border border-black p-2"
         />
-        {errors.email?.type === "required" && (
-          <p className="bg-red-500 p-5" role="alert">
-            {errors.email.message}
-          </p>
-        )}
-        <label htmlFor="password">Password:</label>
+        {errors.email && <FormError message={errors.email.message} />}
+        <FormLabel htmlFor="password" name="Password" />
         <input
           type="password"
           id="password"
-          {...register("password", {
-            required: "Password is required",
-          })}
-          aria-invalid={errors.password ? "true" : "false"}
+          {...register("password")}
           className="rounded-md border border-black p-2"
         />
-        {errors.password?.type === "required" && (
-          <p className="bg-red-500 p-5" role="alert">
-            {errors.password.message}
-          </p>
-        )}
+        {errors.password && <FormError message={errors.password.message} />}
         <button
           type="submit"
-          className="rounded-md border border-black p-4 hover:bg-black hover:text-white"
+          className="mt-3 rounded-md bg-primary p-4 text-black shadow-sm shadow-black hover:bg-primary hover:opacity-80 hover:shadow-md hover:shadow-black"
         >
           Login
         </button>
