@@ -1,12 +1,14 @@
 import { db } from "~/server/db";
 import { ProfileUpdateModal } from "./components/ProfileUpdateModal";
 import { UserMovieList } from "./components/UserMovieList";
+import type { User } from "@prisma/client";
 
 type Props = {
   params: {
     username: string;
   };
 };
+
 
 const getUserByUsername = (username: string) => {
   return db.user.findUniqueOrThrow({
@@ -32,7 +34,7 @@ export default async function ProfilePage({ params }: Props) {
       <div className="rounded-md bg-white p-4 shadow-md">
         <div className="flex items-center space-x-4">
           <img
-            src={user.avatar_url}
+            src={user.avatar_url!}
             alt={user.username}
             className="h-16 w-16 rounded-full"
           />
