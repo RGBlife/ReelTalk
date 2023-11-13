@@ -21,6 +21,9 @@ const config = {
         hostname: "api.iconify.design",
       },
     ],
+    dangerouslyAllowSVG: true,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    domains: ["www.svgrepo.com"],
   },
 };
 
