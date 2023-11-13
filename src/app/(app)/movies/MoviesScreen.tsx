@@ -3,7 +3,7 @@
 import type { Movie } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";
 import { fetchMoviesAction } from "./component/fetchMoviesAction";
 
@@ -18,8 +18,6 @@ export function MoviesScreen({
   searchParams: { id: string | undefined };
   movies: Props;
 }) {
-  console.log(searchParams);
-
   const [movies, setMovies] = useState<Movie[]>(initialMovies.movies);
   const [currentPage, setCurrentPage] = useState(1);
   const [endOfPage, setEndOfPage] = useState(false);
@@ -33,23 +31,29 @@ export function MoviesScreen({
     setCurrentPage(newPage);
   };
 
-  async function handleSearchTerm(searchTerm) {
-    await fetchMoviesAction(searchTerm).then((result) => {
+  useEffect(() => {
+    const handleSearchTerm = async (searchTerm) => {
+      const result = await fetchMoviesAction(searchTerm);
       setMovies(result);
-      console.log(result);
-      
-    });
-  }
+    };
+
+    if (searchTerm) {
+      handleSearchTerm(searchTerm);
+    } else {
+      setMovies(initialMovies.movies);
+      setCurrentPage(1);
+      setEndOfPage(false);
+    }
+  }, [searchTerm, initialMovies.movies]);
 
   return (
     <div className="container mx-auto px-4">
-      <h1 className="my-8 text-center text-3xl font-bold">Movies</h1>
+      <h1 className="my-2 text-gray-950 text-center text-3xl font-bold">Movies</h1>
       <input
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        className="peer mb-2 block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={"Enter a movie title"}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          handleSearchTerm(searchTerm);
+        onChange={(event) => {
+          setSearchTerm(event.target.value);
         }}
       />
 
@@ -57,7 +61,7 @@ export function MoviesScreen({
         {movies.map((movie) => (
           <li
             key={movie.id}
-            className="bg-primary max-w-sm overflow-hidden rounded p-4 shadow-lg"
+            className="bg-primary max-w-xs overflow-hidden rounded shadow-lg"
           >
             <Link href={`/movies/${movie.id}`}>
               <Image
@@ -80,14 +84,14 @@ export function MoviesScreen({
       <div className="mt-8 flex justify-center">
         <button
           onClick={() => handlePageChange(currentPage - 1)}
-          className="mx-2 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
+          className="mx-2 mb-2 rounded bg-gray-500 px-4 py-2 font-bold text-white hover:bg-gray-700"
           disabled={currentPage <= 1}
         >
           Previous
         </button>
         <button
           onClick={() => handlePageChange(currentPage + 1)}
-          className="mx-2 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+          className="mx-2 mb-2 rounded bg-[#b895f7] px-4 py-2 font-bold text-white hover:bg-blue-700"
           disabled={endOfPage}
         >
           Next

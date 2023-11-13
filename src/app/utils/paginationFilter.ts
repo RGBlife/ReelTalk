@@ -25,7 +25,7 @@ export const paginationFilter = ({
     where: {
       genre: {
         some: {
-          genre_id: { in: genre },
+          id: { in: genre },
         },
       },
       runtime: {
