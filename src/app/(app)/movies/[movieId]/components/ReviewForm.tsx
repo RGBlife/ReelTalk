@@ -148,7 +148,6 @@ export const ReviewForm = ({ movieId }: Props) => {
         </label>
       </div>
       <SubmitButton />
-      {/* <button type="submit">Submit</button> */}
     </form>
   );
 };
