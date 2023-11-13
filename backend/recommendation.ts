@@ -32,9 +32,9 @@ async function recommendation() {
       const genres: genres[] = movie.genres;
       genres.forEach((moviegenre: moviegenre) => {
           if (movie.genres.includes(moviegenre) && scoreArray[scoreArray.length -1]){
-          //  scoreArray[scoreArray.length - 1].score += userPreference[moviegenre] 
-          // The following line needs to be edited
-              scoreArray[scoreArray.length - 1].score += 5
+              console.log(movie.id)
+              console.log(genres)
+              scoreArray[scoreArray.length - 1].score += (userPreference[moviegenre.genre]/genres.length)
           }
       });
       if (movie.imdb_rating >= userPreference.imdb_rating) {
@@ -43,7 +43,7 @@ async function recommendation() {
             movieScore.movie_id === movie.id &&
             movieScore.user_id === userPreference.user_id
           ) {
-            movieScore.score += 10;
+            movieScore.score += 5;
             //removed the weighting from this, it may as well just be 10 or some other value we decide
           }
         });
@@ -56,15 +56,16 @@ async function recommendation() {
               movieScore.movie_id === movie.id &&
               movieScore.user_id === userPreference.user_id
             ) {
-              movieScore.score += 10;
+              movieScore.score += 5;
               //removed the weighting from this, it may as well just be 10 or some other value we decide
             }
           });
         }
       }
     });
-    console.log(scoreArray, "scoreArray");
+    
   });
+  console.log(scoreArray, "scoreArray");
   scoreArray.map(async (rec) => {
     let recco: Prisma.UserCreateInput;
     const reccomendations = await db.recommendation.create({ data: rec });

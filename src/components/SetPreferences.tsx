@@ -1,6 +1,7 @@
+// @ts-nocheck
+
 "use client"
 
-import { setDate } from 'date-fns'
 import React, { useState } from 'react'
 
 const genres = [
@@ -82,11 +83,10 @@ const genres = [
     }
   ]
 
-
 const genrePreferencesStartingObject = {}
 
 genres.forEach((genre) => {
-    genrePreferencesStartingObject[genre.name] = 5 
+    genrePreferencesStartingObject[genre.name] = 5
 })
 
 console.log(genrePreferencesStartingObject)
@@ -98,18 +98,18 @@ const [datePreference, setDatePreference] = useState("")
 const [ratingPreference, setRatingPreference] = useState("")  
 
 
-const handleSliderChange = (event) => {
+const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newGenrePreferences = {...genrePreferences}
-    newGenrePreferences[event.target.id] = event.target.value
+    newGenrePreferences[e.target.id] = e.target.value
     setGenrePreferences(newGenrePreferences)
 }
 
-const adjustRatingSelect = (event) => {
-    setRatingPreference(event.target.value) 
+const adjustRatingSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRatingPreference(e.target.value) 
 }
 
-const adjustDateSelect = (event) => {
-    setDatePreference(event.target.value)
+const adjustDateSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDatePreference(e.target.value)
 }
 
 const submitPreferences = () => {
