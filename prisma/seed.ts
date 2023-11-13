@@ -1358,7 +1358,7 @@ async function main() {
     data: [
       {
         user_id: 1,
-        action:5,
+        action: 5,
         adventure: 5,
         animation: 5,
         comedy: 5,
