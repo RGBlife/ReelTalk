@@ -2,9 +2,21 @@
 
 import { useState } from "react";
 
-const messages = [
+type DummyMessage = {
+  id: number;
+  sender: {
+    id: number;
+    username: string;
+    avatar_url: string;
+  };
+  room_id: number;
+  body: string;
+  created_at: string;
+};
+
+const messages: DummyMessage[] = [
   {
-    _id: 1,
+    id: 1,
     sender: {
       id: 101,
       username: "StarGazer42",
@@ -15,7 +27,7 @@ const messages = [
     created_at: "2023-11-12T12:30:00",
   },
   {
-    _id: 2,
+    id: 2,
     sender: {
       id: 102,
       username: "MangoExplorer",
@@ -26,7 +38,7 @@ const messages = [
     created_at: "2023-11-12T12:35:00",
   },
   {
-    _id: 3,
+    id: 3,
     sender: {
       id: 103,
       username: "MountainDreamer",
@@ -37,7 +49,7 @@ const messages = [
     created_at: "2023-11-12T12:40:00",
   },
   {
-    _id: 4,
+    id: 4,
     sender: {
       id: 104,
       username: "PixelPainter",
@@ -48,7 +60,7 @@ const messages = [
     created_at: "2023-11-12T12:45:00",
   },
   {
-    _id: 5,
+    id: 5,
     sender: {
       id: 105,
       username: "ZenMaster",
@@ -59,7 +71,7 @@ const messages = [
     created_at: "2023-11-12T12:50:00",
   },
   {
-    _id: 6,
+    id: 6,
     sender: {
       id: 106,
       username: "GalacticTraveler",
@@ -70,7 +82,7 @@ const messages = [
     created_at: "2023-11-12T12:55:00",
   },
   {
-    _id: 7,
+    id: 7,
     sender: {
       id: 107,
       username: "CoffeeConnoisseur",
@@ -81,7 +93,7 @@ const messages = [
     created_at: "2023-11-12T13:00:00",
   },
   {
-    _id: 8,
+    id: 8,
     sender: {
       id: 108,
       username: "AdventureSeeker",
@@ -92,7 +104,7 @@ const messages = [
     created_at: "2023-11-12T13:05:00",
   },
   {
-    _id: 9,
+    id: 9,
     sender: {
       id: 109,
       username: "Moonwalker",
@@ -103,7 +115,7 @@ const messages = [
     created_at: "2023-11-12T13:10:00",
   },
   {
-    _id: 10,
+    id: 10,
     sender: {
       id: 110,
       username: "TechInnovator",
@@ -114,7 +126,7 @@ const messages = [
     created_at: "2023-11-12T13:15:00",
   },
   {
-    _id: 11,
+    id: 11,
     sender: {
       id: 111,
       username: "OceanDreamer",
@@ -125,7 +137,7 @@ const messages = [
     created_at: "2023-11-12T13:20:00",
   },
   {
-    _id: 12,
+    id: 12,
     sender: {
       id: 112,
       username: "PixelPioneer",
@@ -136,7 +148,7 @@ const messages = [
     created_at: "2023-11-12T13:25:00",
   },
   {
-    _id: 13,
+    id: 13,
     sender: {
       id: 113,
       username: "SkyDancer",
@@ -147,7 +159,7 @@ const messages = [
     created_at: "2023-11-12T13:30:00",
   },
   {
-    _id: 14,
+    id: 14,
     sender: {
       id: 114,
       username: "CocoaCreator",
@@ -158,7 +170,7 @@ const messages = [
     created_at: "2023-11-12T13:35:00",
   },
   {
-    _id: 15,
+    id: 15,
     sender: {
       id: 115,
       username: "NeonNavigator",
@@ -169,7 +181,7 @@ const messages = [
     created_at: "2023-11-12T13:40:00",
   },
   {
-    _id: 16,
+    id: 16,
     sender: {
       id: 116,
       username: "AstralExplorer",
@@ -180,7 +192,7 @@ const messages = [
     created_at: "2023-11-12T13:45:00",
   },
   {
-    _id: 17,
+    id: 17,
     sender: {
       id: 117,
       username: "JungleNomad",
@@ -191,7 +203,7 @@ const messages = [
     created_at: "2023-11-12T13:50:00",
   },
   {
-    _id: 18,
+    id: 18,
     sender: {
       id: 118,
       username: "CeruleanSorcerer",
@@ -210,7 +222,7 @@ const onlineUsers = ["User A", "User B", "User C"];
 export default function ChatRoomPage() {
   const [newMessage, setNewMessage] = useState("");
 
-  const handleMessageSubmit = (e: any) => {
+  const handleMessageSubmit = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
 
     alert("submitting message...");
@@ -222,7 +234,7 @@ export default function ChatRoomPage() {
       {/* Messages section - 2/3 width */}
       <div className="w-2/3 flex-shrink-0 flex-grow overflow-y-auto border-r p-4">
         {/* Display messages here */}
-        {messages.map((message: any) => (
+        {messages.map((message) => (
           <div key={message.id} className="mb-2">
             <span className="font-bold">{message.sender.username}:</span>{" "}
             {message.body}
