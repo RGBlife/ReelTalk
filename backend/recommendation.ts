@@ -38,13 +38,12 @@ async function recommendation() {
       }
       genres.forEach((moviegenre: moviegenre) => {
           if (movie.genres.some((genre) => genre.genre === moviegenre.genre)){
-              newScore.score += userPreference[moviegenre.genre]/genres.length
+            if (moviegenre.genre in userPreference)
+              newScore.score += (userPreference[moviegenre.genre as keyof typeof userPreference] as number)/genres.length
           }
       });
       if (movie.imdb_rating >= userPreference.imdb_rating) {
           newScore.score += 5;
-
-
         };
         if (
           new Date(movie.release_date) >=

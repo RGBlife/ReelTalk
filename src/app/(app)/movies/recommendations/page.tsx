@@ -7,7 +7,7 @@ import recommendation from "backend/recommendation";
 
 export default async function RecommendationPage() {
   // const currentUser = await getSessionOrThrow();
-recommendation()
+  await recommendation()
 
   const recommendations = await db.recommendation.findMany({
     where: {

@@ -1,9 +1,7 @@
-// @ts-nocheck
-
 
 "use client"
 
-import React, { useState } from 'react'
+import React, { MouseEvent, MouseEventHandler, useState } from 'react'
 import { submitPreferences } from '~/app/(app)/SetUserPreferencesTest/actions'
 
 const genres = [
@@ -85,13 +83,28 @@ const genres = [
     }
   ]
 
-const genrePreferencesStartingObject = {}
 
-genres.forEach((genre) => {
-    genrePreferencesStartingObject[genre.name] = 0
-})
-
-console.log(genrePreferencesStartingObject)
+const genrePreferencesStartingObject = {
+  action: 0,
+  adventure: 0,
+  animation: 0,
+  comedy: 0,
+  crime: 0,
+  documentary: 0,
+  drama: 0,
+  family: 0,
+  fantasy: 0,
+  history: 0,
+  horror: 0,
+  music: 0,
+  mystery: 0,
+  romance: 0,
+  science_fiction: 0,
+  tv_movie: 0,
+  thriller: 0,
+  war: 0,
+  western: 0,
+}
 
 const SetUserPreferences = () => {
 
@@ -100,18 +113,18 @@ const [datePreference, setDatePreference] = useState("1900-01-01")
 const [ratingPreference, setRatingPreference] = useState(0)  
 
 
-const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newGenrePreferences = {...genrePreferences}
-    newGenrePreferences[e.target.id] = Number(e.target.value)
+    newGenrePreferences[event.target.id as keyof typeof newGenrePreferences] = Number(event.target.value)
     setGenrePreferences(newGenrePreferences)
 }
 
-const adjustRatingSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRatingPreference(Number(e.target.value)) 
+const adjustRatingSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setRatingPreference(Number(event.target.value)) 
 }
 
-const adjustDateSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDatePreference(e.target.value)
+const adjustDateSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setDatePreference(event.target.value)
 }
 
 
@@ -122,7 +135,7 @@ return (
         return (
             <>
              <>{genre.name}</>
-             <input type="range" min = "1" max = "10" id = {genre.name} value = {genrePreferences[genre.name]} onChange = {handleSliderChange}/>
+             <input type="range" min = "1" max = "10" id = {genre.name} value = {genrePreferences[genre.name as keyof typeof genrePreferences]} onChange = {handleSliderChange}/>
             </>
             )
     })}
@@ -153,7 +166,7 @@ return (
 </select>
 
 
-    <button onClick = {submitPreferences(genrePreferences, datePreference, ratingPreference)}>Save Changes</button>
+    <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(genrePreferences, datePreference, ratingPreference)}>Save Changes</button>
 
      </section>
 

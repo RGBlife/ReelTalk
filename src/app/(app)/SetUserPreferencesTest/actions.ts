@@ -31,12 +31,6 @@ type GenrePreferences = {
 
 export const submitPreferences = async (genrePreferences: GenrePreferences, datePreference: string, ratingPreference: number) => {
 
-   
-
-console.log(genrePreferences)
-console.log(datePreference)
-console.log(ratingPreference)
-
 
     const createdPreferences: Preference = await db.preference.update({
       where: {
