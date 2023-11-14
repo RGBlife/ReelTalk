@@ -3,6 +3,7 @@ import { revalidatePath } from "next/cache";
 import React, { Fragment } from "react";
 import { db } from "~/server/db";
 import { SubmitButton } from "../ReviewFormSubmitButton";
+import { getServerAuthSession } from "~/server/auth";
 
 type Props = {
   movieId: number;
@@ -11,12 +12,14 @@ type Props = {
 export const ReviewForm = ({ movieId }: Props) => {
   const createReview = async (formData: FormData) => {
     "use server"; // ensures this function is only ever executed on the server
+    const session = await getServerAuthSession();
+    const userId = Number(session.user.id);
 
     const { title, body, rating, has_spoilers } = Object.fromEntries(formData);
 
     const createdReview: Review = await db.review.create({
       data: {
-        author_id: 8, //hardcoded for now
+        author_id: userId,
         movie_id: movieId,
         title: title as string,
         body: body as string,
