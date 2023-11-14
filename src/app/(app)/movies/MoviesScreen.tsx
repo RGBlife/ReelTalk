@@ -52,7 +52,7 @@ export function MoviesScreen({
         Movies
       </h1>
       <input
-        className="peer mb-2 block w-full rounded-md border border-gray-200 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
+        className="peer mb-2 block w-full rounded-md border border-gray-400 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={"Enter a movie title"}
         onChange={(event) => {
           setSearchTerm(event.target.value);
@@ -63,7 +63,7 @@ export function MoviesScreen({
         {movies.map((movie) => (
           <li
             key={movie.id}
-            className="bg-primary max-w-xs overflow-hidden rounded shadow-lg"
+            className="max-w-xs overflow-hidden rounded bg-primary shadow-lg"
           >
             <Link href={`/movies/${movie.id}`}>
               <Image
@@ -79,7 +79,7 @@ export function MoviesScreen({
               />
             </Link>
             <div className="px-6 py-4">
-              <p className="text-neutral mb-2 text-xl font-bold">
+              <p className="mb-2 text-xl font-bold text-neutral">
                 {movie.title}
               </p>
             </div>

@@ -63,7 +63,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
                 name="favourite_movie"
                 value={state.favourite_movie}
                 onChange={handleInputChange}
-                className="w-full rounded border border-gray-300 p-2"
+                className="w-full rounded border border-gray-500 p-2"
               />
             </label>
             <label className="mb-2 block">
