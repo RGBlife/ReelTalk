@@ -48,6 +48,7 @@ export function MoviesScreen({ movies: initialMovies }: Props) {
         placeholder={"Enter a movie title"}
         onChange={(e) => {
           setSearchTerm(e.target.value);
+          handleSearchTerm(searchTerm);
         }}
       />
       <button

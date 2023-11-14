@@ -24,7 +24,8 @@ export default async function TrendingSection() {
               <Link href={`/movies/${movie.id}`}>
                 <Image
                   src={movie.poster_url}
-                  width={20} height={60}
+                  width={185}
+                  height={180}
                   alt={movie.title}
                 />
               </Link>
