@@ -60,20 +60,17 @@ export default async function ProfilePage({ params }: Props) {
             <p>{profileUser.favourite_movie || "Not specified"}</p>
           </div>
 
-          <div>
-            <h2 className="font-bold">Watch List is:</h2>
-            <p>{profileUser.is_watch_list_public ? "Public" : "Private"}</p>
-          </div>
-
-          <div>
+          {/* <div>
             <h2 className="font-bold">Watched List is:</h2>
             <p>{profileUser.is_watched_list_public ? "Public" : "Private"}</p>
-          </div>
+          </div> */}
           {isAuthUser && <ProfileUpdateModal user={profileUser} />}
         </div>
       </div>
 
-      <UserMovieList userId={profileUser.id} />
+      {profileUser.is_watch_list_public && (
+        <UserMovieList userId={profileUser.id} />
+      )}
     </div>
   );
 }
