@@ -2,14 +2,40 @@
 "use server"
 
 import { db } from "~/server/db";
-import { Prisma } from "@prisma/client";
+import { Genre, Prisma } from "@prisma/client";
 import { Preference } from "@prisma/client";
 
+type GenrePreferences = {
+    action: number;
+    adventure: number;
+    animation: number;
+    comedy: number;
+    crime: number;
+    documentary: number;
+    drama: number;
+    family: number;
+    fantasy: number;
+    history: number;
+    horror: number;
+    music: number;
+    mystery: number;
+    romance: number;
+    science_fiction: number;
+    tv_movie: number;
+    thriller: number;
+    war: number;
+    western: number;
+} 
 
-export const submitPreferences = async (genrePreferences, datePreference, ratingPreference) => {
 
-    console.log(genrePreferences)
 
+export const submitPreferences = async (genrePreferences: GenrePreferences, datePreference: string, ratingPreference: number) => {
+
+   
+
+console.log(genrePreferences)
+console.log(datePreference)
+console.log(ratingPreference)
 
 
     const createdPreferences: Preference = await db.preference.update({

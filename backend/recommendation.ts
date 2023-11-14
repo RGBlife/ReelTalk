@@ -3,6 +3,8 @@ import { db } from "../src/server/db";
 import { type Genre, type Preference } from "@prisma/client";
 import { type Movie } from "@prisma/client";
 
+
+
 type scoreArray = {
   user_id: number;
   movie_id: number;
@@ -32,8 +34,6 @@ async function recommendation() {
       const genres: genres[] = movie.genres;
       genres.forEach((moviegenre: moviegenre) => {
           if (movie.genres.includes(moviegenre) && scoreArray[scoreArray.length -1]){
-              console.log(movie.id)
-              console.log(genres)
               scoreArray[scoreArray.length - 1].score += (userPreference[moviegenre.genre]/genres.length)
           }
       });
