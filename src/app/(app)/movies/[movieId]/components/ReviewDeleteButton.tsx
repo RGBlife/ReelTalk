@@ -1,21 +1,24 @@
-import { revalidatePath } from "next/cache";
-import { db } from "~/server/db";
+"use client";
+
+import { useTransition } from "react";
+import { deleteReview } from "../actions";
 
 type Props = {
   id: number;
 };
 
 export const ReviewDeleteButton = ({ id }: Props) => {
-  const deleteReview = async () => {
-    "use server";
+  const [isDeleting, startTransition] = useTransition();
 
-    await db.review.delete({ where: { id } });
-    revalidatePath("/");
+  const handleClick = () => {
+    startTransition(() => {
+      deleteReview(id);
+    });
   };
 
   return (
-    <form action={deleteReview}>
-      <button type="submit">Delete 🗑️</button>
-    </form>
+    <button onClick={handleClick} disabled={isDeleting}>
+      Delete 🗑️
+    </button>
   );
 };

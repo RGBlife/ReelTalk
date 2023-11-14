@@ -1,3 +1,5 @@
+"use client";
+
 import { HideableReviewBody } from "./HideableReviewBody";
 import { ReviewDeleteButton } from "./ReviewDeleteButton";
 import { genRelativeDateStr } from "~/utils/date-formatters";
@@ -5,12 +7,18 @@ import Image from "next/image";
 import type { ReviewSectionReviews } from "./ReviewSection";
 import { ReviewLikeButtonOptimistic } from "./ReviewLikeButtonOptimistic";
 import Link from "next/link";
+import { getServerAuthSession } from "~/server/auth";
+import { useSession } from "next-auth/react";
 
 type Props = {
   review: ReviewSectionReviews; // specifying review type causes tsc errors atm
 };
 
 export const Review = ({ review }: Props) => {
+  const session = useSession();
+
+  const isAuthUsers = Number(session.data?.user.id) === review.author.id;
+
   return (
     <article className="border border-blue-500 p-4">
       <p>{review.rating}/5 ⭐</p>
@@ -26,8 +34,9 @@ export const Review = ({ review }: Props) => {
             alt={review.author.username}
             style={{
               maxWidth: "100%",
-              height: "auto"
-            }} />
+              height: "auto",
+            }}
+          />
           <h4>
             By{" "}
             <Link href={`/profiles/${review.author.username}`}>
@@ -47,7 +56,7 @@ export const Review = ({ review }: Props) => {
         vote_count={review.vote_count}
         // is_liked={review.is_liked}
       />
-      <ReviewDeleteButton id={review.id} />
+      {isAuthUsers && <ReviewDeleteButton id={review.id} />}
     </article>
   );
 };

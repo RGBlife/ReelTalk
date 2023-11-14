@@ -10,8 +10,8 @@ export const updateReviewLikeCount = async (id: number, incVal: number) => {
   });
 };
 
-// Increment:
-// prisma.table.update({
-//   where: { id: 1234 },
-//   data: {vote_count: {increment: 1}}
-// });
+export const deleteReview = async (id: number) => {
+  await db.review.delete({ where: { id } });
+
+  revalidatePath("/");
+};

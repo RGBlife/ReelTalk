@@ -33,6 +33,12 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "ReviewLikes" (
+    "user_id" INTEGER NOT NULL,
+    "review_id" INTEGER NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "Preference" (
     "id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
@@ -137,6 +143,9 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "ReviewLikes_user_id_review_id_key" ON "ReviewLikes"("user_id", "review_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Preference_user_id_key" ON "Preference"("user_id");
 
 -- CreateIndex
@@ -153,6 +162,12 @@ CREATE UNIQUE INDEX "_GenreToMovie_AB_unique" ON "_GenreToMovie"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_GenreToMovie_B_index" ON "_GenreToMovie"("B");
+
+-- AddForeignKey
+ALTER TABLE "ReviewLikes" ADD CONSTRAINT "ReviewLikes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ReviewLikes" ADD CONSTRAINT "ReviewLikes_review_id_fkey" FOREIGN KEY ("review_id") REFERENCES "Review"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Preference" ADD CONSTRAINT "Preference_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -9,11 +9,12 @@ type Props = {
   movieId: number;
 };
 
-export const ReviewForm = ({ movieId }: Props) => {
+export const ReviewForm = async ({ movieId }: Props) => {
+  const session = await getServerAuthSession();
+  const userId = Number(session?.user.id);
+
   const createReview = async (formData: FormData) => {
-    "use server"; // ensures this function is only ever executed on the server
-    const session = await getServerAuthSession();
-    const userId = Number(session.user.id);
+    "use server";
 
     const { title, body, rating, has_spoilers } = Object.fromEntries(formData);
 
