@@ -3,13 +3,10 @@ import type { Movie } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import { FaStar } from "react-icons/fa6";
+import { roundRating } from "~/app/utils/roundRating";
 
 type Props = {
-  movies: Movie;
-};
-
-const roundRating = (rating: number) => {
-  return Math.round(rating * 10) / 10;
+  movie: Movie;
 };
 
 export function MovieCard({ movie }: Props) {
