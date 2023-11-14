@@ -8,18 +8,17 @@ const getMovieById = (id: number) => {
 
 type Context = {
   params: {
-    movieId: string;
+    id: string;
   };
 };
 
 export default async function SingleMoviePage({ params }: Context) {
-  const movieId = Number(params.movieId);
+  const movieId = Number(params.id);
   const movie = await getMovieById(movieId);
 
   return (
     <>
-<MovieDetailSection movie={movie} />
-
+      <MovieDetailSection movie={movie} />
       <ReviewSection movieId={movieId} />
     </>
   );
