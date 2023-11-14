@@ -4,10 +4,15 @@ import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 import { type Movie } from "@prisma/client";
 import Image from "next/image";
+import { db } from "~/server/db";
 
 type Props = {
   movie: Movie;
 };
+
+db.user
+  .findUnique({ where: { id: 1 }, include: { to_watch: true } })
+  .then(console.log);
 
 export const MovieDetailSection = ({ movie }: Props) => {
   return (

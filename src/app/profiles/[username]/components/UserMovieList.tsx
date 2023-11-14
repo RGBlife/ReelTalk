@@ -21,13 +21,15 @@ export const UserMovieList = async ({ userId }: Props) => {
 
   return (
     <div>
-      <h2>User Movie List</h2>
-      <div>
-        {movies.map((movie) => (
-          <Link key={movie.id} href={`/movies/${movie.id}`}>
-            {movie.title}
-          </Link>
-        ))}
+      <div className="mx-auto max-w-2xl p-4">
+        <div className="rounded-md bg-white p-4 shadow-md">
+          <h2>My Movies</h2>
+          {movies.map((movie) => (
+            <Link key={movie.id} href={`/movies/${movie.id}`}>
+              {movie.title}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
