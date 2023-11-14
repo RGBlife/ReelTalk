@@ -138,6 +138,11 @@ export const authOptions: NextAuthOptions = {
  */
 export const getServerAuthSession = () => getServerSession(authOptions);
 
+export const getAuthUser = async () => {
+  const session = await getServerSession(authOptions);
+  return session?.user;
+};
+
 /**
  * Wrapper for `getServerSession` that throws an error if the user is not authenticated.
  */

@@ -16,18 +16,23 @@ export const updateReviewLikeCount = async (id: number, incVal: number) => {
 //   data: {vote_count: {increment: 1}}
 // });
 
-export const addMovieToWatchList = (movieId: number, userId: number) => {
-  return db.moviesToWatch.create({
+export const addMovieToWatchList = async (movieId: number, userId: number) => {
+  await db.moviesToWatch.create({
     data: {
       movie_id: movieId,
       user_id: userId,
       has_watched: false,
     },
   });
+
+  revalidatePath("/");
 };
 
-export const removeMovieFromWatchList = (movieId: number, userId: number) => {
-  return db.moviesToWatch.delete({
+export const removeMovieFromWatchList = async (
+  movieId: number,
+  userId: number,
+) => {
+  await db.moviesToWatch.delete({
     where: {
       movie_id_user_id: {
         movie_id: movieId,
@@ -35,4 +40,6 @@ export const removeMovieFromWatchList = (movieId: number, userId: number) => {
       },
     },
   });
+
+  revalidatePath("/");
 };

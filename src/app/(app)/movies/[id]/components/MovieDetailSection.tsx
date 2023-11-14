@@ -1,20 +1,36 @@
 import format from "date-fns/format";
-import { AddToWatchListButton } from "./AddToWatchListButton";
+import { WatchLaterButton } from "./WatchLaterButton";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 import { type Movie } from "@prisma/client";
 import Image from "next/image";
 import { db } from "~/server/db";
+import { getAuthUser } from "~/server/auth";
 
 type Props = {
   movie: Movie;
 };
 
-db.user
-  .findUnique({ where: { id: 1 }, include: { to_watch: true } })
-  .then(console.log);
+const getAuthUserWatchList = async (userId: number) => {
+  const user = await db.user.findUnique({
+    where: { id: userId },
+    include: { to_watch: true },
+  });
+  return user?.to_watch;
+};
 
-export const MovieDetailSection = ({ movie }: Props) => {
+export const MovieDetailSection = async ({ movie }: Props) => {
+  const authUser = await getAuthUser();
+
+  let isInWatchList = false;
+  if (authUser) {
+    const watchList = await getAuthUserWatchList(Number(authUser.id));
+
+    if (watchList) {
+      isInWatchList = watchList?.some((mtw) => mtw.movie_id === movie.id);
+    }
+  }
+
   return (
     <section>
       <Image
@@ -24,17 +40,18 @@ export const MovieDetailSection = ({ movie }: Props) => {
         alt={`Poster of ${movie.title}`}
         style={{
           maxWidth: "100%",
-          height: "auto"
-        }} />
+          height: "auto",
+        }}
+      />
       <h2>
         {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>
       <div>
-        <AddToWatchListButton movieId={movie.id} />
+        <WatchLaterButton movieId={movie.id} isInWatchList={isInWatchList} />
       </div>
-      <div>
+      {/* <div>
         <AddToWatchedListButton movieId={movie.id} />
-      </div>
+      </div> */}
       <div>
         <MovieTrailerButton />
       </div>
