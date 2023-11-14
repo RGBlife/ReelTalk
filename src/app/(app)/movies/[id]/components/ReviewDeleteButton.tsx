@@ -11,8 +11,8 @@ export const ReviewDeleteButton = ({ id }: Props) => {
   const [isDeleting, startTransition] = useTransition();
 
   const handleClick = () => {
-    startTransition(() => {
-      deleteReview(id);
+    startTransition(async () => {
+      await deleteReview(id);
     });
   };
 
