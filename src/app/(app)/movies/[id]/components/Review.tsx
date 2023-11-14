@@ -82,7 +82,7 @@ export const Review = ({ review, index }: Props) => {
         <div className="flex justify-between ">
           <div>
             <Link href={`/profiles/${review.author.username}`}>
-              <h3 className="font-medium text-gray-400">
+              <h3 className="font-medium text-gray-700">
                 {review.author.username}
               </h3>
             </Link>

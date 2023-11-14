@@ -47,7 +47,7 @@ export const ReviewSection = async ({ movieId }: Props) => {
   return (
     <>
       {/* Customer reviews */}
-      <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
+      <div className="mx-auto w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
         <div className="-mb-10 px-4">
           <div className="w-full px-2 lg:w-8/12 xl:w-6/12">
             {session ? (
@@ -57,7 +57,7 @@ export const ReviewSection = async ({ movieId }: Props) => {
             )}
           </div>
 
-          <h3 className="mt-8 text-lg text-gray-400">
+          <h3 className="text-gray-00 mt-8 text-lg">
             Customer Reviews ({reviewCount})
           </h3>
 
