@@ -10,6 +10,23 @@ export const updateReviewLikeCount = async (id: number, incVal: number) => {
   });
 };
 
+export const likeReview = async (userId: number, reviewId: number) => {
+  await db.reviewLikes.create({
+    data: { user_id: userId, review_id: reviewId },
+  });
+};
+
+export const unlikeReview = async (userId: number, reviewId: number) => {
+  await db.reviewLikes.delete({
+    where: {
+      user_id_review_id: {
+        user_id: userId,
+        review_id: reviewId,
+      },
+    },
+  });
+};
+
 export const deleteReview = async (id: number) => {
   await db.review.delete({ where: { id } });
 

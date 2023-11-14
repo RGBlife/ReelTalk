@@ -1,38 +1,49 @@
 "use client";
 
-import { useState } from "react";
-import { updateReviewLikeCount } from "../actions";
+import { useState, useTransition } from "react";
+import { likeReview, unlikeReview, updateReviewLikeCount } from "../actions";
 import { useAuthUser } from "~/hooks/useAuthUser";
 import { useRouter } from "next/navigation";
 
 type Props = {
   id: number;
   vote_count: number;
-  // is_liked: boolean;
+  likes: any;
 };
 
 export const ReviewLikeButton = ({
   id,
-  vote_count, // is_liked: initialIsLiked,
-  // once we have the Like table (which contains the user_id and review_id), when we fetch the reviews we will ask postgres to add a custom is_liked (boolean) property based on whether the requesting user has liked each review or not. here we are renaming is_liked to initialIsLiked which will be then the useState initial value
-}: Props) => {
+  vote_count,
+  likes, // is_liked: initialIsLiked,
+} // once we have the Like table (which contains the user_id and review_id), when we fetch the reviews we will ask postgres to add a custom is_liked (boolean) property based on whether the requesting user has liked each review or not. here we are renaming is_liked to initialIsLiked which will be then the useState initial value
+: Props) => {
   const authUser = useAuthUser();
   const router = useRouter();
 
-  const [isLiked, setIsLiked] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  const initialIsLiked = likes.some(
+    (like: any) => like.user_id === Number(authUser?.id),
+  );
+
+  console.log(initialIsLiked);
+
+  const [isLiked, setIsLiked] = useState(initialIsLiked);
 
   const handleClick = async () => {
     if (!authUser) return router.push("/auth/login");
 
-    setIsLiked((prev) => !prev);
+    setIsLiked((prev: boolean) => !prev);
 
-    const incVal = isLiked ? -1 : 1;
+    const request = isLiked ? unlikeReview : likeReview;
 
-    try {
-      await updateReviewLikeCount(id, incVal);
-    } catch (err) {
-      setIsLiked((prev) => !prev);
-    }
+    startTransition(async () => {
+      try {
+        await request(Number(authUser.id), id);
+      } catch (err) {
+        setIsLiked((prev: boolean) => !prev);
+      }
+    });
   };
 
   return (

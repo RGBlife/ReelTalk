@@ -16,53 +16,6 @@ type Props = {
   index: number;
 };
 
-export const Review2 = ({ review }: Props) => {
-  const session = useSession();
-
-  const isAuthUsers = Number(session.data?.user.id) === review.author.id;
-
-  return (
-    <article className="border border-blue-500 p-4">
-      <p className=" text-gray-500">{review.rating}/5 ⭐</p>
-      <p className="text-gray-600">{genRelativeDateStr(review.created_at)}</p>
-      <div>
-        <div className="flex">
-          <Image
-            src={
-              "https://api.iconify.design/clarity/avatar-solid.svg?width=360&height=360"
-            }
-            width={20}
-            height={20}
-            alt={review.author.username}
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-            }}
-          />
-          <h4>
-            By{" "}
-            <Link href={`/profiles/${review.author.username}`}>
-              {review.author.username}
-            </Link>{" "}
-          </h4>
-        </div>
-      </div>
-      {review.has_spoilers ? (
-        <HideableReviewBody body={review.body ?? ""} />
-      ) : (
-        <p className=" text-gray-500">{review.body}</p>
-      )}
-      <ReviewLikeButton
-        id={review.id}
-        vote_count={review.vote_count}
-
-        // is_liked={review.is_liked}
-      />
-      {isAuthUsers && <ReviewDeleteButton id={review.id} />}
-    </article>
-  );
-};
-
 export const Review = ({ review, index }: Props) => {
   const session = useSession();
 
@@ -124,7 +77,7 @@ export const Review = ({ review, index }: Props) => {
           <ReviewLikeButton
             id={review.id}
             vote_count={review.vote_count}
-            // is_liked={review.is_liked}
+            likes={review.likes}
           />
           {isAuthUsers && <ReviewDeleteButton id={review.id} />}
         </div>

@@ -12,6 +12,7 @@ type Props = {
 
 export type ReviewSectionReviews = Review & {
   author: Pick<User, "id" | "username" | "avatar_url">;
+  likes: any;
 };
 
 const getReviewsByMovieId = (id: number) => {
@@ -30,6 +31,7 @@ const getReviewsByMovieId = (id: number) => {
           avatar_url: true,
         },
       },
+      likes: true,
     },
   }) satisfies Promise<ReviewSectionReviews[]>;
 };
