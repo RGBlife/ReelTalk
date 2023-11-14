@@ -1,12 +1,10 @@
 "use client";
 
 import type { Movie } from "@prisma/client";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";
 import { fetchMoviesAction } from "./component/fetchMoviesAction";
-import { MovieCard } from "./component/movieCard";
+import { MovieCard } from "./component/MovieCard";
 
 type Props = {
   movies: Movie[];
