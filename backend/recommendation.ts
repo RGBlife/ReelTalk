@@ -3,6 +3,8 @@ import { db } from "../src/server/db";
 import { type Genre, type Preference } from "@prisma/client";
 import { type Movie } from "@prisma/client";
 
+
+
 type scoreArray = {
   user_id: number;
   movie_id: number;
@@ -12,6 +14,11 @@ type scoreArray = {
 type MovieExtended = Movie & {
   genres: Genre[];
 };
+
+type moviegenre = {
+  id: number;
+  genre: string;
+}
 
 async function recommendation() {
   const deleteRecommendations = await db.recommendation.deleteMany({});
@@ -23,61 +30,36 @@ async function recommendation() {
   const scoreArray: scoreArray[] = [];
 
   preferences.forEach((userPreference) => {
-    const preferedGenreA: Genre[] | undefined = genres.filter((genre) => {
-      return userPreference.preference_genre_a === genre.genre;
-    });
-    const preferedGenreB: Genre[] | undefined = genres.filter((genre) => {
-      return userPreference.preference_genre_b === genre.genre;
-    });
-
     movies.forEach((movie) => {
-      const genres = movie.genres;
-      genres.forEach((moviegenre) => {
-        if (moviegenre.id === preferedGenreA[0]?.id) {
-          scoreArray.push({
-            user_id: userPreference.user_id,
-            movie_id: movie.id,
-            score: userPreference.genre_a_weighting,
-          });
-        }
-        if (moviegenre.id === preferedGenreB[0]?.id) {
-          scoreArray.forEach((movieScore) => {
-            if (
-              movieScore.movie_id === movie.id &&
-              userPreference.genre_b_weighting &&
-              movieScore.user_id === userPreference.user_id
-            ) {
-              movieScore.score += userPreference.genre_b_weighting;
-            }
-          });
-        }
-      });
-      if (movie.imdb_rating >= userPreference.preference_imdb_rating) {
-        scoreArray.forEach((movieScore) => {
-          if (
-            movieScore.movie_id === movie.id &&
-            movieScore.user_id === userPreference.user_id
-          ) {
-            movieScore.score += userPreference.imdb_rating_weighting;
+      const newScore = {
+        user_id: userPreference.user_id,
+        movie_id: movie.id,
+        score: 0
+      }
+      genres.forEach((moviegenre: moviegenre) => {
+          if (movie.genres.some((genre) => genre.genre === moviegenre.genre)){
+            if (moviegenre.genre in userPreference)
+              newScore.score += (userPreference[moviegenre.genre as keyof typeof userPreference] as number)/genres.length
           }
-        });
+      });
+      if (movie.imdb_rating >= userPreference.imdb_rating) {
+          newScore.score += 5;
+        };
         if (
           new Date(movie.release_date) >=
-          new Date(userPreference.preference_release_year)
-        ) {
-          scoreArray.forEach((movieScore) => {
-            if (
-              movieScore.movie_id === movie.id &&
-              movieScore.user_id === userPreference.user_id
-            ) {
-              movieScore.score += userPreference.release_year_weighting;
-            }
-          });
-        }
+          new Date(userPreference.release_year)
+        ) newScore.score += 5;
+
+      const existingScore = scoreArray.find((score) => score.user_id === newScore.user_id && score.movie_id === newScore.movie_id);
+      if (existingScore) {
+        existingScore.score = newScore.score;
+      } else {
+        scoreArray.push(newScore);
       }
-    });
-    // console.log(scoreArray, "scoreArray");
-  });
+    })
+  });   
+      
+  console.log(scoreArray, "scoreArray");
   scoreArray.map(async (rec) => {
     let recco: Prisma.UserCreateInput;
     const reccomendations = await db.recommendation.create({ data: rec });

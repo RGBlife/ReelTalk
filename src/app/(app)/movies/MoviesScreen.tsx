@@ -79,9 +79,9 @@ export function MoviesScreen({
               />
             </Link>
             <div className="px-6 py-4">
-              <div className="mb-2 text-xl font-bold text-neutral">
+              <p className="mb-2 text-xl font-bold text-neutral">
                 {movie.title}
-              </div>
+              </p>
             </div>
           </li>
         ))}

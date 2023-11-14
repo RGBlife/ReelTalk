@@ -77,7 +77,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
               />
             </label>
 
-            <label className="mb-2 block">
+            {/* <label className="mb-2 block">
               Public Watched List:
               <input
                 type="checkbox"
@@ -86,7 +86,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
                 onChange={handleCheckboxChange}
                 className="ml-2"
               />
-            </label>
+            </label> */}
 
             <button
               type="submit"

@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { AiFillHome } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
 import { MdLocalMovies } from "react-icons/md";
 import { AiFillBulb } from "react-icons/ai";
 import { getServerAuthSession } from "~/server/auth";
 import { LogOutBtn, LoginBtn } from "./auth/AuthBtns";
+import { ProfileLink } from "./ProfileLink";
 
 export default async function SideNav() {
   const session = await getServerAuthSession();
@@ -19,12 +19,7 @@ export default async function SideNav() {
             Home
           </li>
         </Link>
-        <Link className="p-2 hover:rounded-md hover:bg-[#b895f7]" href={`/`}>
-          <li className="flex flex-row items-center gap-2">
-            <CgProfile />
-            Profile
-          </li>
-        </Link>
+        <ProfileLink />
         <Link
           className="p-2 hover:rounded-md hover:bg-[#b895f7]"
           href={`/movies`}
