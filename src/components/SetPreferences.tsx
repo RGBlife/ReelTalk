@@ -1,85 +1,87 @@
 // @ts-nocheck
 
+
 "use client"
 
 import React, { useState } from 'react'
+import { submitPreferences } from '~/app/(app)/SetUserPreferencesTest/actions'
 
 const genres = [
     {
       "id": 28,
-      "name": "Action"
+      "name": "action"
     },
     {
       "id": 12,
-      "name": "Adventure"
+      "name": "adventure"
     },
     {
       "id": 16,
-      "name": "Animation"
+      "name": "animation"
     },
     {
       "id": 35,
-      "name": "Comedy"
+      "name": "comedy"
     },
     {
       "id": 80,
-      "name": "Crime"
+      "name": "crime"
     },
     {
       "id": 99,
-      "name": "Documentary"
+      "name": "documentary"
     },
     {
       "id": 18,
-      "name": "Drama"
+      "name": "drama"
     },
     {
       "id": 10751,
-      "name": "Family"
+      "name": "family"
     },
     {
       "id": 14,
-      "name": "Fantasy"
+      "name": "fantasy"
     },
     {
       "id": 36,
-      "name": "History"
+      "name": "history"
     },
     {
       "id": 27,
-      "name": "Horror"
+      "name": "horror"
     },
     {
       "id": 10402,
-      "name": "Music"
+      "name": "music"
     },
     {
       "id": 9648,
-      "name": "Mystery"
+      "name": "mystery"
     },
     {
       "id": 10749,
-      "name": "Romance"
+      "name": "romance"
     },
     {
       "id": 878,
-      "name": "Science Fiction"
+      "name": "science_fiction"
     },
     {
       "id": 10770,
-      "name": "TV Movie"
+      "name": "tv_movie"
     },
     {
       "id": 53,
-      "name": "Thriller"
+      "name": "thriller"
     },
     {
       "id": 10752,
-      "name": "War"
+      "name": "war"
     },
     {
       "id": 37,
-      "name": "Western"
+      "name": "western"
     }
   ]
 
@@ -94,83 +96,23 @@ console.log(genrePreferencesStartingObject)
 const SetUserPreferences = () => {
 
 const [genrePreferences, setGenrePreferences] = useState(genrePreferencesStartingObject) 
-const [datePreference, setDatePreference] = useState("")   
-const [ratingPreference, setRatingPreference] = useState("")  
+const [datePreference, setDatePreference] = useState("1900-01-01")   
+const [ratingPreference, setRatingPreference] = useState(0)  
 
 
 const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newGenrePreferences = {...genrePreferences}
-    newGenrePreferences[e.target.id] = e.target.value
+    newGenrePreferences[e.target.id] = Number(e.target.value)
     setGenrePreferences(newGenrePreferences)
 }
 
 const adjustRatingSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRatingPreference(e.target.value) 
+    setRatingPreference(Number(e.target.value)) 
 }
 
 const adjustDateSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDatePreference(e.target.value)
 }
-
-const submitPreferences = () => {
-    //This function will post/patch the changes to the preferences database 
-}
-
-const createReview = async (formData: FormData) => {
-    "use server"; // ensures this function is only ever executed on the server
-
-    const { user_id  ,    
-        action          ,
-        adventure       ,
-        animation       ,
-        comedy          ,
-        crime           ,
-        documentary     ,
-        drama           ,
-        family          ,
-        fantasy         ,
-        history         ,
-        horror          ,
-        music           ,
-        mystery         ,
-        romance         ,
-        science_fiction ,
-        tv_movie        ,
-        thriller        ,
-        war             ,
-        western         ,
-        release_year    ,
-        imdb_rating } = Object.fromEntries(formData)
-
-    const createdReview: Review = await db.review.create({
-      data: {
-        user_id: 3,   //hardcoded   
-        action: genrePreferences[action],
-        adventure: genrePreferences[adventure],
-        animation: genrePreferences[animation]       ,
-        comedy: genrePreferences[comedy] ,
-        crime: genrePreferences[crime],
-        documentary: genrePreferences[documentary]     ,
-        drama: genrePreferences[drama],
-        family:genrePreferences[family] ,
-        fantasy: genrePreferences[fantasy],
-        history: genrePreferences[history],
-        horror: genrePreferences[horror] ,
-        music: genrePreferences[music],
-        mystery: genrePreferences[mystery],
-        romance: genrePreferences[romance],
-        science_fiction: genrePreferences[science_fiction] ,
-        tv_movie: genrePreferences[tv_movie]        ,
-        thriller: genrePreferences[thriller]        ,
-        war: genrePreferences[war]  ,
-        western: genrePreferences[western],
-        release_year: datePreference    ,
-        imdb_rating: ratingPreference
-      },
-    });
-
-    revalidatePath("/");
-  };
 
 
 return (
@@ -188,7 +130,7 @@ return (
 <label htmlFor="date-select">I prefer movies newer than: </label>
 
 <select value = {datePreference} name="dates" id="date-select" onChange={adjustDateSelect}>
-  <option value="">--Please choose an option--</option>
+  <option value="1900-01-01">--Please choose an option--</option>
   <option value="1970-01-01">1970</option>
   <option value="1980-01-01">1980</option>
   <option value="1990-01-01">1990</option>
@@ -211,7 +153,7 @@ return (
 </select>
 
 
-    <button onClick = {submitPreferences}>Save Changes</button>
+    <button onClick = {submitPreferences(genrePreferences, datePreference, ratingPreference)}>Save Changes</button>
 
      </section>
 
