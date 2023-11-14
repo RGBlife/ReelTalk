@@ -19,17 +19,19 @@ export default async function TrendingSection() {
       <h3>Trending Chatroom </h3>
       <div className="flex flex-row gap-5">
         {trendingMovies.map((movie) => {
-          return (
-            <>
-              <Link href={`/movies/${movie.id}`}>
-                <Image
-                  src={movie.poster_url}
-                  width={20} height={60}
-                  alt={movie.title}
-                />
-              </Link>
-            </>
-          );
+          return <>
+            <Link href={`/movies/${movie.id}`}>
+              <Image
+                src={movie.poster_url}
+                width={20}
+                height={60}
+                alt={movie.title}
+                style={{
+                  maxWidth: "100%",
+                  height: "auto"
+                }} />
+            </Link>
+          </>;
         })}
       </div>
     </section>

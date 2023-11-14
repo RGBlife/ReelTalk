@@ -24,7 +24,10 @@ export const Review = ({ review }: Props) => {
             width={20}
             height={20}
             alt={review.author.username}
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
           <h4>
             By{" "}
             <Link href={`/profiles/${review.author.username}`}>

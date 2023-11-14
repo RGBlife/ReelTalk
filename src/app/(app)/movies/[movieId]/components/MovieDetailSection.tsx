@@ -22,7 +22,10 @@ export const MovieDetailSection = ({ movie }: Props) => {
         width={20}
         height={60}
         alt={`Poster of ${movie.title}`}
-      />
+        style={{
+          maxWidth: "100%",
+          height: "auto"
+        }} />
       <h2>
         {movie.title} {format(new Date(movie.release_date), "MM/dd/yyyy")}
       </h2>
