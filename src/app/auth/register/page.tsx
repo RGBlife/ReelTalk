@@ -6,8 +6,10 @@ import { redirect } from "next/navigation";
 export default async function Register() {
   const session = await getServerAuthSession();
 
+  console.log(session);
+
   // If user already logged in
-  if (session) {
+  if (session && session.user) {
     return redirect("/");
   }
   return (

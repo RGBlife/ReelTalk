@@ -22,7 +22,7 @@ export default async function SideNav() {
           <Link href={`/movies/recommendations`}>Recommendations</Link>
         </li>
       </ul>
-      {session ? <LogOutBtn /> : <LoginBtn />}
+      {session && session.user ? <LogOutBtn /> : <LoginBtn />}
     </nav>
   );
 }
