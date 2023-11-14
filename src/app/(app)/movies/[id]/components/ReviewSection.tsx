@@ -4,6 +4,7 @@ import { ReviewForm } from "./ReviewForm";
 import { ReviewList } from "./ReviewList";
 import { db } from "~/server/db";
 import type { Review, User } from "@prisma/client";
+import { getServerAuthSession } from "~/server/auth";
 
 type Props = {
   movieId: number;
@@ -41,7 +42,7 @@ export const ReviewSection = async ({ movieId }: Props) => {
   const reviews: ReviewSectionReviews[] = await getReviewsByMovieId(movieId);
   const reviewCount = await getReviewCountByMovieId(movieId);
 
-  const user = true; // 50% chance of the user being logged in
+  const session = await getServerAuthSession();
 
   return (
     <>
@@ -49,7 +50,7 @@ export const ReviewSection = async ({ movieId }: Props) => {
       <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
         <div className="-mb-10 px-4">
           <div className="w-full px-2 lg:w-8/12 xl:w-6/12">
-            {user ? (
+            {session ? (
               <ReviewForm movieId={movieId} />
             ) : (
               <LoginPrompt actionText="post a review" />
