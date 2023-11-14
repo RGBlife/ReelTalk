@@ -63,7 +63,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
                 name="favourite_movie"
                 value={state.favourite_movie}
                 onChange={handleInputChange}
-                className="w-full rounded border border-gray-300 p-2"
+                className="w-full rounded border border-gray-500 p-2"
               />
             </label>
             <label className="mb-2 block">
@@ -77,7 +77,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
               />
             </label>
 
-            <label className="mb-2 block">
+            {/* <label className="mb-2 block">
               Public Watched List:
               <input
                 type="checkbox"
@@ -86,7 +86,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
                 onChange={handleCheckboxChange}
                 className="ml-2"
               />
-            </label>
+            </label> */}
 
             <button
               type="submit"

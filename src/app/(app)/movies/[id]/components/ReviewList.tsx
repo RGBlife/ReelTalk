@@ -7,9 +7,9 @@ type Props = {
 
 export const ReviewList = ({ reviews }: Props) => {
   return (
-    <div>
-      {reviews.map((review) => (
-        <Review key={review.id} review={review} />
+    <div className="w-full">
+      {reviews.map((review, index) => (
+        <Review key={review.id} review={review} index={index} />
       ))}
     </div>
   );
