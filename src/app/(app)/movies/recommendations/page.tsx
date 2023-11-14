@@ -1,19 +1,19 @@
 import React from "react";
 import { db } from "~/server/db";
 import RecommendationsByUser from "./components/RecommendationsByUser";
-import { getSessionOrThrow } from "~/server/auth";
-import recommendation from "backend/recommendation";
-
+import { getServerAuthSession, getSessionOrThrow } from "~/server/auth";
 
 export default async function RecommendationPage() {
-  // const currentUser = await getSessionOrThrow();
-  await recommendation()
-
-  const recommendations = await db.recommendation.findMany({
-    where: {
-      user_id: 1,
-    },
-  });
-
-  return <RecommendationsByUser recommendations={recommendations} />;
+  let recommendations;
+  const currentUser = await getServerAuthSession();
+  if (currentUser !== null) {
+    recommendations = await db.recommendation.findMany({
+      where: {
+        user_id: Number(currentUser.user.id),
+      },
+    });
+  }
+  if (recommendations !== undefined) {
+    return <RecommendationsByUser recommendations={recommendations} />;
+  }
 }
