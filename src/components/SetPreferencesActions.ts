@@ -6,7 +6,7 @@ import { Genre, Prisma } from "@prisma/client";
 import { Preference } from "@prisma/client";
 
 type GenrePreferences = {
-    Action: number;
+    action: number;
     adventure: number;
     animation: number;
     comedy: number;
@@ -44,7 +44,7 @@ console.log(ratingPreference)
       },
       data: {
         user_id: 15,   //hardcoded   
-        action: genrePreferences.Action,
+        action: genrePreferences.action,
         adventure: genrePreferences.adventure,
         animation: genrePreferences.animation       ,
         comedy: genrePreferences.comedy ,
