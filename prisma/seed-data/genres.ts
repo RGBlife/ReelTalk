@@ -6,78 +6,78 @@ type GenreSeedData = {
 export const genresSeedData = [
   {
     id: 28,
-    genre: "Action",
+    genre: "action",
   },
   {
     id: 12,
-    genre: "Adventure",
+    genre: "adventure",
   },
   {
     id: 16,
-    genre: "Animation",
+    genre: "animation",
   },
   {
     id: 35,
-    genre: "Comedy",
+    genre: "comedy",
   },
   {
     id: 80,
-    genre: "Crime",
+    genre: "crime",
   },
   {
     id: 99,
-    genre: "Documentary",
+    genre: "documentary",
   },
   {
     id: 18,
-    genre: "Drama",
+    genre: "drama",
   },
   {
     id: 10751,
-    genre: "Family",
+    genre: "family",
   },
   {
     id: 14,
-    genre: "Fantasy",
+    genre: "fantasy",
   },
   {
     id: 36,
-    genre: "History",
+    genre: "history",
   },
   {
     id: 27,
-    genre: "Horror",
+    genre: "horror",
   },
   {
     id: 10402,
-    genre: "Music",
+    genre: "music",
   },
   {
     id: 9648,
-    genre: "Mystery",
+    genre: "mystery",
   },
   {
     id: 10749,
-    genre: "Romance",
+    genre: "romance",
   },
   {
     id: 878,
-    genre: "Science Fiction",
+    genre: "science_fiction",
   },
   {
     id: 10770,
-    genre: "TV Movie",
+    genre: "tv_movie",
   },
   {
     id: 53,
-    genre: "Thriller",
+    genre: "thriller",
   },
   {
     id: 10752,
-    genre: "War",
+    genre: "war",
   },
   {
     id: 37,
-    genre: "Western",
+    genre: "western",
   },
 ] satisfies GenreSeedData[];
