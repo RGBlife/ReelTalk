@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { updateReviewLikeCount } from "../actions";
+import { useAuthUser } from "~/hooks/useAuthUser";
+import { useRouter } from "next/navigation";
 
 type Props = {
   id: number;
@@ -9,14 +11,19 @@ type Props = {
   // is_liked: boolean;
 };
 
-export const ReviewLikeButtonOptimistic = ({
+export const ReviewLikeButton = ({
   id,
   vote_count, // is_liked: initialIsLiked,
   // once we have the Like table (which contains the user_id and review_id), when we fetch the reviews we will ask postgres to add a custom is_liked (boolean) property based on whether the requesting user has liked each review or not. here we are renaming is_liked to initialIsLiked which will be then the useState initial value
 }: Props) => {
+  const authUser = useAuthUser();
+  const router = useRouter();
+
   const [isLiked, setIsLiked] = useState(false);
 
   const handleClick = async () => {
+    if (!authUser) return router.push("/auth/login");
+
     setIsLiked((prev) => !prev);
 
     const incVal = isLiked ? -1 : 1;
@@ -48,7 +55,7 @@ export const ReviewLikeButtonOptimistic = ({
           </svg>
         </button>
       </span>
-      <p className="transform transition duration-500 group-hover:translate-x-1">
+      <p className="transform text-gray-500 transition duration-500 group-hover:translate-x-1">
         {isLiked ? vote_count + 1 : vote_count}
       </p>
     </div>

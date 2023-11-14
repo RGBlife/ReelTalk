@@ -13,7 +13,7 @@ export default function ReviewFormTextArea() {
         type="text"
         name="title"
         id="title"
-        className="block w-full border-0 bg-gray-800 pt-2.5 text-lg font-medium placeholder:text-gray-500 focus:ring-0"
+        className="block w-full border-0 bg-gray-800 p-2.5 text-lg font-medium text-gray-200 placeholder:text-gray-400 focus:ring-0"
         placeholder="Give your review a title..."
         required
       />
@@ -24,7 +24,7 @@ export default function ReviewFormTextArea() {
         rows={2}
         name="body"
         id="body"
-        className="block w-full resize-none border-0 bg-gray-800 py-0 text-gray-400 placeholder:text-gray-500 focus:ring-0 sm:text-sm sm:leading-6"
+        className="block w-full resize-none border-0 bg-gray-800 p-2.5 text-gray-200 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
         placeholder="Write your review here..."
         defaultValue={""}
         required

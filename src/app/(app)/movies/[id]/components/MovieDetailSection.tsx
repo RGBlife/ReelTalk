@@ -1,7 +1,7 @@
 import format from "date-fns/format";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
-import { type Movie } from "@prisma/client";
+import { Genre, type Movie } from "@prisma/client";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 import { createClassName } from "~/utils/string-formatters";
@@ -12,7 +12,7 @@ import { MovieTrailerModal } from "./MovieTrailerModal";
 import { WatchLaterButton } from "./WatchLaterButton";
 
 type Props = {
-  movie: Movie;
+  movie: Movie & { genres: Genre[] };
 };
 
 const getAuthUserWatchList = async (userId: number) => {
@@ -60,10 +60,12 @@ export const MovieDetailSection = async ({ movie }: Props) => {
               <h2 id="information-heading" className="sr-only">
                 Product information
               </h2>
-              <div className="space-between mt-1 flex flex-wrap gap-2">
+              <div className="space-between mt-2 flex flex-wrap gap-2">
                 <MovieDetailBadge text={`${movie.runtime} mins`} />
-                {/* TODO: map through genre codes to render multiple badges */}
-                <MovieDetailBadge text={`horror/thriller`} />
+
+                {movie.genres.map((genre) => (
+                  <MovieDetailBadge key={genre.genre} text={genre.genre} />
+                ))}
                 <MovieDetailBadge
                   text={format(new Date(movie.release_date), "MM/dd/yyyy")}
                 />

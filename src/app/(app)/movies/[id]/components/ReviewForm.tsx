@@ -5,21 +5,23 @@ import { db } from "~/server/db";
 import ReviewFormTextArea from "./ReviewFormTextArea";
 import ReviewSpoilerToggle from "./ReviewSpoilerToggle";
 import { ReviewStarRater } from "./ReviewStarRater";
-import { ReviewFormSubmitButton } from "./ReviewFormSubmitButton";
+import { getServerAuthSession } from "~/server/auth";
 
 type Props = {
   movieId: number;
 };
 
-export const ReviewForm = ({ movieId }: Props) => {
-  const createReview = async (formData: FormData) => {
-    "use server"; // ensures this function is only ever executed on the server
+export const ReviewForm = async ({ movieId }: Props) => {
+  const session = await getServerAuthSession();
+  const userId = Number(session?.user.id);
 
+  const createReview = async (formData: FormData) => {
+    "use server";
     const { title, body, rating, has_spoilers } = Object.fromEntries(formData);
 
     const createdReview: Review = await db.review.create({
       data: {
-        author_id: 8, //hardcoded for now
+        author_id: userId,
         movie_id: movieId,
         title: title as string,
         body: body as string,

@@ -3,7 +3,10 @@ import { ReviewSection } from "./components/ReviewSection";
 import { db } from "~/server/db";
 
 const getMovieById = (id: number) => {
-  return db.movie.findUniqueOrThrow({ where: { id } });
+  return db.movie.findUniqueOrThrow({
+    where: { id },
+    include: { genres: true },
+  });
 };
 
 type Context = {
