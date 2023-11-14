@@ -6,7 +6,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="container flex items-start">
+    <div className="flex items-start">
       <SideNav />
       <main className="flex-grow">{children}</main>
     </div>

@@ -1,6 +1,5 @@
 import TrendingSection from "~/components/TrendingSection";
 import PopularReview from "~/components/PopularReview";
-import SideNav from "~/components/SideNav";
 
 export default function HomePage() {
   return (
