@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Switch } from "@headlessui/react";
 import { createClassName } from "~/utils/string-formatters";
 
-export default function Toggle() {
+export default function ReviewSpoilerToggle() {
   const [enabled, setEnabled] = useState(false);
 
   return (

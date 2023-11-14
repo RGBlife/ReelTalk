@@ -37,7 +37,9 @@ export const Review = ({ review, index }: Props) => {
                   {review.author.username}
                 </h3>
               </Link>
-              <p>{genRelativeDateStr(review.created_at)}</p>
+              <p className="text-gray-600">
+                {genRelativeDateStr(review.created_at)}
+              </p>
             </div>
 
             <div>
@@ -63,9 +65,9 @@ export const Review = ({ review, index }: Props) => {
 
           <div className="prose-sm prose mt-4 max-w-none text-gray-500">
             {review.has_spoilers ? (
-              <HideableReviewBody body={review.body ?? ""} />
+              <HideableReviewBody body={review.body} />
             ) : (
-              <p>{review.body}</p>
+              <p className=" text-gray-500">{review.body}</p>
             )}
           </div>
 

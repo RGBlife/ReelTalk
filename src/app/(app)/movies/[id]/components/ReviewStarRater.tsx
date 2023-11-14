@@ -22,6 +22,7 @@ export const ReviewStarRater = () => {
             <input
               type="radio"
               name="rating"
+              required
               value={key}
               onChange={(e) => setRating(Number(e.target.value))}
               className="absolute -top-0.5 cursor-pointer appearance-none border-none  bg-transparent p-4 checked:border-none

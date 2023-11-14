@@ -1,9 +1,11 @@
 import { Review } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { db } from "~/server/db";
-import ReviewFormTextArea from "~/app/(app)/movies/[movieId]/components/ReviewFormTextArea";
-import Toggle from "~/app/(app)/movies/[movieId]/components/Toggle";
-import { ReviewStarRater } from "~/app/(app)/movies/[movieId]/components/ReviewStarRater";
+
+import ReviewFormTextArea from "./ReviewFormTextArea";
+import ReviewSpoilerToggle from "./ReviewSpoilerToggle";
+import { ReviewStarRater } from "./ReviewStarRater";
+import { ReviewFormSubmitButton } from "./ReviewFormSubmitButton";
 
 type Props = {
   movieId: number;
@@ -42,8 +44,8 @@ export const ReviewForm = ({ movieId }: Props) => {
         <ReviewFormTextArea />
       </div>
       <div className="flex justify-start space-x-3">
-        <p>Does this review contain spoilers?</p>
-        <Toggle />
+        <p className=" text-gray-500">Does this review contain spoilers?</p>
+        <ReviewSpoilerToggle />
       </div>
     </form>
   );
