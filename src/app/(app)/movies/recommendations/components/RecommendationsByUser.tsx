@@ -3,7 +3,6 @@ import type { Session } from "next-auth";
 
 type Props = {
   recommendations: Recommendation[];
-  user: Session['user']
 };
 
 export default function RecommendationsByUser({

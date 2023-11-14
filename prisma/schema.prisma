@@ -64,18 +64,45 @@ enum Role {
     Admin
 }
 
+// model Preference {
+//     id                      Int     @id @default(autoincrement())
+//     user                    User    @relation(fields: [user_id], references: [id])
+//     user_id                 Int     @unique
+//     preference_genre_a      String
+//     genre_a_weighting       Int
+//     preference_genre_b      String?
+//     genre_b_weighting       Int?
+//     preference_release_year String
+//     release_year_weighting  Int
+//     preference_imdb_rating  Float
+//     imdb_rating_weighting   Int
+// }
+
 model Preference {
-    id                      Int     @id @default(autoincrement())
-    user                    User    @relation(fields: [user_id], references: [id])
-    user_id                 Int     @unique
-    preference_genre_a      String
-    genre_a_weighting       Int
-    preference_genre_b      String?
-    genre_b_weighting       Int?
-    preference_release_year String
-    release_year_weighting  Int
-    preference_imdb_rating  Float
-    imdb_rating_weighting   Int
+    id              Int    @id @default(autoincrement())
+    user            User   @relation(fields: [user_id], references: [id])
+    user_id         Int    @unique
+    action          Int
+    adventure       Int
+    animation       Int
+    comedy          Int
+    crime           Int
+    documentary     Int
+    drama           Int
+    family          Int
+    fantasy         Int
+    history         Int
+    horror          Int
+    music           Int
+    mystery         Int
+    romance         Int
+    science_fiction Int
+    tv_movie        Int
+    thriller        Int
+    war             Int
+    western         Int
+    release_year    String
+    imdb_rating     Int
 }
 
 model Genre {

@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .form-input {
+    @apply rounded-md border border-black p-3 caret-primary outline-primary focus-within:outline-primary;
+  }
+}

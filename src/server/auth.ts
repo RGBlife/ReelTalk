@@ -1,4 +1,4 @@
-import { type User } from "@prisma/client";
+// import { type User } from "@prisma/client";
 import { compare } from "bcrypt";
 import {
   getServerSession,
@@ -106,7 +106,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     session: ({ session, token }) => {
-      console.log("Session Callback", { session, token });
+      // console.log("Session Callback", { session, token });
       return {
         ...session,
         user: {
@@ -117,9 +117,8 @@ export const authOptions: NextAuthOptions = {
       };
     },
     jwt: ({ token, user }) => {
-      console.log("JWT Callback", { token, user });
+      // console.log("JWT Callback", { token, user });
       if (user) {
-        const u = user as unknown as User;
         return {
           ...token,
           id: user.id,
@@ -146,7 +145,7 @@ export const getSessionOrThrow = async () => {
   const currentUser = await getServerAuthSession();
 
   if (!currentUser?.user) {
-    throw new Error("Not authenticated");
+    // throw new Error("Not authenticated");
   }
 
   return currentUser;
