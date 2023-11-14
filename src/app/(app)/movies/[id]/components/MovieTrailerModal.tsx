@@ -1,7 +1,16 @@
 type Props = {
-  trailer_url: string;
+  src: string;
 };
 
-export const MovieTrailerModal = ({ trailer_url }: Props) => {
-  // display youtube video
+export const MovieTrailerModal = ({ src }: Props) => {
+  return (
+    <dialog id="trailer-modal" className="modal">
+      <div className="modal-box">
+        <iframe width="560" height="315" src={src} allowFullScreen />
+      </div>
+      <form method="dialog" className="modal-backdrop">
+        <button>Close</button>
+      </form>
+    </dialog>
+  );
 };

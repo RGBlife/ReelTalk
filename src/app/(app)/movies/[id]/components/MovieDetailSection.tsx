@@ -6,6 +6,7 @@ import { type Movie } from "@prisma/client";
 import Image from "next/image";
 import { db } from "~/server/db";
 import { getAuthUser } from "~/server/auth";
+import { MovieTrailerModal } from "./MovieTrailerModal";
 
 type Props = {
   movie: Movie;
@@ -54,6 +55,7 @@ export const MovieDetailSection = async ({ movie }: Props) => {
       </div> */}
       <div>
         <MovieTrailerButton />
+        <MovieTrailerModal src={movie.trailer_url} />
       </div>
       <p>Overview: {movie.overview}</p>
     </section>

@@ -1,9 +1,17 @@
 "use client";
 
 export const MovieTrailerButton = () => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    alert("Movie Trailer Modal opened");
+  const handleClick = () => {
+    const modalElement = document.getElementById(
+      "trailer-modal",
+    ) as HTMLDialogElement | null;
+
+    if (modalElement) modalElement.showModal();
   };
 
-  return <button onClick={handleClick}>Watch Trailer</button>;
+  return (
+    <button className="btn" onClick={handleClick}>
+      Watch Trailer
+    </button>
+  );
 };
