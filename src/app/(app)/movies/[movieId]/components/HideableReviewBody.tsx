@@ -14,11 +14,14 @@ export const HideableReviewBody = ({ body }: Props) => {
   };
 
   return (
-    <p onClick={toggleBody} style={{ color: !isShown ? "red" : "" }}>
+    <p
+      className="cursor-pointer"
+      onClick={toggleBody}
+      style={{ color: !isShown ? "red" : "" }}
+    >
       {isShown
         ? body
         : "This review may contain spoilers. I can handle the truth"}
     </p>
   );
 };
-

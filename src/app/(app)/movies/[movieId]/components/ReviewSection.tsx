@@ -1,6 +1,5 @@
 import { LoginPrompt } from "~/components/LoginPrompt";
 
-import { ReviewsHeading } from "./ReviewsHeading";
 import { ReviewForm } from "./ReviewForm";
 import { ReviewList } from "./ReviewList";
 import { db } from "~/server/db";
@@ -34,19 +33,36 @@ const getReviewsByMovieId = (id: number) => {
   }) satisfies Promise<ReviewSectionReviews[]>;
 };
 
+const getReviewCountByMovieId = (id: number) => {
+  return db.review.count({ where: { movie_id: id } });
+};
+
 export const ReviewSection = async ({ movieId }: Props) => {
-  const reviews = await getReviewsByMovieId(movieId);
+  const reviews: ReviewSectionReviews[] = await getReviewsByMovieId(movieId);
+  const reviewCount = await getReviewCountByMovieId(movieId);
+
   const user = true; // 50% chance of the user being logged in
 
   return (
-    <section>
-      <ReviewsHeading movieId={movieId} />
-      {user ? (
-        <ReviewForm movieId={movieId} />
-      ) : (
-        <LoginPrompt actionText="post a review" />
-      )}
-      <ReviewList reviews={reviews} />
-    </section>
+    <>
+      {/* Customer reviews */}
+      <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
+        <div className="-mb-10 px-4">
+          <div className="w-full px-2 lg:w-8/12 xl:w-6/12">
+            {user ? (
+              <ReviewForm movieId={movieId} />
+            ) : (
+              <LoginPrompt actionText="post a review" />
+            )}
+          </div>
+
+          <h3 className="mt-8 text-lg text-gray-400">
+            Customer Reviews ({reviewCount})
+          </h3>
+
+          <ReviewList reviews={reviews} />
+        </div>
+      </div>
+    </>
   );
 };
