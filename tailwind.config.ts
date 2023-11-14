@@ -16,13 +16,14 @@ export default {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    base: false,
+    base: true,
     themes: [
       {
         daisyuiCustomTheme: {
+          "base-100": "#F8F9F9",
           primary: "#B996F7",
           "primary-focus": "#9673e8",
-          "primary-content": "#ffffff",
+          "primary-content": "#F8F9F9",
         },
       },
     ],
