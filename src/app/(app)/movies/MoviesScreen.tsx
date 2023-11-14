@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";
 import { fetchMoviesAction } from "./component/fetchMoviesAction";
+import { MovieCard } from "./component/movieCard";
 
 type Props = {
   movies: Movie[];
@@ -61,29 +62,7 @@ export function MoviesScreen({
 
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
         {movies.map((movie) => (
-          <li
-            key={movie.id}
-            className="bg-primary max-w-xs overflow-hidden rounded shadow-lg"
-          >
-            <Link href={`/movies/${movie.id}`}>
-              <Image
-                src={movie.poster_url}
-                alt={movie.title}
-                width={164}
-                height={246}
-                sizes="100vw"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                }}
-              />
-            </Link>
-            <div className="px-6 py-4">
-              <div className="text-neutral mb-2 text-xl font-bold">
-                {movie.title}
-              </div>
-            </div>
-          </li>
+          <MovieCard movie={movie} key={movie.id} />
         ))}
       </ul>
 
