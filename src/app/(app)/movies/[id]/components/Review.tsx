@@ -65,7 +65,7 @@ export const Review = ({ review, index }: Props) => {
           </div>
         </div>
 
-        <div className="prose-sm prose mt-4 max-w-none text-gray-500">
+        <div className="prose-sm prose mt-4 max-w-none text-justify text-gray-500">
           {review.has_spoilers ? (
             <HideableReviewBody body={review.body} />
           ) : (

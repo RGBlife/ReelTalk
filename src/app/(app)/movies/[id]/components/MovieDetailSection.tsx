@@ -63,12 +63,14 @@ export const MovieDetailSection = async ({ movie }: Props) => {
               <div className="space-between mt-2 flex flex-wrap gap-2">
                 <MovieDetailBadge text={`${movie.runtime} mins`} />
 
-                {movie.genres.map((genre) => (
-                  <MovieDetailBadge key={genre.genre} text={genre.genre} />
-                ))}
                 <MovieDetailBadge
                   text={format(new Date(movie.release_date), "MM/dd/yyyy")}
                 />
+              </div>
+              <div className="space-between mt-2 flex flex-wrap gap-2">
+                {movie.genres.map((genre) => (
+                  <MovieDetailBadge key={genre.genre} text={genre.genre} />
+                ))}
               </div>
             </div>
 
@@ -82,7 +84,7 @@ export const MovieDetailSection = async ({ movie }: Props) => {
                       className={createClassName(
                         movie.imdb_rating / 2 > rating + 1
                           ? "text-yellow-400"
-                          : "text-gray-500",
+                          : "text-gray-400",
                         "h-5 w-5 flex-shrink-0",
                       )}
                       aria-hidden="true"
@@ -98,7 +100,7 @@ export const MovieDetailSection = async ({ movie }: Props) => {
 
           <p className="mt-6 text-gray-600">{movie.overview}</p>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 text-justify sm:grid-cols-2">
             <WatchLaterButton
               movieId={movie.id}
               isInWatchList={isInWatchList}
