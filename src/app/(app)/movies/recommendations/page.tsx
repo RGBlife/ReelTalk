@@ -13,6 +13,8 @@ export default async function RecommendationPage() {
       },
     });
   }
+  recommendations?.sort((a, b) => b.score - a.score);
+
   if (recommendations !== undefined) {
     return <RecommendationsByUser recommendations={recommendations} />;
   }
