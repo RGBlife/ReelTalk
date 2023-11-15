@@ -15,21 +15,21 @@ datasource db {
 }
 
 model Movie {
-    id              Int                @id @unique
-    title           String
-    genres          Genre[]
-    overview        String
-    release_date    DateTime
-    release_year    Int
-    imdb_rating     Float
-    vote_count      Int
-    poster_url      String
-    runtime         Int
-    trailer_url     String
-    to_watch        UserToMovieWatch[]
-    reviews         Review[]
-    recommended     Recommendation[]
-    UserToMovieSeen UserToMovieSeen[]
+    id            Int                @id @unique
+    title         String
+    genres        Genre[]
+    overview      String
+    release_date  DateTime
+    release_year  Int
+    imdb_rating   Float
+    vote_count    Int
+    poster_url    String
+    runtime       Int
+    trailer_url   String
+    reviews       Review[]
+    recommended   Recommendation[]
+    moviesToWatch UserToMovieWatch[]
+    moviesSeen    UserToMovieSeen[]
 }
 
 model User {
