@@ -33,6 +33,12 @@ CREATE TABLE "User" (
 );
 
 -- CreateTable
+CREATE TABLE "ReviewLikes" (
+    "user_id" INTEGER NOT NULL,
+    "review_id" INTEGER NOT NULL
+);
+
+-- CreateTable
 CREATE TABLE "Preference" (
     "id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
@@ -70,10 +76,15 @@ CREATE TABLE "Genre" (
 );
 
 -- CreateTable
-CREATE TABLE "MoviesToWatch" (
+CREATE TABLE "UserToMovieWatch" (
     "movie_id" INTEGER NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "has_watched" BOOLEAN NOT NULL
+    "user_id" INTEGER NOT NULL
+);
+
+-- CreateTable
+CREATE TABLE "UserToMovieSeen" (
+    "movie_id" INTEGER NOT NULL,
+    "user_id" INTEGER NOT NULL
 );
 
 -- CreateTable
@@ -137,13 +148,19 @@ CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "ReviewLikes_user_id_review_id_key" ON "ReviewLikes"("user_id", "review_id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Preference_user_id_key" ON "Preference"("user_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Genre_id_key" ON "Genre"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "MoviesToWatch_movie_id_user_id_key" ON "MoviesToWatch"("movie_id", "user_id");
+CREATE UNIQUE INDEX "UserToMovieWatch_movie_id_user_id_key" ON "UserToMovieWatch"("movie_id", "user_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "UserToMovieSeen_movie_id_user_id_key" ON "UserToMovieSeen"("movie_id", "user_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Recommendation_user_id_movie_id_key" ON "Recommendation"("user_id", "movie_id");
@@ -155,13 +172,25 @@ CREATE UNIQUE INDEX "_GenreToMovie_AB_unique" ON "_GenreToMovie"("A", "B");
 CREATE INDEX "_GenreToMovie_B_index" ON "_GenreToMovie"("B");
 
 -- AddForeignKey
+ALTER TABLE "ReviewLikes" ADD CONSTRAINT "ReviewLikes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "ReviewLikes" ADD CONSTRAINT "ReviewLikes_review_id_fkey" FOREIGN KEY ("review_id") REFERENCES "Review"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Preference" ADD CONSTRAINT "Preference_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MoviesToWatch" ADD CONSTRAINT "MoviesToWatch_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserToMovieWatch" ADD CONSTRAINT "UserToMovieWatch_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "MoviesToWatch" ADD CONSTRAINT "MoviesToWatch_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "UserToMovieWatch" ADD CONSTRAINT "UserToMovieWatch_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserToMovieSeen" ADD CONSTRAINT "UserToMovieSeen_movie_id_fkey" FOREIGN KEY ("movie_id") REFERENCES "Movie"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "UserToMovieSeen" ADD CONSTRAINT "UserToMovieSeen_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Message" ADD CONSTRAINT "Message_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
