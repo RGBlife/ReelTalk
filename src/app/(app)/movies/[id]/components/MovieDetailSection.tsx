@@ -1,7 +1,7 @@
 import format from "date-fns/format";
 import { AddToWatchedListButton } from "./AddToWatchedListButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
-import { type Movie } from "@prisma/client";
+import { Genre, type Movie } from "@prisma/client";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 import { createClassName } from "~/utils/string-formatters";
@@ -12,7 +12,7 @@ import { MovieTrailerModal } from "./MovieTrailerModal";
 import { WatchLaterButton } from "./WatchLaterButton";
 
 type Props = {
-  movie: Movie;
+  movie: Movie & { genres: Genre[] };
 };
 
 const getAuthUserWatchList = async (userId: number) => {
@@ -36,16 +36,16 @@ export const MovieDetailSection = async ({ movie }: Props) => {
   }
 
   return (
-    <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div className="sm:py-18 mx-auto px-4 py-12 sm:px-6 lg:max-w-7xl lg:px-8">
       {/* Movie */}
       <div className="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
         {/* Movie image */}
         <div className="lg:col-span-3 lg:row-end-1">
-          <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
+          <div className="aspect-h-3 aspect-w-4 flex justify-center overflow-hidden  bg-gray-100">
             <img
               src={movie.poster_url}
               alt="movie-cover-image"
-              className="object-cover object-center"
+              className="rounded-lg object-cover object-center"
             />
           </div>
         </div>
@@ -60,10 +60,12 @@ export const MovieDetailSection = async ({ movie }: Props) => {
               <h2 id="information-heading" className="sr-only">
                 Product information
               </h2>
-              <div className="space-between mt-1 flex flex-wrap gap-2">
+              <div className="space-between mt-2 flex flex-wrap gap-2">
                 <MovieDetailBadge text={`${movie.runtime} mins`} />
-                {/* TODO: map through genre codes to render multiple badges */}
-                <MovieDetailBadge text={`horror/thriller`} />
+
+                {movie.genres.map((genre) => (
+                  <MovieDetailBadge key={genre.genre} text={genre.genre} />
+                ))}
                 <MovieDetailBadge
                   text={format(new Date(movie.release_date), "MM/dd/yyyy")}
                 />

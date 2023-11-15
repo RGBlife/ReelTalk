@@ -1,12 +1,10 @@
 "use client";
 
 import type { Movie } from "@prisma/client";
-import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { fetchMovies } from "~/app/utils/api/fetchMovies";
 import { fetchMoviesAction } from "./component/fetchMoviesAction";
-import { set } from "date-fns";
+import { MovieCard } from "./component/MovieCard";
 
 type Props = {
   movies: Movie[];
@@ -78,37 +76,11 @@ export function MoviesScreen({
         }}
       />
 
-      {searchError ? (
-        <p className="text-slate-950">{searchError}</p>
-      ) : (
-        <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-          {movies.map((movie) => (
-            <li
-              key={movie.id}
-              className="bg-primary max-w-xs overflow-hidden rounded shadow-lg"
-            >
-              <Link href={`/movies/${movie.id}`}>
-                <Image
-                  src={movie.poster_url}
-                  alt={movie.title}
-                  width={164}
-                  height={246}
-                  sizes="100vw"
-                  style={{
-                    width: "100%",
-                    height: "auto",
-                  }}
-                />
-              </Link>
-              <div className="px-6 py-4">
-                <p className="text-neutral mb-2 text-xl font-bold">
-                  {movie.title}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+        {movies.map((movie) => (
+          <MovieCard movie={movie} key={movie.id} />
+        ))}
+      </ul>
 
       <div className="mt-8 flex justify-center">
         <button
