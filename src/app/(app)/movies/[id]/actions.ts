@@ -52,3 +52,30 @@ export const removeMovieFromWatchList = async (
 
   revalidatePath("/");
 };
+
+export const addMovieToSeenList = async (movieId: number, userId: number) => {
+  await db.userToMovieSeen.create({
+    data: {
+      movie_id: movieId,
+      user_id: userId,
+    },
+  });
+
+  revalidatePath("/");
+};
+
+export const removeMovieFromSeenList = async (
+  movieId: number,
+  userId: number,
+) => {
+  await db.userToMovieSeen.delete({
+    where: {
+      movie_id_user_id: {
+        movie_id: movieId,
+        user_id: userId,
+      },
+    },
+  });
+
+  revalidatePath("/");
+};
