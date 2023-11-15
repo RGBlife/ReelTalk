@@ -21,19 +21,37 @@ export function MoviesScreen({
   const [currentPage, setCurrentPage] = useState(1);
   const [endOfPage, setEndOfPage] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [isSearching, setIsSearching] = useState(false);
+  const [searchError, setSearchError] = useState<string>("");
 
   const handlePageChange = async (newPage: number) => {
-    const result = await fetchMovies({ limit: 8, page: newPage });
-    if (!result || result.length === 0) return setEndOfPage(true);
-    setEndOfPage(false);
-    setMovies(result);
-    setCurrentPage(newPage);
+    try {
+      const result = await fetchMovies({ limit: 8, page: newPage });
+      if (!result || result.length === 0) return setEndOfPage(true);
+      setEndOfPage(false);
+      setMovies(result);
+      setCurrentPage(newPage);
+    } catch (error) {
+      setSearchError("An error occurred while fetching movies.");
+    }
   };
 
   useEffect(() => {
     const handleSearchTerm = async (searchTerm: string) => {
-      const result = await fetchMoviesAction(searchTerm);
-      setMovies(result);
+      setIsSearching(true);
+      setSearchError("");
+
+      try {
+        const result = await fetchMoviesAction(searchTerm);
+        if (result.length === 0) {
+          return setSearchError("No movies found, please try different keywords.");
+        } else {
+          setMovies(result);
+        }
+      } catch (error) {
+        setSearchError("An error occurred while fetching movies.");
+      }
+      setIsSearching(false);
     };
 
     if (searchTerm) {
