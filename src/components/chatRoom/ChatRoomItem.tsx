@@ -5,8 +5,9 @@ import { MdOutlinePersonOutline } from "react-icons/md";
 
 interface ChatRoom {
   id: number;
-  name: string;
-  users: number;
+  room_name: string;
+  owner: string;
+  members: number; // This will have to be an array in final product
 }
 
 interface ChatRoomProps {
@@ -16,21 +17,26 @@ interface ChatRoomProps {
 export const ChatRoomItem: FC<ChatRoomProps> = ({
   chatRoom,
 }: ChatRoomProps) => {
-  console.log(chatRoom);
-  const { name, users } = chatRoom;
+  const { room_name, members } = chatRoom;
+
+  // Shorten chatroom name for display purposes
+  const shortName = room_name.split(" ")[0];
+
   return (
-    <li className="flex flex-col flex-wrap items-end">
+    <li className="flex flex-col flex-wrap items-end ">
+      {/* TODO - Update link to chatroom */}
       <Link
-        href="/chatroom/chatroomid"
-        className=" text-justify text-lg text-neutral-800 hover:text-primary hover:underline"
+        href="#"
+        className="text-justify text-sm text-neutral-800 hover:text-primary hover:underline"
       >
-        {name}
+        {shortName}
       </Link>
       <span
         className="flex items-center justify-end gap-1 text-sm text-black"
-        title={`Users subscribed to ${name} chat room`}
+        title={`Users subscribed to ${room_name}`}
       >
-        <MdOutlinePersonOutline className="text-primary-focus" /> {users}
+        <MdOutlinePersonOutline className="text-primary-focus" />
+        {members}
       </span>
     </li>
   );

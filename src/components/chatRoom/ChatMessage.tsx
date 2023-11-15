@@ -1,4 +1,5 @@
 import { format, formatISO } from "date-fns";
+import Image from "next/image";
 import Link from "next/link";
 import { type FC } from "react";
 
@@ -26,7 +27,7 @@ export const ChatMessage: FC<ChatMessageProps> = ({
         </p>
         <div className="mt-1 flex items-center justify-between gap-8">
           <Link
-            href="/users/profile/username"
+            href={`/profiles/${message.sender.username}`}
             className="text-xs hover:text-primary hover:underline hover:underline-offset-2"
           >
             {message.sender.username}
@@ -36,7 +37,13 @@ export const ChatMessage: FC<ChatMessageProps> = ({
           </p>
         </div>
       </div>
-      <img src={message.sender.avatar_url} className="h-10 w-10 rounded-full" />
+      <Image
+        src={message.sender.avatar_url}
+        className="h-10 w-10 rounded-full"
+        alt={`Avatar of ${message.sender.username}`}
+        width={400}
+        height={400}
+      />
     </li>
   );
 };
