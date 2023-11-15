@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { db } from "~/server/db";
+import { MovieCard } from "~/app/(app)/movies/component/MovieCard";
 
 export default async function PopularReview() {
   const reviews = await db.review.findMany({
@@ -22,8 +23,8 @@ export default async function PopularReview() {
 
   return (
     <section>
-      <h3>Most Popular Reviews</h3>
-      <div className="flex flex-row gap-5">
+      <h3 className="m-2 ml-4 text-2xl font-bold text-gray-800 md:text-5xl lg:text-2xl">Most Popular Reviews</h3>
+      <div className="ml-4 grid grid-cols-4 gap-4">
         {reviews.map((review) => {
           return (
             <>
@@ -32,12 +33,7 @@ export default async function PopularReview() {
                   if (movie.id === review.movie_id) {
                     return (
                       <>
-                        <h2>{movie.title}</h2>
-                        <img
-                          src={movie.poster_url}
-                          alt={movie.title}
-                          className="w-[10vw]"
-                        />
+                        <MovieCard movie={movie} />
                       </>
                     );
                   }

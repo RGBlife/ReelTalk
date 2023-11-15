@@ -1,9 +1,8 @@
 "use server";
 
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { db } from "~/server/db";
+import { MovieCard } from "~/app/(app)/movies/component/MovieCard";
 
 export default async function TrendingSection() {
   const trendingMovies = await db.movie.findMany({
@@ -15,27 +14,18 @@ export default async function TrendingSection() {
 
   return (
     <section>
-      <h3>Trending Now </h3>
-      <h3>Trending Chatroom </h3>
-      <div className="flex flex-row gap-5">
+        <h3 className="m-2 ml-4 text-4xl font-bold text-gray-800 md:text-5xl lg:text-2xl">
+          Trending Now{" "}
+        </h3>
+      <div className="ml-4 grid grid-cols-4 gap-4">
         {trendingMovies.map((movie) => {
-          return <>
-          <Link href={`/movies/${movie.id}`}>
-              <Image
-                src={movie.poster_url}
-                width={20}
-                height={60}
-                alt={movie.title}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto"
-                }} />
-            </Link>
-
-          </>;
+          return (
+            <>
+              <MovieCard movie={movie} />
+            </>
+          );
         })}
-        </div>
-        
+      </div>
     </section>
   );
 }
