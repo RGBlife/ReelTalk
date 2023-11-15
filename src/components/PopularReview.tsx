@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import { db } from "~/server/db";
+import { MovieCard } from "~/app/(app)/movies/component/MovieCard";
 
 export default async function PopularReview() {
   const reviews = await db.review.findMany({
@@ -32,12 +33,7 @@ export default async function PopularReview() {
                   if (movie.id === review.movie_id) {
                     return (
                       <>
-                        <h2>{movie.title}</h2>
-                        <img
-                          src={movie.poster_url}
-                          alt={movie.title}
-                          className="w-[10vw]"
-                        />
+                        <MovieCard movie={movie} />
                       </>
                     );
                   }
