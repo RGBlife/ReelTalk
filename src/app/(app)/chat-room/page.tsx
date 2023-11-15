@@ -6,6 +6,9 @@ import { useState } from "react";
 
 import { FiSend } from "react-icons/fi";
 import { ChatMessage } from "~/components/chatRoom/ChatMessage";
+import { ChatRoomsList } from "~/components/chatRoom/ChatRoomsList";
+import { ChatRoomItem } from "~/components/chatRoom/ChatRoomItem";
+import { ChatOnlineUser } from "~/components/chatRoom/ChatOnlineUser";
 
 type DummyMessage = {
   id: number;
@@ -231,9 +234,69 @@ const messages: DummyMessage[] = [
   // },
 ];
 
-const chatRooms = ["Room 1", "Room 2", "Room 3"];
+const chatRooms = [
+  {
+    id: 1,
+    name: "Horror",
+    users: 86,
+  },
+  {
+    id: 2,
+    name: "Action",
+    users: 120,
+  },
+  {
+    id: 3,
+    name: "Comedy",
+    users: 20,
+  },
+  {
+    id: 4,
+    name: "Romance",
+    users: 75,
+  },
+  {
+    id: 5,
+    name: "Science Fiction",
+    users: 150,
+  },
+  {
+    id: 6,
+    name: "Crime",
+    users: 25,
+  },
+  {
+    id: 7,
+    name: "Drama",
+    users: 65,
+  },
+  {
+    id: 8,
+    name: "Family",
+    users: 230,
+  },
+  {
+    id: 9,
+    name: "Fantasy",
+    users: 350,
+  },
+  {
+    id: 10,
+    name: "Mystery",
+    users: 60,
+  },
+];
 
-const onlineUsers = ["User A", "User B", "User C"];
+const onlineUsers = [
+  {
+    id: 1,
+    username: "StarGazer42",
+  },
+  {
+    id: 2,
+    username: "HaylzRandom",
+  },
+];
 
 export default function ChatRoomPage() {
   // const [newMessage, setNewMessage] = useState("");
@@ -313,11 +376,11 @@ export default function ChatRoomPage() {
   // );
 
   return (
-    <section className="m-5 flex h-3/4 border">
-      <div className="flex w-full flex-col justify-between">
+    <section className="container m-5 flex h-3/4 border">
+      <div className="container relative flex flex-col">
         {/* title */}
         <h2 className="border-b-2 bg-primary p-2 text-center text-xl font-semibold">
-          Chat Room Title
+          Trending Movies
         </h2>
         {/* Messages */}
         <ul className="flex flex-col items-end">
@@ -327,7 +390,7 @@ export default function ChatRoomPage() {
         </ul>
 
         {/* New Message */}
-        <div className="w-full border bg-primary p-3">
+        <div className="container absolute bottom-0 border bg-primary p-3">
           <form action="" className="flex justify-center gap-8">
             <input
               type="text"
@@ -342,48 +405,25 @@ export default function ChatRoomPage() {
           </form>
         </div>
       </div>
-      <div className="flex w-1/3 flex-col items-end border-l-2">
-        <div className="mb-2 flex w-full flex-col items-end p-2">
+      {/* TODO - Work out heights for both chatrooms and online users to be 50/50 and wrap rooms */}
+      <div className="flex h-2/4 w-2/5 flex-col items-end border-l-2">
+        <div className="mb-2 flex w-full flex-col p-2 text-right">
           {/* Chat Rooms */}
           <h3 className="text-xl font-semibold">Chat Rooms</h3>
-          <ul className="flex flex-col">
-            <li>
-              <Link href="/chatroom/chatroomid" className="hover:underline">
-                Chat Room 1
-              </Link>
-            </li>
-            <li>
-              <Link href="/chatroom/chatroomid" className="hover:underline">
-                Chat Room 2
-              </Link>
-            </li>
-            <li>
-              <Link href="/chatroom/chatroomid" className="hover:underline">
-                Chat Room 2
-              </Link>
-            </li>
+          <ul className=" h-2/4 grid-flow-col flex-wrap">
+            {chatRooms.map((chatRoom) => {
+              return <ChatRoomItem key={chatRoom.id} chatRoom={chatRoom} />;
+            })}
           </ul>
         </div>
 
-        <div className="flex w-full flex-col items-end border-t-2 p-2">
+        <div className="max-h-1/2 flex w-full flex-col items-end border-t-2 p-2">
           {/* Current Online Users */}
           <h3 className="mt-2 text-xl font-semibold">Current Online Users</h3>
           <ul>
-            <li>
-              <Link href="/users/profile/user" className="hover:underline">
-                User A
-              </Link>
-            </li>
-            <li>
-              <Link href="/users/profile/user" className="hover:underline">
-                User B
-              </Link>
-            </li>
-            <li>
-              <Link href="/users/profile/user" className="hover:underline">
-                User C
-              </Link>
-            </li>
+            {onlineUsers.map((user) => {
+              return <ChatOnlineUser key={user.id} user={user} />;
+            })}
           </ul>
         </div>
       </div>
