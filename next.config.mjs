@@ -20,6 +20,10 @@ const config = {
         protocol: "https",
         hostname: "api.iconify.design",
       },
+      {
+        protocol: "https",
+        hostname: "robohash.org",
+      },
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",

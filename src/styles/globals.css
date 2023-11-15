@@ -4,15 +4,15 @@
 
 @layer components {
   .form-input {
-    @apply caret-primary outline-primary focus-within:outline-primary rounded-md border border-black p-1;
+    @apply rounded-md border border-black p-3 caret-primary outline-primary focus-within:outline-primary;
   }
 }
 
 @layer base {
   li {
-    @apply text-neutral
+    @apply text-neutral;
   }
   p {
-    @apply text-neutral
+    @apply text-neutral;
   }
 }

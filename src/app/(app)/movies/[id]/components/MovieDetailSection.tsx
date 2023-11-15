@@ -36,16 +36,16 @@ export const MovieDetailSection = async ({ movie }: Props) => {
   }
 
   return (
-    <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div className="sm:py-18 mx-auto px-4 py-12 sm:px-6 lg:max-w-7xl lg:px-8">
       {/* Movie */}
       <div className="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
         {/* Movie image */}
         <div className="lg:col-span-3 lg:row-end-1">
-          <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
+          <div className="aspect-h-3 aspect-w-4 flex justify-center overflow-hidden  bg-gray-100">
             <img
               src={movie.poster_url}
               alt="movie-cover-image"
-              className="object-cover object-center"
+              className="rounded-lg object-cover object-center"
             />
           </div>
         </div>
@@ -63,12 +63,14 @@ export const MovieDetailSection = async ({ movie }: Props) => {
               <div className="space-between mt-2 flex flex-wrap gap-2">
                 <MovieDetailBadge text={`${movie.runtime} mins`} />
 
-                {movie.genres.map((genre) => (
-                  <MovieDetailBadge key={genre.genre} text={genre.genre} />
-                ))}
                 <MovieDetailBadge
                   text={format(new Date(movie.release_date), "MM/dd/yyyy")}
                 />
+              </div>
+              <div className="space-between mt-2 flex flex-wrap gap-2">
+                {movie.genres.map((genre) => (
+                  <MovieDetailBadge key={genre.genre} text={genre.genre} />
+                ))}
               </div>
             </div>
 
@@ -82,7 +84,7 @@ export const MovieDetailSection = async ({ movie }: Props) => {
                       className={createClassName(
                         movie.imdb_rating / 2 > rating + 1
                           ? "text-yellow-400"
-                          : "text-gray-500",
+                          : "text-gray-400",
                         "h-5 w-5 flex-shrink-0",
                       )}
                       aria-hidden="true"
@@ -98,7 +100,7 @@ export const MovieDetailSection = async ({ movie }: Props) => {
 
           <p className="mt-6 text-gray-600">{movie.overview}</p>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 text-justify sm:grid-cols-2">
             <WatchLaterButton
               movieId={movie.id}
               isInWatchList={isInWatchList}

@@ -20,7 +20,7 @@ export default async function TrendingSection() {
       <div className="flex flex-row gap-5">
         {trendingMovies.map((movie) => {
           return <>
-            <Link href={`/movies/${movie.id}`}>
+          <Link href={`/movies/${movie.id}`}>
               <Image
                 src={movie.poster_url}
                 width={20}
@@ -31,9 +31,11 @@ export default async function TrendingSection() {
                   height: "auto"
                 }} />
             </Link>
+
           </>;
         })}
-      </div>
+        </div>
+        
     </section>
   );
 }
