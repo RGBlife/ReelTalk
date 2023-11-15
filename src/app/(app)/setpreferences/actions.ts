@@ -67,5 +67,7 @@ export const submitPreferences = async (preferences: Preferences) => {
         imdb_rating: preferences.imdb_rating
       },
     });
-
+    recommendation().catch((error)=> {
+      console.log(error)
+    })
   };
