@@ -9,9 +9,10 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { createClassName } from "~/utils/string-formatters";
 import { StarIcon } from "@heroicons/react/20/solid";
+import { ReviewWithLike } from "./ReviewSection";
 
 type Props = {
-  review: any;
+  review: ReviewWithLike;
   index: number;
 };
 

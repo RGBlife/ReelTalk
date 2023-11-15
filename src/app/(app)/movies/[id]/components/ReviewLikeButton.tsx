@@ -24,7 +24,7 @@ export const ReviewLikeButton = ({
   const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
   const [likeCount, setLikeCount] = useState<number>(initialLikeCount);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (!authUser) return router.push("/auth/login");
 
     setIsLiked((prev) => !prev);
