@@ -22,7 +22,7 @@ type Props = {
 export default function RootLayout(props: Props) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
+      <body className={`font-sans ${inter.variable} overscroll-none`}>
         <Providers>{props.children}</Providers>
       </body>
     </html>

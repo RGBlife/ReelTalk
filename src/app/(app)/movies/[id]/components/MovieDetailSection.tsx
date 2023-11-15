@@ -48,7 +48,7 @@ export const MovieDetailSection = ({ movie }: Props) => {
                 <MovieDetailBadge text={`${movie.runtime} mins`} />
 
                 <MovieDetailBadge
-                  text={format(new Date(movie.release_date), "MM/dd/yyyy")}
+                  text={format(new Date(movie.release_date), "PPP")}
                 />
               </div>
               <div className="space-between mt-2 flex flex-wrap gap-2">

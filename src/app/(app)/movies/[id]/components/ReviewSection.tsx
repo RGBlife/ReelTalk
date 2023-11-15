@@ -67,31 +67,29 @@ export const ReviewSection = async ({ movieId }: Props) => {
   const hasReviews = Boolean(reviewCount);
 
   return (
-    <>
-      <div className="mx-auto w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
-        <div className="-mb-10 px-4">
-          <div className="w-full px-2 lg:w-8/12 xl:w-6/12">
-            {session ? (
-              <ReviewForm movieId={movieId} />
-            ) : (
-              <LoginPrompt actionText="post a review" />
-            )}
-          </div>
-
-          {hasReviews ? (
-            <>
-              <h3 className="text-gray-00 mt-8 text-lg">
-                Customer Reviews ({reviewCount})
-              </h3>
-              <ReviewList reviews={reviews} />{" "}
-            </>
+    <div className="sm:py-18 mx-auto px-4 py-12 sm:px-6 lg:max-w-7xl lg:px-8">
+      <div className="mb-10 px-4">
+        <div className="w-full px-2 lg:w-8/12 xl:w-6/12">
+          {session ? (
+            <ReviewForm movieId={movieId} />
           ) : (
-            <h3 className="text-gray-00 mt-8 text-lg">
-              There are no reviews yet
-            </h3>
+            <LoginPrompt actionText="post a review" />
           )}
         </div>
+
+        {hasReviews ? (
+          <>
+            <h3 className="text-gray-00 mt-8 text-lg">
+              Customer Reviews ({reviewCount})
+            </h3>
+            <ReviewList reviews={reviews} />{" "}
+          </>
+        ) : (
+          <h3 className="text-gray-00 mt-8 text-lg">
+            There are no reviews yet
+          </h3>
+        )}
       </div>
-    </>
+    </div>
   );
 };
