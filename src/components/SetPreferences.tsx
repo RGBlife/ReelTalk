@@ -147,13 +147,13 @@ const handleDateChange = (event: React.ChangeEvent<HTMLInputElement> | React.Cha
 
 return (
     <section className = 'flex flex-col text-center items-center'>
-   <h2 className='text-4xl mt-4 mb-6'>Set your preferences</h2>
-   <p className='text-xl mb-4'>Adjust the slider to reflect your preference for each movie genre. Move it to the right for genres you love and to the left for those you&apos;re not a fan of. Your input will help us tailor recommendations to your taste!</p>
+   <h2 className='text-4xl mt-4 mb-6 text-black'>Set your preferences</h2>
+   <p className='text-xl mb-4 text-black'>Adjust the slider to reflect your preference for each movie genre. Move it to the right for genres you love and to the left for those you&apos;re not a fan of. Your input will help us tailor recommendations to your taste!</p>
     {genres.map((genre) => {
       const spacedGenre = genre.name.replace('_', ' ')
         return (
             <>
-             <p className='capitalize mb-2 mt-6'>{spacedGenre} : {(preferences[genre.name as keyof typeof preferences])}/10 </p>
+             <p className='capitalize mb-2 mt-6 text-black'>{spacedGenre} : {(preferences[genre.name as keyof typeof preferences])}/10 </p>
              <input type="range" min = "1" max = "10" id = {genre.name} className='range w-1/2 range-primary' value = {(preferences[genre.name as keyof typeof preferences])} onChange = {handleNumberChange} step="1"/>
             </>
             )
