@@ -1,39 +1,34 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { likeReview, unlikeReview, updateReviewLikeCount } from "../actions";
+import { likeReview, unlikeReview } from "../actions";
 import { useAuthUser } from "~/hooks/useAuthUser";
 import { useRouter } from "next/navigation";
 
 type Props = {
   id: number;
-  vote_count: number;
-  likes: any;
+  isLiked: boolean;
+  likeCount: number;
 };
 
 export const ReviewLikeButton = ({
   id,
-  vote_count,
-  likes, // is_liked: initialIsLiked,
-} // once we have the Like table (which contains the user_id and review_id), when we fetch the reviews we will ask postgres to add a custom is_liked (boolean) property based on whether the requesting user has liked each review or not. here we are renaming is_liked to initialIsLiked which will be then the useState initial value
-: Props) => {
+  isLiked: initialIsLiked,
+  likeCount: initialLikeCount,
+}: Props) => {
   const authUser = useAuthUser();
   const router = useRouter();
 
   const [isPending, startTransition] = useTransition();
 
-  const initialIsLiked = likes.some(
-    (like: any) => like.user_id === Number(authUser?.id),
-  );
-
-  console.log(initialIsLiked);
-
-  const [isLiked, setIsLiked] = useState(initialIsLiked);
+  const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
+  const [likeCount, setLikeCount] = useState<number>(initialLikeCount);
 
   const handleClick = async () => {
     if (!authUser) return router.push("/auth/login");
 
-    setIsLiked((prev: boolean) => !prev);
+    setIsLiked((prev) => !prev);
+    setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
 
     const request = isLiked ? unlikeReview : likeReview;
 
@@ -41,7 +36,8 @@ export const ReviewLikeButton = ({
       try {
         await request(Number(authUser.id), id);
       } catch (err) {
-        setIsLiked((prev: boolean) => !prev);
+        setIsLiked((prev) => !prev);
+        setLikeCount((prev) => (isLiked ? prev + 1 : prev - 1));
       }
     });
   };
@@ -67,7 +63,7 @@ export const ReviewLikeButton = ({
         </button>
       </span>
       <p className="transform text-gray-500 transition duration-500 group-hover:translate-x-1">
-        {isLiked ? vote_count + 1 : vote_count}
+        {likeCount}
       </p>
     </div>
   );

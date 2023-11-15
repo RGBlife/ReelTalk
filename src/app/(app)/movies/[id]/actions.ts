@@ -3,13 +3,6 @@
 import { revalidatePath } from "next/cache";
 import { db } from "~/server/db";
 
-export const updateReviewLikeCount = async (id: number, incVal: number) => {
-  await db.review.update({
-    where: { id },
-    data: { vote_count: { increment: incVal } },
-  });
-};
-
 export const likeReview = async (userId: number, reviewId: number) => {
   await db.reviewLikes.create({
     data: { user_id: userId, review_id: reviewId },

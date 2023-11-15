@@ -3,8 +3,7 @@
 import { HideableReviewBody } from "./HideableReviewBody";
 import { ReviewDeleteButton } from "./ReviewDeleteButton";
 import { genRelativeDateStr } from "~/utils/date-formatters";
-import Image from "next/image";
-import type { ReviewSectionReviews } from "./ReviewSection";
+
 import { ReviewLikeButton } from "./ReviewLikeButton";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
@@ -12,7 +11,7 @@ import { createClassName } from "~/utils/string-formatters";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 type Props = {
-  review: ReviewSectionReviews;
+  review: any;
   index: number;
 };
 
@@ -76,8 +75,8 @@ export const Review = ({ review, index }: Props) => {
         <div className="mt-8 flex justify-between">
           <ReviewLikeButton
             id={review.id}
-            vote_count={review.vote_count}
-            likes={review.likes}
+            isLiked={review.isLiked}
+            likeCount={review.likeCount}
           />
           {isAuthUsers && <ReviewDeleteButton id={review.id} />}
         </div>
