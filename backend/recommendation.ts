@@ -39,7 +39,7 @@ async function recommendation() {
       genres.forEach((moviegenre: moviegenre) => {
           if (movie.genres.some((genre) => genre.genre === moviegenre.genre)){
             if (moviegenre.genre in userPreference)
-              newScore.score += (userPreference[moviegenre.genre as keyof typeof userPreference] as number)/genres.length
+              newScore.score += (userPreference[moviegenre.genre as keyof typeof userPreference] as number)/movie.genres.length
           }
       });
       if (movie.imdb_rating >= userPreference.imdb_rating) {
@@ -57,9 +57,10 @@ async function recommendation() {
         scoreArray.push(newScore);
       }
     })
+    console.log(scoreArray, "<------------------------------------scoreArray");
   });   
       
-  console.log(scoreArray, "scoreArray");
+ 
   scoreArray.map(async (rec) => {
     let recco: Prisma.UserCreateInput;
     const reccomendations = await db.recommendation.create({ data: rec });

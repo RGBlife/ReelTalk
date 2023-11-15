@@ -154,7 +154,7 @@ return (
         return (
             <>
              <p className='capitalize mb-2 mt-6 text-black'>{spacedGenre} : {(preferences[genre.name as keyof typeof preferences])}/10 </p>
-             <input type="range" min = "1" max = "10" id = {genre.name} className='range w-1/2 range-primary' value = {(preferences[genre.name as keyof typeof preferences])} onChange = {handleNumberChange} step="1"/>
+             <input type="range" min = "0" max = "10" id = {genre.name} className='range w-1/2 range-primary' value = {(preferences[genre.name as keyof typeof preferences])} onChange = {handleNumberChange} step="1"/>
             </>
             )
     })}
