@@ -18,7 +18,7 @@ type Props = {
   };
 };
 
-export const MovieDetailSection = async ({ movie }: Props) => {
+export const MovieDetailSection = ({ movie }: Props) => {
   return (
     <div className="sm:py-18 mx-auto px-4 py-12 sm:px-6 lg:max-w-7xl lg:px-8">
       {/* Movie */}
