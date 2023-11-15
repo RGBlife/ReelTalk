@@ -1,8 +1,8 @@
 import { Review } from "./Review";
-import type { ReviewSectionReviews } from "./ReviewSection";
+import type { ReviewWithLike } from "./ReviewSection";
 
 type Props = {
-  reviews: ReviewSectionReviews[];
+  reviews: ReviewWithLike[];
 };
 
 export const ReviewList = ({ reviews }: Props) => {
