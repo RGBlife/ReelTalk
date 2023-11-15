@@ -27,11 +27,10 @@ export const deleteReview = async (id: number) => {
 };
 
 export const addMovieToWatchList = async (movieId: number, userId: number) => {
-  await db.moviesToWatch.create({
+  await db.userToMovieWatch.create({
     data: {
       movie_id: movieId,
       user_id: userId,
-      has_watched: false,
     },
   });
 
@@ -42,7 +41,7 @@ export const removeMovieFromWatchList = async (
   movieId: number,
   userId: number,
 ) => {
-  await db.moviesToWatch.delete({
+  await db.userToMovieWatch.delete({
     where: {
       movie_id_user_id: {
         movie_id: movieId,
