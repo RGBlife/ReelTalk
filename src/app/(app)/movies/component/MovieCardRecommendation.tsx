@@ -5,14 +5,17 @@ import Link from "next/link";
 import { FaStar } from "react-icons/fa6";
 import { roundRating } from "~/app/utils/roundRating";
 
-// type Props = {
-//   movie: Movie;
-// };
+type Props = {
+  movie: {
+    movie_recc: Movie;
+    score: number;
+  };
+};
 
-export function MovieCardRecommendation({ movie }) {
+export function MovieCardRecommendation({ movie }: Props) {
   return (
     <article className="bg-primary max-w-xs overflow-hidden rounded shadow-lg ">
-      <Link href={`/movies/${movie.movie_recc.movie_id}`}>
+      <Link href={`/movies/${movie.movie_recc.id}`}>
         <Image
           src={movie.movie_recc.poster_url}
           alt={movie.movie_recc.title}

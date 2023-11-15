@@ -5,7 +5,10 @@ import { db } from "~/server/db";
 
 type Props = {
   recommendations: Recommendation[];
-  movies: Movie[];
+};
+
+type MovieWithScore = Movie & {
+  score: number;
 };
 
 export default function RecommendationsByUser({ recommendations }: Props) {
@@ -14,18 +17,21 @@ export default function RecommendationsByUser({ recommendations }: Props) {
     const result = await db.movie.findUnique({
       where: { id: recc.movie_id },
     });
-    return { movie_recc: result, score: recc.score };
+    return result ? { movie_recc: result, score: recc.score } : null;
   });
 
   return (
     <div className="container mx-auto px-4">
       <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
-        {movies.map(async (movie) => {
-          return (
-            <>
-              <MovieCardRecommendation movie={await movie} />
-            </>
-          );
+        {movies.map(async (moviePromise) => {
+          const movie = await moviePromise;
+          if (movie) {
+            return (
+              <>
+                <MovieCardRecommendation movie={movie} />
+              </>
+            );
+          }
         })}
       </ul>
     </div>
