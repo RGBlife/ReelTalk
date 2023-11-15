@@ -148,7 +148,7 @@ const handleDateChange = (event: React.ChangeEvent<HTMLInputElement> | React.Cha
 return (
     <section className = 'flex flex-col text-center items-center'>
    <h2 className='text-4xl mt-4 mb-6'>Set your preferences</h2>
-   <p className='text-xl mb-4'>Adjust the slider to reflect your preference for each movie genre. Move it to the right for genres you love and to the left for those you're not a fan of. Your input will help us tailor recommendations to your taste!</p>
+   <p className='text-xl mb-4'>Adjust the slider to reflect your preference for each movie genre. Move it to the right for genres you love and to the left for those you&apos;re not a fan of. Your input will help us tailor recommendations to your taste!</p>
     {genres.map((genre) => {
       const spacedGenre = genre.name.replace('_', ' ')
         return (
