@@ -4,14 +4,14 @@ import { db } from "~/server/db";
 import { convertMinsToHoursStr } from "~/utils/date-formatters";
 
 export const getMoviesToWatch = async (userId: number) => {
-  const mtws = await db.moviesToWatch.findMany({
-    where: { user_id: userId, has_watched: false },
+  const usersToMovies = await db.userToMovieWatch.findMany({
+    where: { user_id: userId },
     include: {
       movie: true,
     },
   });
 
-  return mtws.map((mtw) => mtw.movie);
+  return usersToMovies.map((userToMovie) => userToMovie.movie);
 };
 
 type Props = {

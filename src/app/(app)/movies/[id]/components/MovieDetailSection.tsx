@@ -36,16 +36,16 @@ export const MovieDetailSection = async ({ movie }: Props) => {
   }
 
   return (
-    <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div className="sm:py-18 mx-auto px-4 py-12 sm:px-6 lg:max-w-7xl lg:px-8">
       {/* Movie */}
       <div className="lg:grid lg:grid-cols-7 lg:grid-rows-1 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16">
         {/* Movie image */}
         <div className="lg:col-span-3 lg:row-end-1">
-          <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
+          <div className="aspect-h-3 aspect-w-4 flex justify-center overflow-hidden  bg-gray-100">
             <img
               src={movie.poster_url}
               alt="movie-cover-image"
-              className="object-cover object-center"
+              className="rounded-lg object-cover object-center"
             />
           </div>
         </div>

@@ -1,38 +1,45 @@
 "use client";
 
-import { useState } from "react";
-import { updateReviewLikeCount } from "../actions";
+import { useState, useTransition } from "react";
+import { likeReview, unlikeReview } from "../actions";
 import { useAuthUser } from "~/hooks/useAuthUser";
 import { useRouter } from "next/navigation";
 
 type Props = {
   id: number;
-  vote_count: number;
-  // is_liked: boolean;
+  isLiked: boolean;
+  likeCount: number;
 };
 
 export const ReviewLikeButton = ({
   id,
-  vote_count, // is_liked: initialIsLiked,
-  // once we have the Like table (which contains the user_id and review_id), when we fetch the reviews we will ask postgres to add a custom is_liked (boolean) property based on whether the requesting user has liked each review or not. here we are renaming is_liked to initialIsLiked which will be then the useState initial value
+  isLiked: initialIsLiked,
+  likeCount: initialLikeCount,
 }: Props) => {
   const authUser = useAuthUser();
   const router = useRouter();
 
-  const [isLiked, setIsLiked] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
-  const handleClick = async () => {
+  const [isLiked, setIsLiked] = useState<boolean>(initialIsLiked);
+  const [likeCount, setLikeCount] = useState<number>(initialLikeCount);
+
+  const handleClick = () => {
     if (!authUser) return router.push("/auth/login");
 
     setIsLiked((prev) => !prev);
+    setLikeCount((prev) => (isLiked ? prev - 1 : prev + 1));
 
-    const incVal = isLiked ? -1 : 1;
+    const request = isLiked ? unlikeReview : likeReview;
 
-    try {
-      await updateReviewLikeCount(id, incVal);
-    } catch (err) {
-      setIsLiked((prev) => !prev);
-    }
+    startTransition(async () => {
+      try {
+        await request(Number(authUser.id), id);
+      } catch (err) {
+        setIsLiked((prev) => !prev);
+        setLikeCount((prev) => (isLiked ? prev + 1 : prev - 1));
+      }
+    });
   };
 
   return (
@@ -56,7 +63,7 @@ export const ReviewLikeButton = ({
         </button>
       </span>
       <p className="transform text-gray-500 transition duration-500 group-hover:translate-x-1">
-        {isLiked ? vote_count + 1 : vote_count}
+        {likeCount}
       </p>
     </div>
   );

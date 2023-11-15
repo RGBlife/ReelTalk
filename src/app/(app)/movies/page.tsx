@@ -10,5 +10,9 @@ export default async function MoviesPage({ searchParams }: Props) {
 
   const searchParamsObject = { id: searchParams };
 
-  return <MoviesScreen movies={{ movies }} searchParams={searchParamsObject} />;
+  return (
+    <>
+      <MoviesScreen movies={{ movies }} searchParams={searchParamsObject} />;
+    </>
+  );
 }
