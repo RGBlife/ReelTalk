@@ -1,5 +1,4 @@
-import type { Recommendation, Movie } from "@prisma/client";
-import type { Session } from "next-auth";
+import type { Recommendation } from "@prisma/client";
 import { MovieCardRecommendation } from "../../component/MovieCardRecommendation";
 import { db } from "~/server/db";
 
@@ -7,9 +6,9 @@ type Props = {
   recommendations: Recommendation[];
 };
 
-type MovieWithScore = Movie & {
-  score: number;
-};
+// type MovieWithScore = Movie & {
+//   score: number;
+// };
 
 export default function RecommendationsByUser({ recommendations }: Props) {
   let movies = [];
