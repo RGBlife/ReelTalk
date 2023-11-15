@@ -8,7 +8,7 @@ import { getServerAuthSession } from "~/server/auth"
 export const fetchPreferencesAction = async () => {
 
     const session = await getServerAuthSession()
-    const result = await db.preference.findMany({
+    const result = await db.preference.findUniqueOrThrow({
     where: {user_id: Number(session?.user.id)},
     select: {
         action: true,

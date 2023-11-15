@@ -118,8 +118,8 @@ const [preferences, setPreferences] = useState(preferencesStartingObject)
 
 const setAllPreferences = async () => {
   const result = await fetchPreferencesAction()
-  if (result[0]){
-    setPreferences(result[0])
+  if (result){
+    setPreferences(result)
   }
 };
 
