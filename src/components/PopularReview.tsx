@@ -23,8 +23,8 @@ export default async function PopularReview() {
 
   return (
     <section>
-      <h3>Most Popular Reviews</h3>
-      <div className="flex flex-row gap-5">
+      <h3 className="m-2 ml-4 text-2xl font-bold text-gray-800 md:text-5xl lg:text-2xl">Most Popular Reviews</h3>
+      <div className="ml-4 grid grid-cols-4 gap-4">
         {reviews.map((review) => {
           return (
             <>
