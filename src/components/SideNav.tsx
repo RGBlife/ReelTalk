@@ -11,7 +11,7 @@ export default async function SideNav() {
   const session = await getServerAuthSession();
 
   return (
-    <nav className="sticky left-0 top-0 z-50 flex h-[100vh] flex-col justify-between border-r-2 border-solid border-black bg-gradient-to-b from-gray-900 to-gray-950 px-2 py-4 text-white">
+    <nav className="sticky z-[100] left-0 top-0 flex h-[100vh] flex-col justify-between bg-gradient-to-b from-gray-900 to-gray-950 px-2 py-4 text-white">
       <ul className=" m-2 flex  flex-col items-start gap-5 whitespace-nowrap">
         <Link className="p-2 hover:rounded-md hover:bg-[#b895f7]" href={`/`}>
           <li className="flex flex-row items-center gap-2">
