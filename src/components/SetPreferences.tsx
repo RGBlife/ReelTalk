@@ -124,7 +124,12 @@ const setAllPreferences = async () => {
 };
 
 useEffect(() => {
-  setAllPreferences()
+
+    setAllPreferences().catch(()=> {
+      console.log("error fetching preferences")
+    })
+
+  
 }, [])
 
 
