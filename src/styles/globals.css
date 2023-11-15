@@ -4,7 +4,7 @@
 
 @layer components {
   .form-input {
-    @apply caret-primary outline-primary focus-within:outline-primary rounded-md border border-black p-3;
+    @apply caret-primary outline-primary focus-within:outline-primary rounded-md border border-black p-1;
   }
 }
 

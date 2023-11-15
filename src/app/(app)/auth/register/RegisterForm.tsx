@@ -94,7 +94,7 @@ export function RegisterForm() {
       <form
         action="POST"
         onSubmit={handleSubmit(onSubmit)}
-        className="m-4 flex flex-col gap-2 rounded-lg border border-primary p-10 shadow-[3px_1px_38px_-15px] shadow-primary"
+        className="m-1 flex flex-col gap-2 rounded-lg border border-primary p-5 shadow-[3px_1px_38px_-15px] shadow-primary"
       >
         {error && (
           <p
@@ -162,7 +162,7 @@ export function RegisterForm() {
         )}
         <button
           type="submit"
-          className="mt-3 rounded-md bg-primary p-4 text-black shadow-sm shadow-black hover:bg-primary hover:opacity-80 hover:shadow-md hover:shadow-black"
+          className="mt-3 rounded-md bg-primary p-2 text-black shadow-sm shadow-black hover:bg-primary hover:opacity-80 hover:shadow-md hover:shadow-black"
         >
           Register
         </button>
