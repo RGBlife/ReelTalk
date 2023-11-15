@@ -43,13 +43,13 @@ model User {
     is_watch_list_public   Boolean            @default(false)
     is_watched_list_public Boolean            @default(false)
     preferences            Preference?
-    to_watch               UserToMovieWatch[]
     messages               Message[]
     reviews                Review[]
     chatrooms              ChatRoom[]
     recommended            Recommendation[]
     likes                  ReviewLikes[]
-    UserToMovieSeen        UserToMovieSeen[]
+    moviesToWatch          UserToMovieWatch[]
+    moviesSeen             UserToMovieSeen[]
 }
 
 model ReviewLikes {
