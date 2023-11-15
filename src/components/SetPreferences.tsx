@@ -3,7 +3,7 @@
 
 import { preferencesSeedData } from 'prisma/seed-data/preferences'
 import React, { MouseEvent, MouseEventHandler, useState, useEffect } from 'react'
-import { submitPreferences } from '~/app/(app)/SetUserPreferencesTest/actions'
+import { submitPreferences } from '~/app/(app)/setpreferences/actions'
 import { fetchPreferencesAction } from '~/app/utils/api/fetchPreferences'
 import { db } from '~/server/db'
 
@@ -146,44 +146,48 @@ const handleDateChange = (event: React.ChangeEvent<HTMLInputElement> | React.Cha
 }
 
 return (
-    <section className = 'flex flex-col text-center'>
-   
+    <section className = 'flex flex-col text-center items-center'>
+   <h2 className='text-4xl mt-4 mb-6'>Set your preferences</h2>
+   <p className='text-xl mb-4'>Adjust the slider to reflect your preference for each movie genre. Move it to the right for genres you love and to the left for those you're not a fan of. Your input will help us tailor recommendations to your taste!</p>
     {genres.map((genre) => {
+      const spacedGenre = genre.name.replace('_', ' ')
         return (
             <>
-             <p className='capitalize'>{genre.name}</p>
-             <input type="range" min = "1" max = "10" id = {genre.name} value = {(preferences[genre.name as keyof typeof preferences])} onChange = {handleNumberChange}/>
+             <p className='capitalize mb-2 mt-6'>{spacedGenre} : {(preferences[genre.name as keyof typeof preferences])}/10 </p>
+             <input type="range" min = "1" max = "10" id = {genre.name} className='range w-1/2 range-primary' value = {(preferences[genre.name as keyof typeof preferences])} onChange = {handleNumberChange} step="1"/>
             </>
             )
     })}
 
-<label htmlFor="date-select">I prefer movies newer than: </label>
-
-<select value = {preferences.release_year} name="dates" id="release_year" onChange={handleDateChange}>
-  <option value="1900-01-01">--Please choose an option--</option>
-  <option value="1970-01-01">1970</option>
-  <option value="1980-01-01">1980</option>
-  <option value="1990-01-01">1990</option>
-  <option value="2000-01-01">2000</option>
-  <option value="2010-01-01">2010</option>
-  <option value="2020-01-01">2020</option>
-  <option value="1900-01-01">Show me everything!</option>
+<div className="mt-6">
+<label htmlFor="date-select" className='mb-2 mt-6'>I prefer movies newer than: </label>
+<select value = {preferences.release_year} className='w-1/6 bg-primary text-black rounded-xl p-1' name="dates" id="release_year" onChange={handleDateChange}>
+  <option value="1900-01-01" className='text-center'>--Please choose an option--</option>
+  <option value="1970-01-01" className='text-center'>1970</option>
+  <option value="1980-01-01" className='text-center'>1980</option>
+  <option value="1990-01-01" className='text-center'>1990</option>
+  <option value="2000-01-01" className='text-center'>2000</option>
+  <option value="2010-01-01" className='text-center'>2010</option>
+  <option value="2020-01-01" className='text-center'>2020</option>
+  <option value="1900-01-01" className='text-center'>Show me everything!</option>
 </select>
+</div>
 
-<label htmlFor="rating-select">I prefer movies with an imdb rating greater than: </label>
-
-<select value = {preferences.imdb_rating} name="ratings" id="imdb_rating" onChange={handleNumberChange}>
-  <option value="">--Please choose an option--</option>
-  <option value="5">5</option>
-  <option value="6">6</option>
-  <option value="7">7</option>
-  <option value="8">8</option>
-  <option value="9">9</option>
-  <option value="0">Show me everything!</option>
+<div className="mt-6 ">
+<label htmlFor="rating-select" className='mb-2 mt-6 '>I prefer movies with an imdb rating greater than: </label>
+<select value = {preferences.imdb_rating} className='w-1/6 bg-primary text-black rounded-xl p-1' name="ratings" id="imdb_rating" onChange={handleNumberChange}>
+  <option value="" className='text-center'>--Please choose an option--</option>
+  <option value="5" className='text-center'>5</option>
+  <option value="6" className='text-center'>6</option>
+  <option value="7" className='text-center'>7</option>
+  <option value="8" className='text-center'>8</option>
+  <option value="9" className='text-center'>9</option>
+  <option value="0" className='text-center'>Show me everything!</option>
 </select>
+</div>
 
 
-    <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(preferences)}>Save Changes</button>
+    <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(preferences)} className='w-1/6 bg-primary text-black mb-2 mt-6 rounded-2xl border-2 p-1 border-black text-xl'>Save Preferences</button>
 
      </section>
 
