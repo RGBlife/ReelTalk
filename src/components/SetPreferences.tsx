@@ -1,8 +1,11 @@
 
 "use client"
 
-import React, { MouseEvent, MouseEventHandler, useState } from 'react'
+import { preferencesSeedData } from 'prisma/seed-data/preferences'
+import React, { MouseEvent, MouseEventHandler, useState, useEffect } from 'react'
 import { submitPreferences } from '~/app/(app)/SetUserPreferencesTest/actions'
+import { fetchPreferencesAction } from '~/app/utils/api/fetchPreferences'
+import { db } from '~/server/db'
 
 const genres = [
     {
@@ -84,7 +87,8 @@ const genres = [
   ]
 
 
-const genrePreferencesStartingObject = {
+
+const preferencesStartingObject = {
   action: 0,
   adventure: 0,
   animation: 0,
@@ -104,45 +108,53 @@ const genrePreferencesStartingObject = {
   thriller: 0,
   war: 0,
   western: 0,
+  release_year:"1900-01-01",
+  imdb_rating:0
 }
 
 const SetUserPreferences = () => {
 
-const [genrePreferences, setGenrePreferences] = useState(genrePreferencesStartingObject) 
-const [datePreference, setDatePreference] = useState("1900-01-01")   
-const [ratingPreference, setRatingPreference] = useState(0)  
+const [preferences, setPreferences] = useState(preferencesStartingObject) 
+
+const setAllPreferences = async () => {
+  const result = await fetchPreferencesAction()
+  if (result[0]){
+    setPreferences(result[0])
+  }
+};
+
+useEffect(() => {
+  setAllPreferences()
+}, [])
 
 
-const handleSliderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newGenrePreferences = {...genrePreferences}
-    newGenrePreferences[event.target.id as keyof typeof newGenrePreferences] = Number(event.target.value)
-    setGenrePreferences(newGenrePreferences)
+const handleNumberChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+    setPreferences((prev)=> {
+      return {...prev,[event.target.id]: Number(event.target.value) }
+    })
 }
 
-const adjustRatingSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setRatingPreference(Number(event.target.value)) 
+const handleDateChange = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+  setPreferences((prev)=> {
+    return {...prev,[event.target.id]: event.target.value}
+  })
 }
-
-const adjustDateSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setDatePreference(event.target.value)
-}
-
 
 return (
-    <section className = 'flex flex-col'>
+    <section className = 'flex flex-col text-center'>
    
     {genres.map((genre) => {
         return (
             <>
-             <>{genre.name}</>
-             <input type="range" min = "1" max = "10" id = {genre.name} value = {genrePreferences[genre.name as keyof typeof genrePreferences]} onChange = {handleSliderChange}/>
+             <p className='capitalize'>{genre.name}</p>
+             <input type="range" min = "1" max = "10" id = {genre.name} value = {(preferences[genre.name as keyof typeof preferences])} onChange = {handleNumberChange}/>
             </>
             )
     })}
 
 <label htmlFor="date-select">I prefer movies newer than: </label>
 
-<select value = {datePreference} name="dates" id="date-select" onChange={adjustDateSelect}>
+<select value = {preferences.release_year} name="dates" id="release_year" onChange={handleDateChange}>
   <option value="1900-01-01">--Please choose an option--</option>
   <option value="1970-01-01">1970</option>
   <option value="1980-01-01">1980</option>
@@ -155,7 +167,7 @@ return (
 
 <label htmlFor="rating-select">I prefer movies with an imdb rating greater than: </label>
 
-<select value = {ratingPreference} name="ratings" id="rating-select" onChange={adjustRatingSelect}>
+<select value = {preferences.imdb_rating} name="ratings" id="imdb_rating" onChange={handleNumberChange}>
   <option value="">--Please choose an option--</option>
   <option value="5">5</option>
   <option value="6">6</option>
@@ -166,7 +178,7 @@ return (
 </select>
 
 
-    <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(genrePreferences, datePreference, ratingPreference)}>Save Changes</button>
+    <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(preferences)}>Save Changes</button>
 
      </section>
 

@@ -4,8 +4,9 @@
 import { db } from "~/server/db";
 import { Genre, Prisma } from "@prisma/client";
 import { Preference } from "@prisma/client";
+import { getServerAuthSession } from "~/server/auth";
 
-type GenrePreferences = {
+type Preferences = {
     action: number;
     adventure: number;
     animation: number;
@@ -25,46 +26,42 @@ type GenrePreferences = {
     thriller: number;
     war: number;
     western: number;
+    release_year: string;
+    imdb_rating: number
 } 
 
 
 
-export const submitPreferences = async (genrePreferences: GenrePreferences, datePreference: string, ratingPreference: number) => {
+export const submitPreferences = async (preferences: Preferences) => {
 
-   
-
-console.log(genrePreferences)
-console.log(datePreference)
-console.log(ratingPreference)
-
+  const session = await getServerAuthSession()
 
     const createdPreferences: Preference = await db.preference.update({
       where: {
-        user_id: 15
+        user_id: Number(session?.user.id)
       },
-      data: {
-        user_id: 15,   //hardcoded   
-        action: genrePreferences.action,
-        adventure: genrePreferences.adventure,
-        animation: genrePreferences.animation       ,
-        comedy: genrePreferences.comedy ,
-        crime: genrePreferences.crime,
-        documentary: genrePreferences.documentary     ,
-        drama: genrePreferences.drama,
-        family:genrePreferences.family ,
-        fantasy: genrePreferences.fantasy,
-        history: genrePreferences.history,
-        horror: genrePreferences.horror ,
-        music: genrePreferences.music,
-        mystery: genrePreferences.mystery,
-        romance: genrePreferences.romance,
-        science_fiction: genrePreferences.science_fiction ,
-        tv_movie: genrePreferences.tv_movie        ,
-        thriller: genrePreferences.thriller        ,
-        war: genrePreferences.war  ,
-        western: genrePreferences.western,
-        release_year: datePreference    ,
-        imdb_rating: ratingPreference
+      data: {  
+        action: preferences.action,
+        adventure: preferences.adventure,
+        animation: preferences.animation       ,
+        comedy: preferences.comedy ,
+        crime: preferences.crime,
+        documentary: preferences.documentary     ,
+        drama: preferences.drama,
+        family:preferences.family ,
+        fantasy: preferences.fantasy,
+        history: preferences.history,
+        horror: preferences.horror ,
+        music: preferences.music,
+        mystery: preferences.mystery,
+        romance: preferences.romance,
+        science_fiction: preferences.science_fiction ,
+        tv_movie: preferences.tv_movie        ,
+        thriller: preferences.thriller        ,
+        war: preferences.war  ,
+        western: preferences.western,
+        release_year: preferences.release_year    ,
+        imdb_rating: preferences.imdb_rating
       },
     });
 
