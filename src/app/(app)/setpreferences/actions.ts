@@ -5,6 +5,7 @@ import { db } from "~/server/db";
 import { Genre, Prisma } from "@prisma/client";
 import { Preference } from "@prisma/client";
 import { getServerAuthSession } from "~/server/auth";
+import recommendation from "backend/recommendation";
 
 type Preferences = {
     action: number;
@@ -33,6 +34,8 @@ type Preferences = {
 
 
 export const submitPreferences = async (preferences: Preferences) => {
+
+  console.log(preferences)
 
   const session = await getServerAuthSession()
 
@@ -64,5 +67,7 @@ export const submitPreferences = async (preferences: Preferences) => {
         imdb_rating: preferences.imdb_rating
       },
     });
-
+    recommendation().catch((error)=> {
+      console.log(error)
+    })
   };
