@@ -3,7 +3,7 @@
 
 import { preferencesSeedData } from 'prisma/seed-data/preferences'
 import React, { MouseEvent, MouseEventHandler, useState, useEffect } from 'react'
-import { submitPreferences } from '~/app/(app)/setpreferences/actions'
+import { updatePreferences } from '~/app/(app)/setpreferences/actions'
 import { fetchPreferencesAction } from '~/app/utils/api/fetchPreferences'
 import { db } from '~/server/db'
 
@@ -115,6 +115,7 @@ const preferencesStartingObject = {
 const SetUserPreferences = () => {
 
 const [preferences, setPreferences] = useState(preferencesStartingObject) 
+const [updated, setUpdated] = useState(false)
 
 const setAllPreferences = async () => {
   const result = await fetchPreferencesAction()
@@ -143,6 +144,36 @@ const handleDateChange = (event: React.ChangeEvent<HTMLInputElement> | React.Cha
   setPreferences((prev)=> {
     return {...prev,[event.target.id]: event.target.value}
   })
+}
+
+const submitPreferences = (preferences : {
+  action: number,
+  adventure: number,
+  animation: number,
+  comedy: number,
+  crime: number,
+  documentary: number,
+  drama: number,
+  family: number,
+  fantasy: number,
+  history: number,
+  horror: number,
+  music: number,
+  mystery: number,
+  romance: number,
+  science_fiction: number,
+  tv_movie: number,
+  thriller: number,
+  war: number,
+  western: number,
+  release_year:string,
+  imdb_rating:number}) => {
+  setUpdated(true)
+  updatePreferences(preferences).catch((error) => {
+    console.log(error)
+  }
+
+  )
 }
 
 return (
@@ -187,7 +218,7 @@ return (
 </div>
 
 
-    <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(preferences)} className='w-1/6 bg-primary text-black mb-2 mt-6 rounded-2xl border-2 p-1 border-black text-xl'>Save Preferences</button>
+    {updated ? <button className='w-1/6 bg-[#F8F8F9] text-primary  mb-2 mt-6 rounded-2xl border-2 p-1 border-[#f8f8f9]  text-xl disabled'>Updated</button> : <button onClick = {(e: MouseEvent<HTMLButtonElement>) => submitPreferences(preferences)} className='w-1/6 bg-primary text-white mb-2 mt-6 rounded-2xl border-2 p-1 border-[#f8f8f9] text-xl hover:bg-primary-focus'>Save Preferences</button>}
 
      </section>
 

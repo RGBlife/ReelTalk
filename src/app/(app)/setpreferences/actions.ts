@@ -28,8 +28,11 @@ type Preferences = {
   imdb_rating: number;
 };
 
-export const submitPreferences = async (preferences: Preferences) => {
-  const session = await getServerAuthSession();
+export const updatePreferences = async (preferences: Preferences) => {
+
+  console.log(preferences)
+
+  const session = await getServerAuthSession()
 
   await db.preference.upsert({
     where: {
