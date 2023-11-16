@@ -16,7 +16,13 @@ export default async function RecentReview() {
           avatar_url: true,
         },
       },
+      movie: {
+        select: {
+          title: true,
+        },
+      },
     },
+
     take: 9,
   });
 
