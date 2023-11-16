@@ -169,7 +169,11 @@ const submitPreferences = (preferences : {
   release_year:string,
   imdb_rating:number}) => {
   setUpdated(true)
-  updatePreferences(preferences)
+  updatePreferences(preferences).catch((error) => {
+    console.log(error)
+  }
+
+  )
 }
 
 return (
