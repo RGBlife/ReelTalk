@@ -79,6 +79,9 @@ const SeenList = () => {
           ))}
         </div>
       </Modal>
+      <Link href={"/setpreferences"}>
+        <button className="btn btn-outline">Set Preferences</button>
+      </Link>
     </>
   );
 };
