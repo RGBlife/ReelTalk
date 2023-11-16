@@ -61,7 +61,7 @@ export const MovieDetailSection = ({ movie }: Props) => {
             <div>
               <h3 className="sr-only">Reviews</h3>
               <div className="flex items-center">
-                {[0, 1, 2, 3, 4].map((rating) => {
+                {/* {[0, 1, 2, 3, 4].map((rating) => {
                   return (
                     <StarIcon
                       key={rating}
@@ -74,10 +74,10 @@ export const MovieDetailSection = ({ movie }: Props) => {
                       aria-hidden="true"
                     />
                   );
-                })}
+                })} */}
               </div>
               <p className="mt-2 text-sm text-gray-500">
-                {(movie.imdb_rating / 2).toFixed(1)} out of 5 stars
+                {movie.imdb_rating.toFixed(1)} IMDb
               </p>
             </div>
           </div>
