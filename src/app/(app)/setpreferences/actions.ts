@@ -33,7 +33,7 @@ type Preferences = {
 
 
 
-export const submitPreferences = async (preferences: Preferences) => {
+export const updatePreferences = async (preferences: Preferences) => {
 
   console.log(preferences)
 
