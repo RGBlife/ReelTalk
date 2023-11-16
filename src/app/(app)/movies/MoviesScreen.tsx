@@ -7,17 +7,12 @@ import { fetchMoviesAction } from "./component/fetchMoviesAction";
 import { MovieCard } from "./component/MovieCard";
 
 type Props = {
+  searchParams: { id: string | undefined };
   movies: Movie[];
 };
 
-export function MoviesScreen({
-  movies: initialMovies,
-  searchParams,
-}: {
-  searchParams: { id: string | undefined };
-  movies: Props;
-}) {
-  const [movies, setMovies] = useState<Movie[]>(initialMovies.movies);
+export function MoviesScreen({ movies: initialMovies }: Props) {
+  const [movies, setMovies] = useState<Movie[]>(initialMovies);
   const [currentPage, setCurrentPage] = useState(1);
   const [endOfPage, setEndOfPage] = useState(false);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -44,7 +39,9 @@ export function MoviesScreen({
       try {
         const result = await fetchMoviesAction(searchTerm);
         if (result.length === 0) {
-          return setSearchError("No movies found, please try different keywords.");
+          return setSearchError(
+            "No movies found, please try different keywords.",
+          );
         } else {
           setMovies(result);
         }
@@ -57,26 +54,26 @@ export function MoviesScreen({
     if (searchTerm) {
       void handleSearchTerm(searchTerm);
     } else {
-      setMovies(initialMovies.movies);
+      setMovies(initialMovies);
       setCurrentPage(1);
       setEndOfPage(false);
     }
-  }, [searchTerm, initialMovies.movies]);
+  }, [searchTerm, initialMovies]);
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="px-4 pt-4 w-full h-full">
       <h1 className="my-2 text-center text-3xl font-bold text-gray-950">
         Movies
       </h1>
+
       <input
+        type="text"
         className="peer mb-2 block w-full rounded-md border border-gray-400 py-[9px] pl-10 text-sm outline-2 placeholder:text-gray-500"
         placeholder={"Enter a movie title"}
-        onChange={(event) => {
-          setSearchTerm(event.target.value);
-        }}
+        onChange={(event) => setSearchTerm(event.target.value)}
       />
 
-      <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ">
+      <ul className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 grid-flow-row gap-4">
         {movies.map((movie) => (
           <MovieCard movie={movie} key={movie.id} />
         ))}

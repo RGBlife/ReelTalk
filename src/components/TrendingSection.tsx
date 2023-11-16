@@ -1,41 +1,23 @@
-"use server";
-
-import Image from "next/image";
-import Link from "next/link";
 import React from "react";
 import { db } from "~/server/db";
+import Carousel from "./Carousel";
 
 export default async function TrendingSection() {
   const trendingMovies = await db.movie.findMany({
     orderBy: {
       vote_count: "desc",
     },
-    take: 3,
+    take: 10,
   });
 
   return (
     <section>
-      <h3>Trending Now </h3>
-      <h3>Trending Chatroom </h3>
-      <div className="flex flex-row gap-5">
-        {trendingMovies.map((movie) => {
-          return <>
-          <Link href={`/movies/${movie.id}`}>
-              <Image
-                src={movie.poster_url}
-                width={20}
-                height={60}
-                alt={movie.title}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto"
-                }} />
-            </Link>
-
-          </>;
-        })}
-        </div>
-        
+      <h2 className="m-2 ml-4 justify-center text-2xl font-bold text-gray-800 md:text-3xl lg:text-4xl">
+        Trending Now{" "}
+      </h2>
+      <div className="mt-10">
+        <Carousel trendingMovies={trendingMovies}></Carousel>
+      </div>
     </section>
   );
 }

@@ -1,40 +1,24 @@
 import format from "date-fns/format";
-import { AddToWatchedListButton } from "./AddToWatchedListButton";
+import { AddMovieToSeenButton } from "./AddMovieToSeenButton";
 import { MovieTrailerButton } from "./MovieTrailerButton";
 import { Genre, type Movie } from "@prisma/client";
 import { StarIcon } from "@heroicons/react/20/solid";
 
 import { createClassName } from "~/utils/string-formatters";
 import { MovieDetailBadge } from "./MovieDetailBadge";
-import { db } from "~/server/db";
-import { getAuthUser } from "~/server/auth";
+
 import { MovieTrailerModal } from "./MovieTrailerModal";
-import { WatchLaterButton } from "./WatchLaterButton";
+import { AddMovieToWatchLaterButton } from "./AddMovieToWatchLaterButton";
 
 type Props = {
-  movie: Movie & { genres: Genre[] };
+  movie: Movie & {
+    genres: Genre[];
+    isWatchLater: boolean;
+    isSeen: boolean;
+  };
 };
 
-const getAuthUserWatchList = async (userId: number) => {
-  const user = await db.user.findUnique({
-    where: { id: userId },
-    include: { to_watch: true },
-  });
-  return user?.to_watch;
-};
-
-export const MovieDetailSection = async ({ movie }: Props) => {
-  const authUser = await getAuthUser();
-
-  let isInWatchList = false;
-  if (authUser) {
-    const watchList = await getAuthUserWatchList(Number(authUser.id));
-
-    if (watchList) {
-      isInWatchList = watchList?.some((mtw) => mtw.movie_id === movie.id);
-    }
-  }
-
+export const MovieDetailSection = ({ movie }: Props) => {
   return (
     <div className="sm:py-18 mx-auto px-4 py-12 sm:px-6 lg:max-w-7xl lg:px-8">
       {/* Movie */}
@@ -64,7 +48,7 @@ export const MovieDetailSection = async ({ movie }: Props) => {
                 <MovieDetailBadge text={`${movie.runtime} mins`} />
 
                 <MovieDetailBadge
-                  text={format(new Date(movie.release_date), "MM/dd/yyyy")}
+                  text={format(new Date(movie.release_date), "PPP")}
                 />
               </div>
               <div className="space-between mt-2 flex flex-wrap gap-2">
@@ -93,19 +77,19 @@ export const MovieDetailSection = async ({ movie }: Props) => {
                 })}
               </div>
               <p className="mt-2 text-sm text-gray-500">
-                {(movie.imdb_rating / 2).toFixed(1)} out of 5 stars
+                {movie.imdb_rating.toFixed(1)} IMDb
               </p>
             </div>
           </div>
 
           <p className="mt-6 text-gray-600">{movie.overview}</p>
 
-          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 text-justify sm:grid-cols-2">
-            <WatchLaterButton
+          <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
+            <AddMovieToWatchLaterButton
               movieId={movie.id}
-              isInWatchList={isInWatchList}
+              isWatchLater={movie.isWatchLater}
             />
-            <AddToWatchedListButton movieId={movie.id} />
+            <AddMovieToSeenButton movieId={movie.id} isSeen={movie.isSeen} />
           </div>
 
           <div className="mt-5">

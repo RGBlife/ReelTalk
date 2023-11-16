@@ -15,7 +15,7 @@ export const HideableReviewBody = ({ body }: Props) => {
 
   return (
     <p
-      className="cursor-pointer"
+      className="cursor-pointer text-gray-500"
       onClick={toggleBody}
       style={{ color: !isShown ? "red" : "" }}
     >

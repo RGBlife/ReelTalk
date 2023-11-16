@@ -1,14 +1,13 @@
 import TrendingSection from "~/components/TrendingSection";
 import PopularReview from "~/components/PopularReview";
+import { ReviewPreviewSection } from "~/components/ReviewPreviewSection";
 
 export default function HomePage() {
   return (
-    <main>
-      <h1>Reel Talk</h1>
-      <div className="min-h-screen flex-grow border-x">
-        <TrendingSection />
-        <PopularReview />
-      </div>
-    </main>
+    <div className="mx-auto max-w-7xl flex-grow p-10">
+      <TrendingSection />
+      {/* <PopularReview /> */}
+      <ReviewPreviewSection />
+    </div>
   );
 }

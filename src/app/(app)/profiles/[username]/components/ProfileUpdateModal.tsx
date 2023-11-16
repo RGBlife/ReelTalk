@@ -1,7 +1,4 @@
 "use client";
-
-import React from "react";
-
 import { useState } from "react";
 
 import { User } from "@prisma/client";
@@ -43,7 +40,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
   return (
     <>
       <button
-        className="rounded bg-blue-500 px-3 py-1 text-white hover:bg-blue-600"
+        className="rounded bg-indigo-300 px-3 py-1 text-white hover:bg-blue-600"
         onClick={handleOpenButtonClick}
       >
         🖊️
@@ -58,6 +55,25 @@ export const ProfileUpdateModal = ({ user }: Props) => {
               ✕
             </button>
             <label className="mb-2 block">
+              Username:
+              <input
+                name="username"
+                value={state.username}
+                onChange={handleInputChange}
+                className="w-full rounded border border-gray-500 p-2"
+              />
+            </label>
+            <label className="mb-2 block">
+              Username:
+              <input
+                name="email"
+                type="email"
+                value={state.email}
+                onChange={handleInputChange}
+                className="w-full rounded border border-gray-500 p-2"
+              />
+            </label>
+            <label className="mb-2 block">
               Favourite Movie:
               <input
                 name="favourite_movie"
@@ -67,7 +83,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
               />
             </label>
             <label className="mb-2 block">
-              Public Watch List:
+              Public Watch Later List:
               <input
                 type="checkbox"
                 name="is_watch_list_public"
@@ -77,8 +93,8 @@ export const ProfileUpdateModal = ({ user }: Props) => {
               />
             </label>
 
-            {/* <label className="mb-2 block">
-              Public Watched List:
+            <label className="mb-2 block">
+              Public Seen List:
               <input
                 type="checkbox"
                 name="is_watched_list_public"
@@ -86,7 +102,7 @@ export const ProfileUpdateModal = ({ user }: Props) => {
                 onChange={handleCheckboxChange}
                 className="ml-2"
               />
-            </label> */}
+            </label>
 
             <button
               type="submit"

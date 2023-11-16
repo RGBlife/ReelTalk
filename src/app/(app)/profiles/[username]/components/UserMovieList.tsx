@@ -23,34 +23,22 @@ export const UserMovieList = async ({ userId }: Props) => {
 
   return (
     <div>
-      <div className="mx-auto max-w-2xl p-4">
-        <div className="rounded-md bg-white p-4 shadow-md">
-          <h2>My Watch Later Movies</h2>
-          {movies.map((movie) => (
-            <Link key={movie.id} href={`/movies/${movie.id}`}>
-              <MoviePreview {...movie} />
-            </Link>
-          ))}
-        </div>
-      </div>
+      <h2>My Watch Later Movies</h2>
+      {movies.map((movie) => (
+        <Link key={movie.id} href={`/movies/${movie.id}`}>
+          <MoviePreviewCard {...movie} />
+        </Link>
+      ))}
     </div>
   );
 };
 
-const MoviePreview = (movie: Movie) => {
-  const {
-    title,
-    overview,
-    release_date,
-    imdb_rating,
-    vote_count,
-    poster_url,
-    runtime,
-    trailer_url,
-  } = movie;
+const MoviePreviewCard = (movie: Movie) => {
+  const { title, release_date, imdb_rating, vote_count, poster_url, runtime } =
+    movie;
 
   return (
-    <div className="mx-auto max-w-md overflow-hidden rounded-xl bg-white shadow-lg">
+    <div className="mx-auto overflow-hidden rounded-xl bg-white shadow-lg">
       <img
         className="h-48 w-full object-cover object-center"
         src={poster_url}
