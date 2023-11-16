@@ -15,7 +15,7 @@ export const ReviewPreviewCard = ({ review }: Props) => {
           {review.movie.title}
         </h3>
         <h3 className="text-lg font-semibold text-gray-700">
-          "{review.title}"
+          &quot;{review.title}&quot;
         </h3>
         <div className="flex">
           {[0, 1, 2, 3, 4].map((rating) => {
@@ -41,7 +41,7 @@ export const ReviewPreviewCard = ({ review }: Props) => {
           <div className="">
             <img
               className="h-8 w-8 rounded-full"
-              src={review.author.avatar_url || ""}
+              src={review.author.avatar_url ?? ""}
               alt="author avatar"
             />
           </div>
