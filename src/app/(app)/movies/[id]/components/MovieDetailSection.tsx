@@ -77,7 +77,7 @@ export const MovieDetailSection = ({ movie }: Props) => {
                 })}
               </div>
               <p className="mt-2 text-sm text-gray-500">
-                {(movie.imdb_rating / 2).toFixed(1)} out of 5 stars
+                {movie.imdb_rating.toFixed(1)} IMDb
               </p>
             </div>
           </div>

@@ -13,7 +13,7 @@ export default function ReviewFormTextArea() {
         type="text"
         name="title"
         id="title"
-        className="block w-full border-0 bg-gray-100 p-2.5 text-lg font-medium text-gray-200 placeholder:text-gray-400 focus:ring-0"
+        className="block w-full border-0 bg-gray-100 p-2.5 text-lg font-medium text-gray-500 outline-none placeholder:text-gray-400 focus:ring-0"
         placeholder="Give your review a title..."
         required
       />
@@ -24,13 +24,13 @@ export default function ReviewFormTextArea() {
         rows={2}
         name="body"
         id="body"
-        className="block h-32 w-full resize-none border-0 bg-gray-100 p-2.5 text-gray-200  placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+        className="block h-32 w-full resize-none border-0 bg-gray-100 p-2.5 text-gray-500  outline-none placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
         placeholder="Write your review here..."
         defaultValue={""}
         required
       />
 
-      <div className="flex items-center justify-end space-x-3 border-t border-gray-700 bg-gray-100 px-2 py-2  sm:px-3">
+      <div className="flex items-center justify-end space-x-3 border-t border-gray-400 bg-gray-100 px-2 py-2  sm:px-3">
         <div className="flex-shrink-0">
           <button
             type="submit"

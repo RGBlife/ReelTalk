@@ -1,6 +1,6 @@
 import React from "react";
 import { db } from "~/server/db";
-import { MovieCarousel } from "./MovieCarousel";
+import Carousel from "./Carousel";
 
 export default async function TrendingSection() {
   const trendingMovies = await db.movie.findMany({
@@ -12,10 +12,12 @@ export default async function TrendingSection() {
 
   return (
     <section>
-      <h3 className="m-2 ml-4 text-4xl font-bold text-gray-800 md:text-5xl lg:text-2xl">
+      <h2 className="m-2 ml-4 justify-center text-2xl font-bold text-gray-800 md:text-3xl lg:text-4xl">
         Trending Now{" "}
-      </h3>
-      <MovieCarousel movies={trendingMovies} />
+      </h2>
+      <div className="mt-10">
+        <Carousel trendingMovies={trendingMovies}></Carousel>
+      </div>
     </section>
   );
 }
