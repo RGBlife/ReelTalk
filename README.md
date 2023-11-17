@@ -26,7 +26,6 @@ ReelTalk is an engaging app crafted by movie lovers, for movie lovers. More than
 
 
 ## Features
-## Features
 
 ### Home Page:
 - **Trending Movies**: Discover the latest and most popular movies, ranked by real-time user votes.
@@ -48,6 +47,8 @@ ReelTalk is an engaging app crafted by movie lovers, for movie lovers. More than
 ### Account Management:
 - Easy and secure login/out process.
 - Manage your account settings and preferences effortlessly.
+
+## Coming soon
 
 ### Chatroom:
 - Connect with other users in genre-specific chat rooms.
