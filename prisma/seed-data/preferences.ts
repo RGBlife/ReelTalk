@@ -1,6 +1,7 @@
 import { type Preference } from "prisma/prisma-client";
 
 // TODO: change to function to allow for dynamically passing in user_id
+
 export const preferencesSeedData = [
   {
     id: 1,
