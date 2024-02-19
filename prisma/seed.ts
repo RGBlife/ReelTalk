@@ -17,6 +17,15 @@ const formattedMovies = moviesSeedData.map((movie) => {
 
 async function main() {
 
+  // // Drop all tables
+  // try {
+  //   await prisma.$executeRawUnsafe('DROP SCHEMA public CASCADE');
+  //   console.log('All tables dropped');
+  // } catch (error) {
+  //   console.error('Error dropping tables:', error);
+  //   process.exit(1);
+  // }
+
   // Create genres
   await prisma.genre.createMany({
     data: genresSeedData,
@@ -63,6 +72,7 @@ async function main() {
   await prisma.preference.createMany({
     data: preferencesSeedData
   });
+
 }
 
 main()

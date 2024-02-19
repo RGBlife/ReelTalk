@@ -1,231 +1,158 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
-// datasource db {
-//     provider = "postgresql"
-//     // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-//     // Further reading:
-//     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-//     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-//     url      = env("DATABASE_URL")
-// }
-
 datasource db {
-    provider  = "postgresql"
-    url       = env("DATABASE_URL")
-    directUrl = env("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model Movie {
-    id            Int                @id @unique
-    title         String
-    genres        Genre[]
-    overview      String
-    release_date  DateTime
-    release_year  Int
-    imdb_rating   Float
-    vote_count    Int
-    poster_url    String
-    runtime       Int
-    trailer_url   String
-    reviews       Review[]
-    recommended   Recommendation[]
-    moviesToWatch UserToMovieWatch[]
-    moviesSeen    UserToMovieSeen[]
+  id            Int                @id @unique
+  title         String
+  overview      String
+  release_date  DateTime
+  release_year  Int
+  imdb_rating   Float
+  vote_count    Int
+  poster_url    String
+  runtime       Int
+  trailer_url   String
+  recommended   Recommendation[]
+  reviews       Review[]
+  moviesSeen    UserToMovieSeen[]
+  moviesToWatch UserToMovieWatch[]
+  genres        Genre[]            @relation("GenreToMovie")
 }
 
 model User {
-    id                     Int                @id @default(autoincrement())
-    username               String             @unique
-    email                  String             @unique
-    password               String
-    avatar_url             String?            @default("https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512")
-    role                   Role               @default(User)
-    favourite_movie        String
-    is_watch_list_public   Boolean            @default(false)
-    is_watched_list_public Boolean            @default(false)
-    preferences            Preference?
-    messages               Message[]
-    reviews                Review[]
-    chatrooms              ChatRoom[]
-    recommended            Recommendation[]
-    likes                  ReviewLikes[]
-    moviesToWatch          UserToMovieWatch[]
-    moviesSeen             UserToMovieSeen[]
+  id                     Int                @id @default(autoincrement())
+  username               String             @unique
+  email                  String             @unique
+  password               String
+  avatar_url             String?            @default("https://ca.slack-edge.com/T01KPE0QGCD-U05N3DU4Q48-g95b44753fe1-512")
+  role                   Role               @default(User)
+  favourite_movie        String
+  is_watch_list_public   Boolean            @default(false)
+  is_watched_list_public Boolean            @default(false)
+  chatrooms              ChatRoom[]
+  messages               Message[]
+  preferences            Preference?
+  recommended            Recommendation[]
+  reviews                Review[]
+  likes                  ReviewLikes[]
+  moviesSeen             UserToMovieSeen[]
+  moviesToWatch          UserToMovieWatch[]
 }
 
 model ReviewLikes {
-    user      User   @relation(fields: [user_id], references: [id])
-    user_id   Int
-    review    Review @relation(fields: [review_id], references: [id])
-    review_id Int
+  user_id   Int
+  review_id Int
+  review    Review @relation(fields: [review_id], references: [id])
+  user      User   @relation(fields: [user_id], references: [id])
 
-    @@unique([user_id, review_id])
+  @@unique([user_id, review_id])
 }
-
-enum Role {
-    User
-    Admin
-}
-
-// model Preference {
-//     id                      Int     @id @default(autoincrement())
-//     user                    User    @relation(fields: [user_id], references: [id])
-//     user_id                 Int     @unique
-//     preference_genre_a      String
-//     genre_a_weighting       Int
-//     preference_genre_b      String?
-//     genre_b_weighting       Int?
-//     preference_release_year String
-//     release_year_weighting  Int
-//     preference_imdb_rating  Float
-//     imdb_rating_weighting   Int
-// }
 
 model Preference {
-    id              Int    @id @default(autoincrement())
-    user            User   @relation(fields: [user_id], references: [id])
-    user_id         Int    @unique
-    action          Int
-    adventure       Int
-    animation       Int
-    comedy          Int
-    crime           Int
-    documentary     Int
-    drama           Int
-    family          Int
-    fantasy         Int
-    history         Int
-    horror          Int
-    music           Int
-    mystery         Int
-    romance         Int
-    science_fiction Int
-    tv_movie        Int
-    thriller        Int
-    war             Int
-    western         Int
-    release_year    String
-    imdb_rating     Int
+  id              Int    @id @default(autoincrement())
+  user_id         Int    @unique
+  action          Int
+  adventure       Int
+  animation       Int
+  comedy          Int
+  crime           Int
+  documentary     Int
+  drama           Int
+  family          Int
+  fantasy         Int
+  history         Int
+  horror          Int
+  music           Int
+  mystery         Int
+  romance         Int
+  science_fiction Int
+  tv_movie        Int
+  thriller        Int
+  war             Int
+  western         Int
+  release_year    String
+  imdb_rating     Int
+  user            User   @relation(fields: [user_id], references: [id])
 }
 
 model Genre {
-    id     Int     @id @unique
-    genre  String
-    movies Movie[]
+  id     Int     @id @unique
+  genre  String
+  movies Movie[] @relation("GenreToMovie")
 }
 
 model UserToMovieWatch {
-    movie    Movie @relation(fields: [movie_id], references: [id])
-    movie_id Int
-    user     User  @relation(fields: [user_id], references: [id])
-    user_id  Int
+  movie_id Int
+  user_id  Int
+  movie    Movie @relation(fields: [movie_id], references: [id])
+  user     User  @relation(fields: [user_id], references: [id])
 
-    @@unique([movie_id, user_id])
+  @@unique([movie_id, user_id])
 }
 
 model UserToMovieSeen {
-    movie    Movie @relation(fields: [movie_id], references: [id])
-    movie_id Int
-    user     User  @relation(fields: [user_id], references: [id])
-    user_id  Int
+  movie_id Int
+  user_id  Int
+  movie    Movie @relation(fields: [movie_id], references: [id])
+  user     User  @relation(fields: [user_id], references: [id])
 
-    @@unique([movie_id, user_id])
+  @@unique([movie_id, user_id])
 }
 
 model Message {
-    id        Int      @id @default(autoincrement())
-    user      User     @relation(fields: [user_id], references: [id])
-    user_id   Int
-    room      ChatRoom @relation(fields: [room_id], references: [id])
-    room_id   Int
-    author    String
-    body      String
-    createdAt DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  user_id   Int
+  room_id   Int
+  author    String
+  body      String
+  createdAt DateTime @default(now())
+  room      ChatRoom @relation(fields: [room_id], references: [id])
+  user      User     @relation(fields: [user_id], references: [id])
 }
 
 model Review {
-    id           Int           @id @default(autoincrement())
-    author_id    Int
-    movie_id     Int
-    title        String
-    body         String
-    vote_count   Int
-    rating       Float
-    has_spoilers Boolean
-    created_at   DateTime      @default(now())
-    likes        ReviewLikes[]
-
-    author User  @relation(fields: [author_id], references: [id])
-    movie  Movie @relation(fields: [movie_id], references: [id])
+  id           Int           @id @default(autoincrement())
+  author_id    Int
+  movie_id     Int
+  title        String
+  body         String
+  vote_count   Int
+  rating       Float
+  has_spoilers Boolean
+  created_at   DateTime      @default(now())
+  author       User          @relation(fields: [author_id], references: [id])
+  movie        Movie         @relation(fields: [movie_id], references: [id])
+  likes        ReviewLikes[]
 }
 
 model ChatRoom {
-    id        Int       @id @default(autoincrement())
-    user      User      @relation(fields: [owner_id], references: [id])
-    owner_id  Int
-    room_name String
-    owner     String
-    members   String[]
-    message   Message[]
+  id        Int       @id @default(autoincrement())
+  owner_id  Int
+  room_name String
+  owner     String
+  members   String[]
+  user      User      @relation(fields: [owner_id], references: [id])
+  message   Message[]
 }
 
 model Recommendation {
-    user     User  @relation(fields: [user_id], references: [id])
-    user_id  Int
-    movie    Movie @relation(fields: [movie_id], references: [id])
-    movie_id Int
-    score    Int
+  user_id  Int
+  movie_id Int
+  score    Int
+  movie    Movie @relation(fields: [movie_id], references: [id])
+  user     User  @relation(fields: [user_id], references: [id])
 
-    @@unique([user_id, movie_id])
+  @@unique([user_id, movie_id])
 }
 
-// Necessary for Next auth
-// model Account {
-//     id                String  @id @default(cuid())
-//     userId            String
-//     type              String
-//     provider          String
-//     providerAccountId String
-//     refresh_token     String? // @db.Text
-//     access_token      String? // @db.Text
-//     expires_at        Int?
-//     token_type        String?
-//     scope             String?
-//     id_token          String? // @db.Text
-//     session_state     String?
-//     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-//     @@unique([provider, providerAccountId])
-// }
-
-// model Session {
-//     id           String   @id @default(cuid())
-//     sessionToken String   @unique
-//     userId       String
-//     expires      DateTime
-//     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-// }
-
-// model User {
-//     id            String    @id @default(cuid())
-//     name          String?
-//     email         String?   @unique
-//     emailVerified DateTime?
-//     image         String?
-//     accounts      Account[]
-//     sessions      Session[]
-//     posts         Post[]
-// }
-
-// model VerificationToken {
-//     identifier String
-//     token      String   @unique
-//     expires    DateTime
-
-//     @@unique([identifier, token])
-// }
+enum Role {
+  User
+  Admin
+}
