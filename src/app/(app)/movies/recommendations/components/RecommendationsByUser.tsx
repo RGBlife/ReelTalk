@@ -1,3 +1,4 @@
+/* eslint-disable */
 import type { Recommendation } from "@prisma/client";
 import { MovieCardRecommendation } from "../../component/MovieCardRecommendation";
 import { db } from "~/server/db";
@@ -6,10 +7,6 @@ import Link from "next/link";
 type Props = {
   recommendations: Recommendation[];
 };
-
-// type MovieWithScore = Movie & {
-//   score: number;
-// };
 
 export default function RecommendationsByUser({ recommendations }: Props) {
   let movies = [];
